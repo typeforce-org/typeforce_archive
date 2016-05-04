@@ -1,0 +1,19 @@
+<?php /* Template Name: Footer */ 
+
+$footer = get_page_by_path('footer');
+$description = apply_filters('the_content', $footer->post_content);
+$links = apply_filters('the_content', get_post_meta($footer->ID , '_cmb2_links')[0] );
+$sponsors = apply_filters('the_content', get_post_meta($footer->ID , '_cmb2_sponsors')[0] );
+
+?>
+<footer class="site-footer" role="contentinfo">
+  <div class="description">
+    <?= $description ?>
+  </div>  
+  <div class="links">
+    <?= $links ?>
+  </div>
+  <div class="sponsors">
+    <?= $sponsors ?>
+  </div>
+</footer>
