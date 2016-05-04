@@ -84,6 +84,13 @@ namespace :deploy do
     require 'xmlrpc/client'
     require 'dotenv'
     Dotenv.load(".env.#{fetch(:stage)}")
+
+    # Check if WF_USER and WF_PASSWORD are in .env file
+    if ENV['WF_USER'].nil? || ENV['WF_PASSWORD'].nil?
+      abort "Please add WF_USER and WF_PASSWORD to .env.#{fetch(:stage)}"
+    end
+
+    # Connect to WebFaction API and get primary IP address
     wf_api_connect
     wf_get_ip_address
 
