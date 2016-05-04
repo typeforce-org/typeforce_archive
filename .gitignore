@@ -31,5 +31,3 @@ bin
 .vagrant
 
 .gems
-.rbenv-gemsets
-.ruby-version
