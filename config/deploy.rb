@@ -1,8 +1,8 @@
-set :application, 'typeforce'
+set :application, 'typeforce_archive'
 set :domain, 'typeforce.firebelly.co'
 set :theme, 'typeforce'
 set :login, 'firebelly'
-set :repo_url, 'git@github.com:firebelly/typeforce.git'
+set :repo_url, 'git@github.com:firebelly/typeforce_archive.git'
 set :php, 'php70'
 
 # Hardcodes branch to always be master

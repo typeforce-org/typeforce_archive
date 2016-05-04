@@ -1,6 +1,5 @@
 set :stage, :staging
 set :login, 'firebelly'
-set :application, 'typeforce_staging'
 
 # Simple Role Syntax
 # ==================
