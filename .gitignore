@@ -29,3 +29,7 @@ node_modules
 # Vagrant
 bin
 .vagrant
+
+.gems
+.rbenv-gemsets
+.ruby-version
