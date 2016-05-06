@@ -230,27 +230,27 @@ function get_exhibits($args) {
 
 
 function get_exhibit_thumbnails() {
-  //only if he have a thumb, lets make a list of thumb urls
+  // Do not proceed if no thumbnail
   if( !has_post_thumbnail() ){
     return false;
   }
-  $thumb_urls = array();
-
-  //grab the featured image url as first url
-  $thumb_urls[$i=0] = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'large')[0];
-  //grab all other image urls after that
+  // Lets get all the thumbnail ids
+  $thumb_ids = array();
+  // Grab the featured image ids as first id
+  $thumb_ids[$i=0] = get_post_thumbnail_id( get_the_ID() );
+  // Grab all the image from our cmb2 file_list
   $files = get_post_meta( get_the_ID(), '_cmb2_more_images', true );
   if($files) {
-    foreach($files as $file) {
-      $thumb_urls[++$i] = $file;
+    foreach($files as  $file_id => $file_url) {
+      $thumb_ids[++$i] = $file_id;
     }
   }
-
-  //prepare the output
+  // Loop through each image gathered and make some html!
   $output = '';
   $output .= '<div class="slider thumbnail-slider">';
-  foreach($thumb_urls as $thumb_url){
-    $duo_url = \Firebelly\Media\get_duo_url($thumb_url);  //get duotone image
+  foreach($thumb_ids as $thumb_id){
+    $thumb_url = wp_get_attachment_image_src( $thumb_id, 'large' )[0]; //get normal color image url
+    $duo_url = \Firebelly\Media\get_duo_url($thumb_id, ['size' => 'large'] );  //get duotone image url
     $output .= <<< HTML
     <div class="slide-item">
       <div class="color" style="background-image: url('{$thumb_url}')" ></div>
