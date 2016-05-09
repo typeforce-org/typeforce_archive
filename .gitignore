@@ -31,3 +31,6 @@ bin
 .vagrant
 
 .gems
+
+# Fonts
+web/app/themes/typeforce/assets/fonts/*

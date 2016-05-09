@@ -6,12 +6,13 @@ $black: #202020;
 $black-lite: #444648;
 $white: #fff;
 $gray-lite: #DCDCDC;
-$gray: #969696;
-$gray-dark: #555;
+$gray: #8A8788;
+$gray-dark: #241F21;
 
 // Brand Swatches
-$brand-primary: $black;
-$brand-secondary: $white;
+$brand-primary: $white;
+$brand-secondary: $gray-dark;
+$brand-tertiary: $gray;
 
 // Breakpoints
 $breakpoint-small: 480px;
