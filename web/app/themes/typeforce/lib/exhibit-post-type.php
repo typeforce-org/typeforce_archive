@@ -50,7 +50,7 @@ function post_type() {
     'menu_icon'           => 'dashicons-admin-post',
     'can_export'          => false,
     'has_archive'         => true,
-    'exclude_from_search' => true,
+    'exclude_from_search' => false,
     'publicly_queryable'  => true,
     'rewrite'             => $rewrite,
     'capability_type'     => 'page',
@@ -207,22 +207,27 @@ function get_exhibits($args) {
 
   $output ='';
 
-  $exhibit_posts = get_posts($args);
+  $exhibit_posts = new \WP_Query( $args );
 
-  if (!$exhibit_posts) {
+  //http://stackoverflow.com/questions/24838864/how-do-i-get-pagination-to-work-for-get-posts-in-wordpress
+
+  if ( $exhibit_posts->have_posts() ) {
+    while ( $exhibit_posts->have_posts() ) { 
+      $exhibit_posts->the_post();
+      global $post;
+      $exhibit_post = $post;
+      ob_start();
+      include(locate_template('templates/exhibit-listing.php'));
+      $output .= ob_get_clean();
+    }
+    wp_reset_postdata();
+  }else{
     $output .= '<div class="alert alert-warning">' 
       . __('Sorry, no results were found.', 'sage')
       .'</div>'
       .get_search_form(false);
-    return $output;
   }
 
-  foreach ($exhibit_posts as $exhibit_post):
-    ob_start();
-    include(locate_template('templates/exhibit-listing.php'));
-    $output .= ob_get_clean();
-  endforeach;
- 
   return $output;
 }
 
