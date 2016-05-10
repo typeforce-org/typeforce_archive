@@ -1,0 +1,47 @@
+
+.page-header.exhibition-info {
+  .exhibition-toggle {
+    margin-left: 0.8em;
+    @extend %clickable;
+    transition: transform 0.2s;
+  }
+  overflow: hidden;
+  .description, .additional {
+    float: left;
+    width: 50%;
+    margin-bottom: 70px;
+  }
+  .description {
+    padding-right: 50px;
+  }
+  .additional {
+    @extend %small-caps;
+    color: $gray;
+    h1,h2,h3,h4,h5,h6 {
+      color: $white;
+    }
+    a {
+      transition: color, 0.2s;
+      &:hover { color: $white; }
+    }
+    .exhibited {
+      .exhibition-exhibit-list {
+        columns: 2;
+        @extend %delistify;
+      }
+    }
+    .catalogue {
+      margin-top: 40px;
+    }
+  }
+  max-height: 456px;
+  transition: max-height 0.5s;
+  &:not(.active) {
+    max-height: 125px;
+  }
+  &.active {
+    .exhibition-toggle {
+      transform: rotate(90deg);
+    }
+  }
+}

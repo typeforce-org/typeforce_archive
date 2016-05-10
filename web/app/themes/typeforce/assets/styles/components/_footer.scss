@@ -1,14 +1,27 @@
 // Footer
 
 .site-footer {
-  .contact {
-    @include media-sm {
-
+  @extend .container;
+  padding: 100px $site-pad-right $site-pad-bottom $site-pad-left;
+  color: $gray;
+  @extend %small-caps;
+  h1,h2,h3,h4,h5,h6 {
+    color: $white;
+  }
+  a{
+    transition: color .2s;
+    &:hover {
+      color: $white;
     }
   }
-
-  .secondary-nav {
-    @include media-sm {}
-    @include media-md {}
+  .description, .links, .sponsors {
+    float: left;
+    display: block;
+  }
+  .description {
+    width: 50%;
+  }
+  .links, .sponsors {
+    width: 25%;
   }
 }

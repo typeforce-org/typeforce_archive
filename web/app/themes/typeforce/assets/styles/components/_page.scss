@@ -1,0 +1,10 @@
+.page-header {
+  @extend .container;
+  padding-right: $site-pad-right;
+  padding-left: $site-pad-left;
+  min-height: 125px;
+  .title {
+    margin-top: .8em;
+    position: relative;
+  }
+}

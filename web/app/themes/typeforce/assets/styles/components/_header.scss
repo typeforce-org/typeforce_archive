@@ -1,9 +1,37 @@
 // Header
 
 .site-header {
-  @include media-sm {
-  }
-
-  @include media-md {
+  border-bottom: 1px $white solid;
+  .header-content {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: $slider-height;
+    width: 100%;
+    .headline, .update {
+      @extend %small-caps;
+      position: absolute;
+    }
+    .headline {
+      top: 0;
+      left: 0;
+      margin-top: 1.5em;
+      margin-left: 75px;
+      max-width: 750px;
+      width: 80%;
+      h1 {
+        margin:0;
+      }
+    }
+    .update {
+      bottom: 0;
+      right: 100vw - $slider-width;
+      margin-bottom: 1em;
+      margin-right: 50px;
+    }
   }
 }
+
+
+
+

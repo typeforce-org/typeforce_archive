@@ -12,14 +12,15 @@ body {
   overflow-x: hidden;
   background: $gray-dark;
   @extend %body-text;
+  @extend %smooth;
 }
 
 h1 {
   @extend %big-title;
-  @extend %smooth;
 }
 h2,h3,h4,h5,h6 {
   @extend %small-title;
+  @extend %trailing-dash;
 }
 
 p {
@@ -66,15 +67,47 @@ img {
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0;
   position: relative;
   @include clearfix();
   @include media-md {
   }
 }
 
-// Temporarily give height/width to 
-.duo, .color {
-  width: 200px;
-  height: 200px;
+%fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
 }
+
+%clickable {
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+//put on ul to kill list styling
+%delistify {
+  list-style: none;
+  padding-left: 0;
+}
+
+//remove link underlines of any children
+%delinkify {
+  a {
+    text-decoration: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

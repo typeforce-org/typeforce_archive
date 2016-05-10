@@ -16,11 +16,15 @@
     "svg4everybody": "~1.0.0",
     "velocity": "~1.2.2",
     "fastclick": "~1.0.6",
-    "slick-carousel": "^1.5.9"
+    "slick-carousel": "^1.5.9",
+    "boomsvgloader": "^0.0.2"
   },
   "overrides": {
     "modernizr": {
       "main": "./modernizr.js"
+    },
+    "boomsvgloader": {
+      "main": "./dist/js/boomsvgloader.js"
     }
   }
 }

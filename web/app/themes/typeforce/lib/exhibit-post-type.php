@@ -212,14 +212,18 @@ function get_exhibits($args) {
   //http://stackoverflow.com/questions/24838864/how-do-i-get-pagination-to-work-for-get-posts-in-wordpress
 
   if ( $exhibit_posts->have_posts() ) {
+    $output .= '<ul class="exhibit-list">';
     while ( $exhibit_posts->have_posts() ) { 
       $exhibit_posts->the_post();
       global $post;
       $exhibit_post = $post;
+      $output .= '<li class="exhibit">';
       ob_start();
       include(locate_template('templates/exhibit-listing.php'));
       $output .= ob_get_clean();
+      $output .= '</li>';
     }
+    $output .= '</ul>';
     wp_reset_postdata();
   }else{
     $output .= '<div class="alert alert-warning">' 

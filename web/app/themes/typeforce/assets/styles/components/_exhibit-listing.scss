@@ -1,0 +1,78 @@
+
+.exhibit-listing-info {
+  @extend %fill;
+  .info{
+    position: absolute;
+    @extend %small-caps;
+    color: $gray;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    text-decoration: underline;
+    padding: 0 0 1.5em 2em;
+    .highlight{
+      background-color: $gray-dark;
+      padding: 0.3em;
+    }
+  }
+
+}
+
+
+  .info-link{
+    .info{
+      transition: color .2s;
+    }
+    &:hover {
+      .info{
+        color: $white;
+      }
+    }
+  }
+
+.header-slider{
+    .exhibit-listing-info {
+      .info{
+        padding: 2em 2em 2em $site-pad-left;
+      }
+    }
+}
+
+
+.exhibit-list{
+  @extend %delistify;
+  @extend .container;
+  // background-color: $gray;
+  .exhibit{
+    position: relative;
+    display: block;
+    float: left;
+    width: 33.333%;
+    height: 200px;
+    .exhibit-listing-info {
+      .info-link{
+        @extend %fill;
+      }
+    }
+  }
+}
+
+
+
+
+
+// MOUSE OVERS
+.duo, .headline, .update {
+  transition: opacity 0.2s;
+  opacity: 1;
+  &.disappeared {  //for header-slider, the bevior is complicated and we need to disappear things with js-added class
+    opacity: 0;
+  }
+}
+.exhibit-list {
+  .exhibit-listing-info:hover {
+    .duo{
+      opacity: 0;
+    }
+  }
+}

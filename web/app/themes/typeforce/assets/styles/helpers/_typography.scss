@@ -22,15 +22,35 @@ $font-body: "Karla", Helvetica, Arial, sans-serif;
 }
 
 %big-title {
+  letter-spacing: 0em;
+  text-transform: none;
   font: 48px/1.14583333333em $font-display;
 }
 
 %small-title {
+  position: relative;
+  letter-spacing: 0em;
+  text-transform: none;
   font: 24px/0.916666666em $font-display;
+  margin: 0 0 .6em;
+  padding-bottom: 0.8em;
+}
+
+%trailing-dash {
+  &:after{
+    left: 0;
+    bottom: 0;
+    content: '';
+    height: 1px;
+    width: .25em;
+    background: $white;
+    position: absolute;
+  }
 }
 
 %body-text {
   letter-spacing: .05em;
+  text-transform: none;
   font: 16px/1.375em $font-body;
 }
 

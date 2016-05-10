@@ -2,10 +2,11 @@
 
 // Automatically injected Bower dependencies via wiredep (never manually edit this block)
 // bower:scss
+@import "../../bower_components/slick-carousel/slick/slick.scss";
 // endbower
 
 // Reset
-// @import "vendor/normalize";
+@import "vendor/normalize";
 
 // Helpers and Variables
 @import "helpers/variables";
@@ -25,6 +26,12 @@
 @import "components/search";
 @import "components/forms";
 @import "components/footer";
+@import "components/images";
+@import "components/sliders";
+@import "components/exhibit-listing";
+@import "components/icons";
+@import "components/page";
+@import "components/exhibition";
 
 // Pages
 @import "pages/home";

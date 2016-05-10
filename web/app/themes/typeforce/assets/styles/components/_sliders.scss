@@ -1,0 +1,36 @@
+.slider {
+
+  .slide-item {
+    position: relative;
+    height: $slider-height;
+    width:  $slider-width;
+
+    // Add a gray overlay over slide;
+    &:after {
+        content: '\A';
+        position: absolute;
+        width: 100%; height:100%;
+        top:0; left:0;
+        background:rgba(0,0,0,0.8);
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.5s, visibility 0s 0.5s;
+    }
+    // Make overlay visible when not active;
+    &.slick-active {
+       &:after {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s, visibility 0.5s;
+       }
+    }
+  }
+  .slider-nav-right{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: $slider-width+2vw;
+    @extend %clickable;
+  }
+}
+

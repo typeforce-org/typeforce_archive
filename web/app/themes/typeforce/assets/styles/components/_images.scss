@@ -1,0 +1,8 @@
+
+// Temporarily give height/width to 
+.duo, .color {
+  @extend %fill;
+  background-position: center center;
+  background-size: cover;
+}
+

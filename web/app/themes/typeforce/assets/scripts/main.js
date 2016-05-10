@@ -28,9 +28,18 @@ var FBSage = (function($) {
     // Fit them vids!
     $('main').fitVids();
 
-    // _initNav();
+    _initNav();
     // _initSearch();
     // _initLoadMore();
+    _initSliders();
+    // Set up the show/hide exhibition functionality;
+    _initExhibition();
+
+    // Inject all of our svgs so we can grab them throughout the page with <use xlink:href="#..."> commands.
+    _injectSvgSprite();
+
+    // Give mouse over behavior to exhibit listings (e.g. duo images and other elements fade away)
+    _exhibitListingMouseOver();
 
     // Esc handlers
     $(document).keyup(function(e) {
@@ -69,47 +78,70 @@ var FBSage = (function($) {
     }, "easeOutSine");
   }
 
-  function _initSearch() {
-    $('.search-form:not(.mobile-search) .search-submit').on('click', function (e) {
-      if ($('.search-form').hasClass('active')) {
+  // function _initSearch() {
+  //   $('.search-form:not(.mobile-search) .search-submit').on('click', function (e) {
+  //     if ($('.search-form').hasClass('active')) {
 
-      } else {
-        e.preventDefault();
-        $('.search-form').addClass('active');
-        $('.search-field:first').focus();
-      }
-    });
-    $('.search-form .close-button').on('click', function() {
-      _hideSearch();
-      _hideMobileNav();
-    });
-  }
+  //     } else {
+  //       e.preventDefault();
+  //       $('.search-form').addClass('active');
+  //       $('.search-field:first').focus();
+  //     }
+  //   });
+  //   $('.search-form .close-button').on('click', function() {
+  //     _hideSearch();
+  //     _hideMobileNav();
+  //   });
+  // }
 
-  function _hideSearch() {
-    $('.search-form').removeClass('active');
-  }
+  // function _hideSearch() {
+  //   $('.search-form').removeClass('active');
+  // }
 
   // Handles main nav
   function _initNav() {
-    // SEO-useless nav toggler
-    $('<div class="menu-toggle"><div class="menu-bar"><span class="sr-only">Menu</span></div></div>')
-      .prependTo('header.banner')
+    // SEO-useless nav togglers
+    $('<svg class="menu-toggle menu-toggle-close icon-x" role="img"><use xlink:href="#icon-x"></use></svg>')
+      .prependTo('.site-nav')
       .on('click', function(e) {
-        _showMobileNav();
+        _hideNav();
       });
-    var mobileSearch = $('.search-form').clone().addClass('mobile-search');
-    mobileSearch.prependTo('.site-nav');
+    $('<svg class="menu-toggle menu-toggle-open icon-hamburger" role="img"><use xlink:href="#icon-hamburger"></use></svg>')
+      .prependTo('.exhibition-info .title')
+      .on('click', function(e) {
+        _showNav();
+      });
   }
 
-  function _showMobileNav() {
+  function _showNav() {
     $('.menu-toggle').addClass('menu-open');
     $('.site-nav').addClass('active');
   }
 
-  function _hideMobileNav() {
+  function _hideNav() {
     $('.menu-toggle').removeClass('menu-open');
     $('.site-nav').removeClass('active');
   }
+
+  function _initExhibition() {
+    // SEO-useless nav togglers
+    $('<svg class="exhibition-toggle icon-caret" role="img"><use xlink:href="#icon-caret"></use></svg>')
+      .appendTo('.exhibition-info .title')
+      .on('click', function(e) {
+        _toggleExhibition();
+      });
+  }
+
+  function _toggleExhibition() {
+    if( $('.exhibition-info').hasClass('active') ) {
+      $('.exhibition-info').removeClass('active');
+    } else {
+      $('.exhibition-info').addClass('active');
+    }
+    console.log('toggle');
+  }
+
+
 
   function _initLoadMore() {
     $document.on('click', '.load-more a', function(e) {
@@ -148,6 +180,46 @@ var FBSage = (function($) {
           }
       });
     });
+  }
+
+  function _initSliders(){
+    $('.slider').slick({
+      slide: '.slide-item',
+      //autoplay: true,
+      //autoplaySpeed: 5000,
+      speed: 500,
+      variableWidth: true,
+      draggable: false,
+      touchMove: false,
+      prevArrow: '',
+      nextArrow: '<svg class="slider-nav-right icon-caret" role="img"><use xlink:href="#icon-caret"></use></svg>',   
+    });
+  }
+
+  function _injectSvgSprite() {
+    boomsvgloader.load('/app/themes/typeforce/assets/svgs/build/svgs-defs.svg'); 
+  }
+
+  function _exhibitListingMouseOver() {
+    // For exhibit listings in the slider...
+    $('.header-slider .exhibit-listing-info').each(function() {
+      //... the desired behavior is to hide ...
+      var $this = $(this);
+      var $link = $this.find('.info-link');
+      //... the duotone image of the slide, and the global headline and update...
+      var $duo = $this.find('.duo');
+      var $headline = $('.headline');
+      var $update = $('.update');
+      var $toDisappear = $duo.add($update).add($headline);
+      //... on mouseover.
+      $link.mouseenter(function() {
+        $toDisappear.addClass('disappeared');
+        console.log($toDisappear);
+      }).mouseleave(function() {
+        $toDisappear.removeClass('disappeared');
+      });
+    });
+
   }
 
   // Track ajax pages in Analytics
