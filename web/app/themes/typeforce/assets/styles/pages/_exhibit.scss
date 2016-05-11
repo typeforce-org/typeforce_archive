@@ -1,5 +1,6 @@
 // Single Posts
 
+//Make the active slide in color
 .thumbnail-slider {
   .slick-center {
     .duo {
@@ -8,16 +9,107 @@
   }
 }
 
+
 .single-exhibit {
 
   article {
+    position: relative;
     @include clearfix();
 
-    main {
+    .header-wrap {
+      position: relative;
+
+      header {
+        padding-left: $site-pad-left;
+        padding-right: $site-pad-right;
+        position: absolute;
+        bottom: 0;
+        .entry-exhibition {
+          @extend %small-caps;
+        }
+        .entry-artist {
+          margin-top: .2em;
+          margin-bottom: .3em;
+        }
+      }
     }
 
-    header {
+    .content-wrap, .footer-wrap {
+      @include clearfix();
+      padding-left: $site-pad-left;
+      padding-right: $site-pad-right;
     }
+
+    .content-wrap{
+      margin-top: 55px;
+
+      .entry-main {
+        float: left;
+        width: 50%;
+        padding-right: 50px;
+
+        .entry-materials {
+          @extend %small-caps;
+          color: $gray;
+        }
+
+        .entry-bio {
+          margin-top: 2em;
+        }
+      }
+
+      .entry-social {
+        word-wrap: break-word;
+        float: left;
+        width: 25%;
+        color: $gray;
+        @extend %small-caps;
+        h1, h2, h3, h4, h5, h6 {
+          color: $white;
+        }
+        a {
+          transition: color 0.2s;
+          &:hover { color: $white; }
+        }
+      }
+    }
+
+    .footer-wrap{
+      margin-top: 100px;
+
+      .exhibit-nav {
+        width: 50%;
+        float: right;
+        padding-bottom: 0.4em;
+        border-bottom: 1px solid $gray;
+      }
+      .next,.prev {
+        position: relative;
+        width: 50%;
+        float: right;
+        padding: 0;
+        margin: 0;
+        min-height: 1px; //forces div to take up space even if empty;
+        @extend %small-title;
+        @extend %delinkify;
+
+        .icon-arrow-right, .icon-arrow-left {
+        }
+        .icon-arrow-right {
+          margin-left: 0.1em;
+          margin-bottom: 0.1em;
+        }
+        .icon-arrow-left {
+          margin-left: calc( -22px - 0.1em );
+          margin-bottom: 0.1em;
+        }
+
+      }
+    }
+
+
+
+
 
     .user-content {
       h1, h2, h3, h4, h5, h6 {

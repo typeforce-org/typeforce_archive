@@ -184,43 +184,21 @@ var FBSage = (function($) {
     });
   }
 
-  // function _styleActiveSliderInit(slick) {
-  //   console.log('INIT');
-  //   console.log('init this: '+$(this));
-  //   $(this).find('.slide-item.slick-active').addClass('active-style');
-  // }
-
-  // function _styleActiveSliderChange(event, slick, currentSlide, nextSlide) {
-  //   slick.$slides.removeClass('active-style');
-  //   $next = slick.$slides.filter( function() {
-  //     return $(this).data('slick-index') === nextSlide;
-  //   });
-  //   $next.addClass('active-style');
-
-
-  //   direction = nextSlide > currentSlide;
-
-  //   console.log(slick);
-  //   console.log($next);
-  //   console.log(currentSlide+' -> '+nextSlide);
-  //   console.log(direction);
-  // }
-
   function _initSliders(){
     $('.slider').slick({
       slide: '.slide-item',
       centerMode: true,
       centerPadding: '0',
       slidesToShow: 1,
+      autoplay: true,
+      autoplaySpeed: 5000,
       speed: 500,
       variableWidth: true,
-      draggable: false,
-      touchMove: false,
+      // draggable: false,
+      // touchMove: false,
       prevArrow: '',
       nextArrow: '<svg class="slider-nav-right icon-caret" role="img"><use xlink:href="#icon-caret"></use></svg>',   
     });
-    // .on('init', _styleActiveSliderInit)
-    // .on('beforeChange', _styleActiveSliderChange);
   }
 
   function _injectSvgSprite() {

@@ -31,7 +31,7 @@ $font-body: "Karla", Helvetica, Arial, sans-serif;
   position: relative;
   letter-spacing: 0em;
   text-transform: none;
-  font: 24px/0.916666666em $font-display;
+  font: 24px/1em $font-display; // /0.916666666em
   margin: 0 0 .6em;
   padding-bottom: 0.8em;
 }

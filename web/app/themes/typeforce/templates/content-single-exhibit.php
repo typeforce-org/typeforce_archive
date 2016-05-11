@@ -16,26 +16,35 @@ $thumbs = Firebelly\PostTypes\Exhibit\get_exhibit_thumbnails();
 
   <?= $exhibition_info ?>
   <article <?php post_class(); ?>>
-    <?= $thumbs ?>
-    <header>
-      <div class="entry-exhibition"><?= $exhibition ?></h1>
-      <h1 class="entry-artist"><?php the_title(); ?></h1>
-    </header>
-    <div class="entry-content">
-      <h2><?= $title ?></h2>
-      <div class="entry-materials"><?= $materials ?></div>
-      <div class="entry-statement"><?php the_content(); ?></div>
-      <h2>Bio</h2>
-      <div class="entry-bio"><?= $bio ?></div>
+    
+    <div class="header-wrap">
+      <?= $thumbs ?>
+      <header>
+        <div class="entry-exhibition"><?= $exhibition ?></h1>
+        <h1 class="entry-artist"><?php the_title(); ?></h1>
+      </header>
     </div>
-    <div class="entry-social">
-      <h2>Social</h2>
-      <?= $social; ?>
+    <div class="content-wrap">
+      <div class="entry-main">
+        <h2><?= $title ?></h2>
+        <div class="entry-statement"><?php the_content(); ?></div>
+        <div class="entry-materials"><?= $materials ?></div>
+        <div class="entry-bio"><h2>Bio</h2><?= $bio ?></div>
+      </div>
+      <div class="entry-social">
+        <h2>Social</h2>
+        <?= $social; ?>
+      </div>
     </div>
-    <footer>
+    <footer class="footer-wrap">
       <nav class="exhibit-nav">
-        <?php previous_post_link('%link','Previous Designer'); ?>
-        <?php next_post_link('%link','Next Designer'); ?>
+        <div class="next">
+          <?php next_post_link('%link','Next Designer <svg class="icon-arrow-right" role="img"><use xlink:href="#icon-arrow-right"></use></svg>'); ?>
+        </div>
+        <div class="prev">
+
+          <?php previous_post_link('%link','<svg class="icon-arrow-left" role="img"><use xlink:href="#icon-arrow-left"></use></svg> Previous Designer'); ?>
+        </div>
       </nav>
     </footer>
   </article>
