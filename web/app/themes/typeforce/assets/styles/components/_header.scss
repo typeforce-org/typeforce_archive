@@ -6,7 +6,7 @@
     position: relative;
     top: 0;
     left: 0;
-    height: $slider-height;
+    height: $main-slider-slide-height;
     width: 100%;
     .headline, .update {
       @extend %small-caps;
@@ -25,7 +25,7 @@
     }
     .update {
       bottom: 0;
-      right: 100vw - $slider-width;
+      right: 100vw - $main-slider-slide-width;
       margin-bottom: 1em;
       margin-right: 50px;
     }

@@ -3,13 +3,13 @@
     //compensate for slick centerMode trying to center it
     width: 100vw;
     .slick-track {
-        margin-left: ( $slider-width - 100vw )/2;
+        margin-left: ( $main-slider-slide-width - 100vw )/2;
     } 
 
   .slide-item {
     position: relative;
-    height: $slider-height;
-    width:  $slider-width;
+    height: $main-slider-slide-height;
+    width:  $main-slider-slide-width;
 
     // Add a gray overlay over slide;
     &:after {
@@ -35,7 +35,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: $slider-width+2vw;
+    left: $main-slider-slide-width+2vw;
     @extend %clickable;
   }
 }
