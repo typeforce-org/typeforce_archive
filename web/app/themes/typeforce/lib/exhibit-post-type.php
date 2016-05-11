@@ -90,11 +90,6 @@ $args = array(
   'rewrite'           => $rewrite,
 );
 register_taxonomy( 'exhibition', array('exhibit'), $args);
-// //remove list from sidebar, instead use cmb2 meta for year tax
-// function remove_exhibition_meta() {
-//   remove_meta_box('exhibition_div', 'exhibit', 'side');
-// }
-// add_action( 'admin_menu' , __NAMESPACE__ . '\remove_exhibition_meta' );
 
 
 /**
@@ -104,11 +99,9 @@ function edit_columns($columns){
   $columns = array(
     'cb' => '<input type="checkbox">',
     'title' => 'Artist',
-    // '_cmb2_title' => 'Title',
-    'content' => 'Description',
-    'featured_image' => 'Primary Image',
-    // '_cmb2_website' => 'Website',
-    // '_cmb2_social' => 'Social',
+    '_cmb2_title' => 'Title',
+    'content' => 'Statement',
+    'featured_image' => 'Featured Image',
     'taxonomy-exhibition' => 'Exhibition',
   );
   return $columns;
@@ -145,26 +138,33 @@ function metaboxes( array $meta_boxes ) {
     'priority'      => 'high',
     'show_names'    => true,
     'fields'        => array(
-      // array(
-      //   'name'  => 'Exhibit Title',
-      //   'id'    => $prefix . 'title',
-      //   'type'  => 'text_medium',
-      // ),
-      // array(
-      //   'name'      => 'Exhibition',
-      //   'id'        => $prefix . 'exhibition',
-      //   'taxonomy'  => 'exhibition',
-      //   'type'      => 'taxonomy_select',
-      // ),
       array(
-        'name'  => 'More Information',
-        'desc'  => 'Secondary Information, e.g.: Website, Social Media, etc.',
-        'id'    => $prefix . 'moreinfo',
+        'name'  => 'Title',
+        'desc'  => 'Title of exhibit',
+        'id'    => $prefix . 'title',
+        'type'  => 'text_medium',
+      ),     
+      array(
+        'name'  => 'Materials & Dimensions',
+        'desc'  => '(optional)',
+        'id'    => $prefix . 'materials',
         'type'  => 'wysiwyg',
       ),     
       array(
+        'name'  => 'Bio',
+        'desc'  => 'Artist\'s Biography (optional)',
+        'id'    => $prefix . 'bio',
+        'type'  => 'wysiwyg',
+      ),           
+      array(
+        'name'  => 'Social',
+        'desc'  => 'Website, Social Media, etc. (optional)',
+        'id'    => $prefix . 'social',
+        'type'  => 'wysiwyg',
+      ),   
+      array(
         'name'  => 'More Images',
-        'desc'  => 'Any photos in addition to featured image',
+        'desc'  => 'Any images for exhibit page in addition to featured image (optional)',
         'id'    => $prefix . 'more_images',
         'type'  => 'file_list',
         'preview_size' => array( 150, 150 ),

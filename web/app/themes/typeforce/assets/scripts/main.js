@@ -107,7 +107,7 @@ var FBSage = (function($) {
         _hideNav();
       });
     $('<svg class="menu-toggle menu-toggle-open icon-hamburger" role="img"><use xlink:href="#icon-hamburger"></use></svg>')
-      .prependTo('.exhibition-info .title')
+      .prependTo('.page-header .title')
       .on('click', function(e) {
         _showNav();
       });
@@ -133,10 +133,12 @@ var FBSage = (function($) {
   }
 
   function _toggleExhibition() {
-    if( $('.exhibition-info').hasClass('active') ) {
-      $('.exhibition-info').removeClass('active');
+    if( $('.exhibition-info').hasClass('open') ) {
+      $('.exhibition-info').removeClass('open');
+      $('.accordian-content').velocity("slideUp",{time: 200});
     } else {
-      $('.exhibition-info').addClass('active');
+      $('.exhibition-info').addClass('open');
+      $('.accordian-content').velocity("slideDown",{time: 200});
     }
     console.log('toggle');
   }
@@ -182,11 +184,34 @@ var FBSage = (function($) {
     });
   }
 
+  // function _styleActiveSliderInit(slick) {
+  //   console.log('INIT');
+  //   console.log('init this: '+$(this));
+  //   $(this).find('.slide-item.slick-active').addClass('active-style');
+  // }
+
+  // function _styleActiveSliderChange(event, slick, currentSlide, nextSlide) {
+  //   slick.$slides.removeClass('active-style');
+  //   $next = slick.$slides.filter( function() {
+  //     return $(this).data('slick-index') === nextSlide;
+  //   });
+  //   $next.addClass('active-style');
+
+
+  //   direction = nextSlide > currentSlide;
+
+  //   console.log(slick);
+  //   console.log($next);
+  //   console.log(currentSlide+' -> '+nextSlide);
+  //   console.log(direction);
+  // }
+
   function _initSliders(){
     $('.slider').slick({
       slide: '.slide-item',
-      //autoplay: true,
-      //autoplaySpeed: 5000,
+      centerMode: true,
+      centerPadding: '0',
+      slidesToShow: 1,
       speed: 500,
       variableWidth: true,
       draggable: false,
@@ -194,6 +219,8 @@ var FBSage = (function($) {
       prevArrow: '',
       nextArrow: '<svg class="slider-nav-right icon-caret" role="img"><use xlink:href="#icon-caret"></use></svg>',   
     });
+    // .on('init', _styleActiveSliderInit)
+    // .on('beforeChange', _styleActiveSliderChange);
   }
 
   function _injectSvgSprite() {

@@ -1,6 +1,6 @@
 <?php
 $exhibition_id = $wp_query->queried_object->term_id;
-$exhibition_info = Firebelly\PostTypes\Exhibition\get_exhibition_info($exhibition_id); 
+$exhibition_info = Firebelly\PostTypes\Exhibition\get_exhibition_info($exhibition_id,true); 
 ?>
 
 <?= $exhibition_info ?>

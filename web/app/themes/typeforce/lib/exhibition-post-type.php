@@ -150,8 +150,7 @@ function cmb2_get_term_options( $taxonomy = 'category', $args = array() ) {
 
 
 
-function get_exhibition_info($exhibition_id) {
-
+function get_exhibition_info($exhibition_id,$start_open=false) {
 
   $args = array (
     'post_type' => 'exhibition_info',
@@ -184,23 +183,26 @@ function get_exhibition_info($exhibition_id) {
   }
 
   $catalogue_link = get_post_meta($exhibition_info->ID,'_cmb2_catalogue',true);
+  $open_class = $start_open ? 'open' : 'start-closed';
 
   $output = <<< HTML
-  <div class="page-header exhibition-info active">
+  <div class="page-header exhibition-info {$open_class}">
     <h1 class="title">{$title}</h1>
-    <div class="description user-content">
-      {$description}
-    </div>
-    <div class="additional">
-      <div class="exhibited">
-        <h2>Exhibited</h2>
-        <ul class="exhibition-exhibit-list">
-          {$exhibited_list}
-        </ul>
+    <div class="accordian-content">
+      <div class="description user-content">
+        {$description}
       </div>
-      <div class="catalogue">
-        <h2>Exhibition Catalogue</h2>
-        <a href="{$catalogue_link}">Purchase through Firebelly</a>
+      <div class="additional">
+        <div class="exhibited">
+          <h2>Exhibited</h2>
+          <ul class="exhibition-exhibit-list">
+            {$exhibited_list}
+          </ul>
+        </div>
+        <div class="catalogue">
+          <h2>Exhibition Catalogue</h2>
+          <a href="{$catalogue_link}">Purchase through Firebelly</a>
+        </div>
       </div>
     </div>
   </div>

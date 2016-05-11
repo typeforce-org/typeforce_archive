@@ -28,20 +28,28 @@
       .exhibition-exhibit-list {
         columns: 2;
         @extend %delistify;
+        .exhibit{
+          display: inline-block;
+        }
       }
     }
     .catalogue {
       margin-top: 40px;
     }
   }
-  max-height: 456px;
-  transition: max-height 0.5s;
-  &:not(.active) {
-    max-height: 125px;
+  .accordian-content {
+    @extend .container;
   }
-  &.active {
+  &.start-closed {
+    .accordian-content {
+      display: none;
+    }
+  }
+  &.open {
     .exhibition-toggle {
       transform: rotate(90deg);
     }
   }
 }
+
+

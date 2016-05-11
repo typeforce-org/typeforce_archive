@@ -14,9 +14,9 @@
     "history.js": "~1.8.0",
     "respond": "~1.4.2",
     "svg4everybody": "~1.0.0",
-    "velocity": "~1.2.2",
+    "velocity": "^1.2.3",
     "fastclick": "~1.0.6",
-    "slick-carousel": "^1.5.9",
+    "slick-carousel": "^1.6.0",
     "boomsvgloader": "^0.0.2"
   },
   "overrides": {

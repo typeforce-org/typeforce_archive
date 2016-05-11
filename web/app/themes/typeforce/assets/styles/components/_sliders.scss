@@ -1,4 +1,10 @@
 .slider {
+    
+    //compensate for slick centerMode trying to center it
+    width: 100vw;
+    .slick-track {
+        margin-left: ( $slider-width - 100vw )/2;
+    } 
 
   .slide-item {
     position: relative;
@@ -17,7 +23,7 @@
         transition: opacity 0.5s, visibility 0s 0.5s;
     }
     // Make overlay visible when not active;
-    &.slick-active {
+    &.slick-center {
        &:after {
         opacity: 0;
         visibility: hidden;
