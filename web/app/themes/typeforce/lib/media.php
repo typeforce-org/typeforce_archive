@@ -60,7 +60,7 @@ function get_thumbnail_size_path($thumb_id,$size) {
 function get_duo_url($post_or_id, $options=[]) {
 
   // Handle options
-  $defaults = ['color1' => '2f2d28','color2' => 'dddcd6', 'size'=>'full' ];
+  $defaults = ['color1' => '241f21','color2' => '8a8788', 'size'=>'full' ];
   $options = wp_parse_args($options,$defaults);
   $color1 = $options['color1'];
   $color2 = $options['color2'];
