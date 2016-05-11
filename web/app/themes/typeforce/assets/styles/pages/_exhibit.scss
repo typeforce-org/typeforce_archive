@@ -1,8 +1,11 @@
 // Single Posts
 
-//Make the active slide in color
+
 .thumbnail-slider {
-  .slick-center {
+  .slide-item {
+    height: 75vh;
+  }
+  .slick-center { //Make the active slide in color
     .duo {
       opacity: 0;
     }
@@ -45,7 +48,7 @@
 
       .entry-main {
         float: left;
-        width: 50%;
+        width: 75%;
         padding-right: 50px;
 
         .entry-materials {
