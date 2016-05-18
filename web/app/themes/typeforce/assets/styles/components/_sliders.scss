@@ -59,7 +59,7 @@
     @extend %clickable;
     &:hover{
       .icon-caret {
-        transform: translate(2vw,-50%);
+        transform: translate(1vw,-50%);
       }
       // background-color: rgba($white,0.1);
     }

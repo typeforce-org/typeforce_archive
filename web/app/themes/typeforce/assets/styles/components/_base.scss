@@ -11,6 +11,7 @@ body {
   color: $white;
   overflow-x: hidden;
   background: $gray-dark;
+  margin-top: $header-height;
   @extend %body-text;
   @extend %smooth;
 }
@@ -41,8 +42,8 @@ img {
 
 // Browser alert
 .alert-warning {
-  padding-left: $site-pad-left;
-  @include media-md { padding-left: $site-pad-left-md; }
+  padding-left: $site-pad-hor;
+  @include media-md { padding-left: $site-pad-hor-md; }
   @extend %small-title;
 }
 

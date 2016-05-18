@@ -20,11 +20,11 @@
     @include clearfix();
 
     .content-wrap, .footer-wrap, header { 
-      padding-left: $site-pad-left;
-      padding-right: $site-pad-right;
+      padding-left: $site-pad-hor;
+      padding-right: $site-pad-hor;
       @include media-md {
-        padding-left: $site-pad-left-md;
-        padding-right: $site-pad-right-md;
+        padding-left: $site-pad-hor-md;
+        padding-right: $site-pad-hor-md;
       }
     }
 

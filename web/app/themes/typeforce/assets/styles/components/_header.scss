@@ -1,67 +1,50 @@
 // Header
 
 .site-header {
-  border-bottom: 1px $white solid;
-  .header-content {
-    position: relative;
-    top: 0;
-    left: 0;
-    height: $main-slider-slide-height;
-    width: 100%;
-    .headline, .update {
-      @extend %small-caps;
-      position: absolute;
-    }
-    .headline {
-      top: 0;
-      left: 0;
-      margin-top: 1.5em;
-      margin-left: $site-pad-left;
-      max-width: 350px;
-      width: calc( 87vw - 50px);
-      @include media-md {
-        margin-left: $site-pad-left-md;
-        max-width: 750px;
-        width: calc( 87vw - 100px);
-      }
-      h1 {
-        margin:0;
-        @extend %big-title;
-      }
-      transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
-      &.disappeared {
-        transform: translateY(-100%);
-      }
-    }
-    .update {
-      bottom: 0;
-      left: $site-pad-left;
-      @include media-md {
-        left: $site-pad-left-md;
-        right: 100vw - $main-slider-slide-width;
-        left: auto;
-      }
-      margin-bottom: 1em;
-      margin-right: 50px;
-      margin-top: 70px;
-      transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
-      &.disappeared {
-        transform: translateX(200%);
-      }
-    }
+  @extend .container;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  overflow: hidden;
+  background-color: $gray-dark;
+  @extend .container;
+  height: $header-height;
+  max-height: $header-height;
+  // transition: max-height 0.1s;
+  &.scrolled{
+    position: fixed;
+    max-height: 75px;
   }
-}
 
+  .title, .site-nav {
+    margin: 0;  
+    position: absolute;
+    bottom: 0;
+    margin: 10px  $site-pad-hor-md;
 
-.header-slider{
-  .exhibit-listing-info {
-    .info{
-      padding: 2em 2em 2em $site-pad-left;
-      max-width: 60%;
-      visibility: hidden;
-      @include media-md {
-        padding: 10vh 10vw 2em $site-pad-left-md;
-        visibility: visible;
+  }
+
+  .title {
+    left: 0;
+    @extend %delinkify;
+  }
+
+  .site-nav {
+    right: 0;
+    .nav {
+    margin: 0;
+    margin-bottom: 5px;
+      @extend %delistify;
+      .menu-item {
+        margin: 0; padding: 0;
+        color: $gray;
+        margin-right: 1em;
+        @extend %delinkify;
+        @extend %small-title;
+        display: inline-block;
+        &:hover{ color: $white;}
       }
     }
   }

@@ -45,6 +45,8 @@ var FBSage = (function($) {
 
     _initSliders();
 
+    _resizeHeaderOnScroll();
+
 
     // Esc handlers
     $(document).keyup(function(e) {
@@ -95,42 +97,42 @@ var FBSage = (function($) {
   }
 
  function _initSearch() {
-  $('<svg class="icon-search" role="img"><use xlink:href="#icon-search"></use></svg>')
-    .prependTo('.search-submit');
-  $('.nav-links').addClass('active');
-  $('.open-search').on('click', function (e) {
-    e.preventDefault();
-    _openSearch();
-  });
-  $('.search-form:not(.mobile-search) .search-submit').on('click', function (e) {
-    if ($('.search-form').hasClass('active')) {
+  // $('<svg class="icon-search" role="img"><use xlink:href="#icon-search"></use></svg>')
+  //   .prependTo('.search-submit');
+  // $('.nav-links').addClass('active');
+  // $('.open-search').on('click', function (e) {
+  //   e.preventDefault();
+  //   _openSearch();
+  // });
+  // $('.search-form:not(.mobile-search) .search-submit').on('click', function (e) {
+  //   if ($('.search-form').hasClass('active')) {
 
-    } else {
-      e.preventDefault();
-      $('.search').addClass('active');
-      $('.search-field:first').focus();
-    }
-  });
-  $('.search-form .close-button').on('click', function() {
-    _hideSearch();
-    _hideMobileNav();
-  });
+  //   } else {
+  //     e.preventDefault();
+  //     $('.search').addClass('active');
+  //     $('.search-field:first').focus();
+  //   }
+  // });
+  // $('.search-form .close-button').on('click', function() {
+  //   _hideSearch();
+  //   _hideMobileNav();
+  // });
  }
 
 
   // Handles main nav
   function _initNav() {
     //SEO-useless nav togglers
-    $('<svg class="menu-toggle menu-toggle-close icon-x" role="img"><use xlink:href="#icon-x"></use></svg>')
-      .prependTo('.site-nav')
-      .on('click', function(e) {
-        _hideNav();
-      });
-    $('<svg class="menu-toggle menu-toggle-open icon-hamburger" role="img"><use xlink:href="#icon-hamburger"></use></svg>')
-      .prependTo('.page-header .title')
-      .on('click', function(e) {
-        _showNav();
-      });
+    // $('<svg class="menu-toggle menu-toggle-close icon-x" role="img"><use xlink:href="#icon-x"></use></svg>')
+    //   .prependTo('.site-nav')
+    //   .on('click', function(e) {
+    //     _hideNav();
+    //   });
+    // $('<svg class="menu-toggle menu-toggle-open icon-hamburger" role="img"><use xlink:href="#icon-hamburger"></use></svg>')
+    //   .prependTo('.page-header .title')
+    //   .on('click', function(e) {
+    //     _showNav();
+    //   });
   }
 
   function _showNav() {
@@ -221,14 +223,25 @@ var FBSage = (function($) {
 
   // Scroll to the header immediately on every page but home
   function _startScrolledToHeader() {
-    $body = $('body');
-    $header = $('.page-header');
-    if(!$body.hasClass('home')) {
-      window.scroll(0,$header.offset().top-20);
-    }
-    // $(window).on('beforeunload', function() {
+    // $body = $('body');
+    // $header = $('.page-header');
+    // if(!$body.hasClass('home')) {
     //   window.scroll(0,$header.offset().top-20);
-    // });
+    // }
+    // // $(window).on('beforeunload', function() {
+    // //   window.scroll(0,$header.offset().top-20);
+    // // });
+  }
+
+  function _resizeHeaderOnScroll() {
+    $(window).scroll(function() {
+      var wintop = $(window).scrollTop();
+      if (wintop > 50) {
+        $('.site-header').addClass('scrolled');
+      } else {
+        $('.site-header').removeClass('scrolled');
+      }
+    });
   }
 
   function _resizeSliders() {
@@ -278,7 +291,7 @@ var FBSage = (function($) {
 
   function _exhibitListingMouseOver() {
     // For exhibit listings in the slider...
-    $('.header-slider .exhibit-listing-info').each(function() {
+    $('.intro-slider .exhibit-listing-info').each(function() {
       //... the desired behavior is to hide ...
       var $this = $(this);
       var $link = $this.find('.info-link');

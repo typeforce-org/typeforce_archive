@@ -4,8 +4,8 @@ $footer-lg: 1400px;
 
 .site-footer {
   @extend .container;
-  padding: 100px $site-pad-right $site-pad-bottom $site-pad-left;
-  @include media-md { padding: 100px $site-pad-right-md $site-pad-bottom-md $site-pad-left-md; }
+  padding: 100px $site-pad-hor $site-pad-bottom $site-pad-hor;
+  @include media-md { padding: 100px $site-pad-hor-md $site-pad-bottom-md $site-pad-hor-md; }
   @extend %small-caps;
   @extend %gray-text; 
 

@@ -1,5 +1,7 @@
 
-.page-header.exhibition-info {
+.exhibition-info {
+  padding: 0 $site-pad-hor;
+  @include media-md {padding: 0 $site-pad-hor-md;}
   overflow: hidden;
   .description, .additional {
     float: left;

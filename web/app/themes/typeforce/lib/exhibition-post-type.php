@@ -185,12 +185,7 @@ function get_exhibition_info($exhibition_id, $title_only=false ) {
   $catalogue_link = get_post_meta($exhibition_info->ID,'_cmb2_catalogue',true);
 
   $output = <<< HTML
-  <div class="page-header exhibition-info" id="content">
-    <h1 class="title">{$title}</h1>
-HTML;
-
-  if(!$title_only){
-    $output .= <<< HTML
+  <div class="exhibition-info" id="content">
       <div class="accordian-content">
         <div class="description user-content">
           {$description}
@@ -209,7 +204,6 @@ HTML;
         </div>
       </div>
 HTML;
-  }
 
   $output .= '</div>';
 

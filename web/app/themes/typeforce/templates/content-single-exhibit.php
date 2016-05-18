@@ -14,7 +14,6 @@ $thumbs = Firebelly\PostTypes\Exhibit\get_exhibit_thumbnails();
 
 ?>
 
-  <?= $exhibition_info ?>
   <article <?php post_class(); ?>>
     
     <div class="header-wrap">

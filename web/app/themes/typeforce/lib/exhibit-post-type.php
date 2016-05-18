@@ -177,7 +177,7 @@ function metaboxes( array $meta_boxes ) {
 }
 add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
 
-function get_header_slider() {
+function get_intro_slider() {
 
   $args = array(
     'numberposts' => 5,
@@ -188,7 +188,7 @@ function get_header_slider() {
   $exhibit_posts = get_posts($args);
   if (!$exhibit_posts) return false;
 
-  $output = '<div class="slider header-slider">';
+  $output = '<div class="slider intro-slider">';
 
   foreach ($exhibit_posts as $exhibit_post):
     $output .= '<div class="slide-item">';
