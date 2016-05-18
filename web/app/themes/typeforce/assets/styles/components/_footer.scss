@@ -1,8 +1,11 @@
 // Footer
+$footer-md: 950px;
+$footer-lg: 1400px;
 
 .site-footer {
   @extend .container;
   padding: 100px $site-pad-right $site-pad-bottom $site-pad-left;
+  @include media-md { padding: 100px $site-pad-right-md $site-pad-bottom-md $site-pad-left-md; }
   color: $gray;
   @extend %small-caps;
   h1,h2,h3,h4,h5,h6 {
@@ -17,11 +20,23 @@
   .description, .links, .sponsors {
     float: left;
     display: block;
+    word-wrap: break-word;
   }
+
   .description {
-    width: 50%;
+    width: 100%;
+    @include min-screen($footer-md) {width: 50%;}
+    
   }
   .links, .sponsors {
-    width: 25%;
+    width: 100%;
+    margin-top: 1.5em;
+    @include min-screen($footer-md) {width: 50%; margin-top: 0;}
+    @include min-screen($footer-lg) {width: 25%; margin-top: 0;}
+  }
+  .sponsors {
+    float: right;
+    margin-top: 1.5em;
+    @include min-screen($footer-lg) {margin-top: 0;}
   }
 }

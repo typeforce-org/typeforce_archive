@@ -109,7 +109,7 @@ function get_duo_url($post_or_id, $options=[]) {
 
     // Build the ImageMagick convert command and execute
     $convert_command = (WP_ENV==='development') ? '/usr/local/bin/convert' : '/usr/bin/convert';
-    $full_command = $convert_command.' '.$image_to_convert.' +profile "*" -quality 65 -colorspace gray -level +10% +level-colors "#'.$color1.'","#'.$color2.'" '.$treated_image;
+    $full_command = $convert_command.' '.$image_to_convert.' +profile "*" -quality 90 -colorspace gray +level-colors "#'.$color1.'","#'.$color2.'" '.$treated_image;
     exec($full_command);
 
   echo '<script>console.log(\'MESSAGE FROM PHP:'.$full_command.'\');</script>';

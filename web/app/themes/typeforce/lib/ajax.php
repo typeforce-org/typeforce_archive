@@ -5,7 +5,7 @@ namespace Firebelly\Ajax;
  * Add wp_ajax_url variable to global js scope
  */
 function wp_ajax_url() {
-  wp_localize_script('sage_js', 'wp_ajax_url', admin_url( 'admin-ajax.php'));
+  wp_localize_script('sage/js', 'wp_ajax_url', admin_url( 'admin-ajax.php'));
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\wp_ajax_url', 100);
 
@@ -20,8 +20,11 @@ function is_ajax() {
  * AJAX load more posts (news or events)
  */
 function load_more_posts() {
+  
   // news or projects?
-  $post_type = (!empty($_REQUEST['post_type']) && $_REQUEST['post_type']=='exhibit') ? 'exhibit' : 'news';
+  $post_type = !empty($_REQUEST['post_type']) ? $_REQUEST['post_type'] : 'post';
+  $exhibition_id = !empty($_REQUEST['exhibition_id']) ? $_REQUEST['exhibition_id'] : '';
+  $search_query = !empty($_REQUEST['search_query']) ? $_REQUEST['search_query'] : '';
   // get page offsets
   $page = !empty($_REQUEST['page']) ? $_REQUEST['page'] : 1;
   $per_page = !empty($_REQUEST['per_page']) ? $_REQUEST['per_page'] : get_option('posts_per_page');
@@ -29,31 +32,19 @@ function load_more_posts() {
   $args = [
     'offset' => $offset,
     'posts_per_page' => $per_page,
+    'post_type' => $post_type,
   ];
-  if ($post_type == 'project') {
-    $args['post_type'] = 'project';
+  if($exhibition_id) {
+    $args['tax_query'] = [
+      [
+        'taxonomy' => 'exhibition',
+        'field' => 'id',
+        'terms' => $exhibition_id
+      ]
+    ];
   }
-  // Filter by Category?
-  if (!empty($_REQUEST['project_category'])) {
-    if (strpos($_REQUEST['project_category'], ',') !== false) {
-      $cats = explode(',', $_REQUEST['project_category']);
-      $args['tax_query'] = array();
-      foreach($cats as $cat) {
-        array_push($args['tax_query'], array(
-          'taxonomy' => 'project_category',
-          'field'    => 'slug',
-          'terms'    => sanitize_title($cat),
-        ));
-      }
-    } else {
-      $args['tax_query'] = array(
-        array(
-          'taxonomy' => 'project_category',
-          'field'    => 'slug',
-          'terms'    => sanitize_title($_REQUEST['project_category']),
-        )
-      );
-    }
+  if($search_query) {
+    $args['s'] = $search_query;
   }
 
   $posts = get_posts($args);
@@ -61,11 +52,12 @@ function load_more_posts() {
   if ($posts): 
     foreach ($posts as $post) {
       // set local var for post type — avoiding using $post in global namespace
-      if ($post_type == 'project')
-        $project_post = $post;
-      else
-        $news_post = $post;
-      include(locate_template('templates/article-'.$post_type.'.php'));
+      if ($post_type == 'exhibit') {
+        $exhibit_post = $post;
+        echo '<li class="exhibit">';
+        include(locate_template('templates/exhibit-listing.php'));
+        echo '</li>';
+      }
     }
   endif;
 

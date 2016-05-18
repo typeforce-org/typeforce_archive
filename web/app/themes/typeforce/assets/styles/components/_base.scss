@@ -43,15 +43,15 @@ img {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 200;
-  color: $black;
-  padding: 50px;
-  text-align: center;
-  background: $brand-primary;
+  color: $white;
+  padding: 50px 0 0 $site-pad-left;
+  @include media-md { padding: 50px 0 0 $site-pad-left-md; }
+  background: $black;
+  @extend %small-title;
 }
 .alert {
-  padding: 50px;
-  background: #fff;
+  // padding: 50px;
+  // background: #fff;
 }
 
 // Disable scrolling when modals are active

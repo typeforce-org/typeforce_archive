@@ -1,53 +1,116 @@
 // Nav
 
-// wp admin bar push
-.admin-bar {}
-
-#menu-main-nav {
-}
-
-// mobile menu toggle
-.menu-toggle {
-}
+$nav-col-width: 175px;
 
 .menu-toggle-open, .menu-toggle-close {
   @extend %clickable;
 }
 
-.site-nav {
-@extend %small-title;
-position: absolute;
-color: $gray;
-z-index: 100;
-  width: calc( 100vw - 0.5em );;
+  .site-nav {
+  position: absolute;
+  z-index: 100;
+  width: calc( 100vw - 0.5em );
   min-height: calc( 125px - 1em );
-  margin-top: 0.5em;
-  padding-left: $site-pad-left;
-  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
   @include clearfix();
+  margin-top: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: $site-pad-left-md;
+  color: $gray;
+  background-color: $white;
+  @extend %small-title;
   transition: transform 0.5s;
+
 
   &:not(.active) {
     transform: translateX(-100%);
   }
 
-  .nav {
-    padding: 0;
-    @extend %delistify;
-    @extend %delinkify;
+  .column-wrap {
+    position: relative;
+    column-gap: 0;
+    columns: 1;
+    height: auto;
+    @include min-screen($site-pad-left-md+$nav-col-width*2) { columns: 2; }
+    @include min-screen($site-pad-left-md+$nav-col-width*3) { columns: 3; }
+    @include min-screen($site-pad-left-md+$nav-col-width*4) { columns: 4; }
+    @include min-screen($site-pad-left-md+$nav-col-width*5) { columns: 5; }
+    @include min-screen($site-pad-left-md+$nav-col-width*6) { columns: 6; }
+    @include min-screen($site-pad-left-md+$nav-col-width*7) { columns: 7; }
+    @include min-screen($site-pad-left-md+$nav-col-width*8) { columns: 8; }
+    @include min-screen($site-pad-left-md+$nav-col-width*9) { columns: 9; }
+    visibility: hidden;
+    display: none;
+    &.active {
+      visibility: visible;
+      display: block;
+    }
+ 
+    .nav {
+      padding: 0;
+      margin: 0;
+      display: block;
+      @extend %delistify;
+      @extend %delinkify;
 
-    .menu-item{
-      float: left;
-      // display: block;
-      width: 175px;
-      a {
-        transition: color .2s;
-        &:hover {
-          color: $gray-dark;
+
+      .menu-item{
+        display: block;
+        height: 1em;
+        a {
+          transition: color .2s;
+          &:hover {
+            color: $gray-dark;
+          }
         }
       }
     }
   }
+
+  .search {
+    position: absolute;
+    top: 0;
+    left: $site-pad-left-md;
+    right: 0;
+    display: flex;
+    height: 100%;
+    padding: 0 $site-pad-left-md 0 0 0;
+    flex-direction: column;
+    justify-content: center;
+    visibility: hidden;
+    &.active {
+      visibility: visible;
+    }
+    .search-form{
+      @extend %big-title;
+      .search-field {
+        width: 100%;
+        border: none;
+        outline: none;
+      }
+      .search-submit {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 25px;
+        border: none;
+        outline: none;
+        background: transparent;
+        .icon-search {
+          height: 30px;
+          width: 30px;
+        }
+      }
+    }
+  }
+  .open-search{
+    @extend %clickable;
+  }
+
 }
 
 
@@ -57,12 +120,14 @@ z-index: 100;
 .menu-toggle-open { 
   position: absolute;
   left: -$site-pad-left/2;
+  @include media-md { left: -$site-pad-left-md/2; }
   transform: translate(-50%,0);
   bottom: 0.25em;
 }
 .menu-toggle-close {
   position: absolute;
   left: $site-pad-left/2;
+  @include media-md { left: $site-pad-left-md/2; }
   transform: translate(-50%,-50%);
   top: 50%;
 }

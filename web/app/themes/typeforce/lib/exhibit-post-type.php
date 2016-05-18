@@ -7,7 +7,8 @@
  use Firebelly\Utils;
 
   // Custom image size for post type?
-  // add_image_size( 'exhibit-thumb', 800, 800, true );
+  add_image_size( 'slide', 2000, 0, true );
+  add_image_size( 'listing', 800, 0, true );
 
  /**
   * Register Custom Post Type
@@ -179,7 +180,7 @@ add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
 function get_header_slider() {
 
   $args = array(
-    'numberposts' => 3,
+    'numberposts' => 5,
     'post_type'   => 'exhibit',
     'orderby'     => 'rand',
     );
@@ -192,6 +193,7 @@ function get_header_slider() {
   foreach ($exhibit_posts as $exhibit_post):
     $output .= '<div class="slide-item">';
     ob_start();
+    $thumb_size = 'slide';
     include(locate_template('templates/exhibit-listing.php'));
     $output .= ob_get_clean();
     $output .=  '</div>';
@@ -209,10 +211,9 @@ function get_exhibits($args) {
 
   $exhibit_posts = new \WP_Query( $args );
 
-  //http://stackoverflow.com/questions/24838864/how-do-i-get-pagination-to-work-for-get-posts-in-wordpress
-
   if ( $exhibit_posts->have_posts() ) {
-    $output .= '<ul class="exhibit-list">';
+
+    $output .= '<ul class="exhibit-list load-more-container">';
     while ( $exhibit_posts->have_posts() ) { 
       $exhibit_posts->the_post();
       global $post;
@@ -225,6 +226,11 @@ function get_exhibits($args) {
     }
     $output .= '</ul>';
     wp_reset_postdata();
+
+    ob_start();
+    include(locate_template('templates/load-more-exhibits-button.php'));
+    $output .= ob_get_clean();
+    
   }else{
     $output .= '<div class="alert alert-warning">' 
       . __('Sorry, no results were found.', 'sage')
@@ -258,8 +264,8 @@ function get_exhibit_thumbnails() {
   $output = '';
   $output .= '<div class="slider thumbnail-slider">';
   foreach($thumb_ids as $thumb_id){
-    $thumb_url = wp_get_attachment_image_src( $thumb_id, 'large' )[0]; //get normal color image url
-    $duo_url = \Firebelly\Media\get_duo_url($thumb_id, ['size' => 'large'] );  //get duotone image url
+    $thumb_url = wp_get_attachment_image_src( $thumb_id, 'slide' )[0]; //get normal color image url
+    $duo_url = \Firebelly\Media\get_duo_url($thumb_id, ['size' => 'slide'] );  //get duotone image url
     $output .= <<< HTML
     <div class="slide-item">
       <div class="color" style="background-image: url('{$thumb_url}')" ></div>

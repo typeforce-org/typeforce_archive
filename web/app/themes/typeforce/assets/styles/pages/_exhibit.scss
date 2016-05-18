@@ -19,12 +19,19 @@
     position: relative;
     @include clearfix();
 
+    .content-wrap, .footer-wrap, header { 
+      padding-left: $site-pad-left;
+      padding-right: $site-pad-right;
+      @include media-md {
+        padding-left: $site-pad-left-md;
+        padding-right: $site-pad-right-md;
+      }
+    }
+
     .header-wrap {
       position: relative;
 
       header {
-        padding-left: $site-pad-left;
-        padding-right: $site-pad-right;
         position: absolute;
         bottom: 0;
         .entry-exhibition {
@@ -39,8 +46,6 @@
 
     .content-wrap, .footer-wrap {
       @include clearfix();
-      padding-left: $site-pad-left;
-      padding-right: $site-pad-right;
     }
 
     .content-wrap{
@@ -48,8 +53,15 @@
 
       .entry-main {
         float: left;
-        width: 75%;
+        width: 100%;
+        @include media-md {
+          width: 75%;
+        }
         padding-right: 50px;
+
+        .entry-statement, .entry-materials, .entry-bio {
+          // max-width: 750px;
+        }
 
         .entry-materials {
           @extend %small-caps;
@@ -64,7 +76,12 @@
       .entry-social {
         word-wrap: break-word;
         float: left;
-        width: 25%;
+        width: 100%;
+        margin-top: 2em;
+        @include media-md {
+          margin-top: auto;
+          width: 25%;
+        }
         color: $gray;
         @extend %small-caps;
         h1, h2, h3, h4, h5, h6 {
@@ -78,20 +95,28 @@
     }
 
     .footer-wrap{
-      margin-top: 100px;
+      margin-top: 80px;
+      @include media-md {margin-top: 100px;}
 
       .exhibit-nav {
-        width: 50%;
+        width: 100%;
+        @include min-screen(550px) {
+          width: 50%;
+        }
         float: right;
         padding-bottom: 0.4em;
         border-bottom: 1px solid $gray;
       }
       .next,.prev {
         position: relative;
-        width: 50%;
-        float: right;
         padding: 0;
-        margin: 0;
+        margin: 0; margin-top: 0.5em;
+        width: 100%;
+        @include min-screen(1100px) {
+          margin: 0;
+          width: 50%;
+        }
+        float: right;
         min-height: 1px; //forces div to take up space even if empty;
         @extend %small-title;
         @extend %delinkify;

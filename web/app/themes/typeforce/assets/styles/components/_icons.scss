@@ -4,16 +4,31 @@
   width: 11px;
 }
 
+.icon-load-more {
+  fill: $gray;
+  height: 50px;
+  width: 50px;
+}
+
 .icon-x {
   fill: $gray;
   height: 18px;
   width: 18px;
 }
 
+.icon-search {
+  fill: $gray;
+  height: 21px;
+  width: 21px;
+}
+
 .icon-hamburger {
   fill: $gray;
   height: 15px;
-  width: 25px;
+  width: 15px;
+  @include media-md {
+    width: 25px;
+  }
 }
 
 .icon-arrow-right, .icon-arrow-left {
@@ -21,3 +36,17 @@
   height: 13px;
   width: 20px;
 }
+
+.icon-grid {
+  fill: $white;
+  height: 15px;
+  width: 15px;
+}
+
+.icon-filter {
+    fill: $white;
+  height: 7.5px;
+  width: 21px;
+}
+
+

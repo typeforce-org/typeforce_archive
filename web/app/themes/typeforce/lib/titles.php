@@ -12,6 +12,8 @@ function title() {
     } else {
       return __('Latest Posts', 'sage');
     }
+  } elseif (is_archive('exhibit')) {
+    return 'All Exhibits'; //want to override the default "Archive: Exhibits"
   } elseif (is_archive()) {
     return get_the_archive_title();
   } elseif (is_search()) {

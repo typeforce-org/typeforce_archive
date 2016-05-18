@@ -1,6 +1,6 @@
 <?php
 $exhibition_id = $wp_query->queried_object->term_id;
-$exhibition_info = Firebelly\PostTypes\Exhibition\get_exhibition_info($exhibition_id,true); 
+$exhibition_info = Firebelly\PostTypes\Exhibition\get_exhibition_info($exhibition_id); 
 ?>
 
 <?= $exhibition_info ?>
@@ -11,7 +11,7 @@ $exhibition_info = Firebelly\PostTypes\Exhibition\get_exhibition_info($exhibitio
   </div>
   <?php get_search_form(); ?>
 <?php else : ?>
-  <ul class="exhibit-list">
+  <ul class="exhibit-list load-more-container">
   <?php while (have_posts()) : the_post(); ?>
     
     <?php if( get_post_type() === 'exhibit' ) : ?>
@@ -26,5 +26,9 @@ $exhibition_info = Firebelly\PostTypes\Exhibition\get_exhibition_info($exhibitio
 
   <?php endwhile; ?>
   </ul>
-  <?php the_posts_navigation(); ?>
+  <!-- <?php the_posts_navigation(); ?> -->
+  <?php
+  include(locate_template('templates/load-more-exhibits-button.php')); 
+  ?>
+  <!-- <?php the_posts_navigation(); ?> -->
 <?php endif; ?>

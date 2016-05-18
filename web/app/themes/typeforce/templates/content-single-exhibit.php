@@ -4,7 +4,7 @@ while (have_posts()) : the_post();
 $exhibition_term = wp_get_post_terms($post->ID,'exhibition')[0];
 $exhibition_id = $exhibition_term->term_id;
 
-$exhibition_info = Firebelly\PostTypes\Exhibition\get_exhibition_info($exhibition_id); 
+$exhibition_info = Firebelly\PostTypes\Exhibition\get_exhibition_info($exhibition_id,true); 
 $exhibition = $exhibition_term->name;
 $title = get_post_meta($post->ID,'_cmb2_title',true);
 $materials = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_materials',true));

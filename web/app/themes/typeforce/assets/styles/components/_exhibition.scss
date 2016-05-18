@@ -8,15 +8,20 @@
   overflow: hidden;
   .description, .additional {
     float: left;
-    width: 50%;
-    margin-bottom: 70px;
+    width: 100%;
+    @include media-md { 
+      width: 50%; 
+    }
   }
   .description {
     padding-right: 50px;
+    margin-bottom: 20px;
+    @include media-md { margin-bottom: 50px; }
   }
   .additional {
     @extend %small-caps;
     color: $gray;
+    margin-bottom: 70px;
     h1,h2,h3,h4,h5,h6 {
       color: $white;
     }
@@ -26,7 +31,7 @@
     }
     .exhibited {
       .exhibition-exhibit-list {
-        columns: 2;
+        @include min-screen(1000px) { columns: 2; }
         @extend %delistify;
         .exhibit{
           display: inline-block;

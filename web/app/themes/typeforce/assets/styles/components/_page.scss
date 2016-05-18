@@ -2,9 +2,16 @@
   @extend .container;
   padding-right: $site-pad-right;
   padding-left: $site-pad-left;
-  min-height: 125px;
+  @include media-md {
+    padding-right: $site-pad-right-md;
+    padding-left: $site-pad-left-md;
+  }
+  min-height: 75px;
+  @include media-md { min-height: 125px; }
   .title {
-    margin-top: .8em;
+    margin-top: 1.1em;
+    @include media-md { margin-top: .8em; }
     position: relative;
+    @extend %delinkify;
   }
 }

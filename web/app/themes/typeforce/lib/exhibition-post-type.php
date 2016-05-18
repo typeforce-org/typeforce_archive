@@ -150,7 +150,7 @@ function cmb2_get_term_options( $taxonomy = 'category', $args = array() ) {
 
 
 
-function get_exhibition_info($exhibition_id,$start_open=false) {
+function get_exhibition_info($exhibition_id, $title_only=false ) {
 
   $args = array (
     'post_type' => 'exhibition_info',
@@ -160,7 +160,7 @@ function get_exhibition_info($exhibition_id,$start_open=false) {
 
   $exhibition_info = get_posts($args)[0];
 
-  $title = $exhibition_info->post_title;
+  $title = '<a href="'.get_term_link($exhibition_id).'">'.$exhibition_info->post_title.'</a>';
 
   $description = apply_filters('the_content', $exhibition_info->post_content);
 
@@ -183,30 +183,35 @@ function get_exhibition_info($exhibition_id,$start_open=false) {
   }
 
   $catalogue_link = get_post_meta($exhibition_info->ID,'_cmb2_catalogue',true);
-  $open_class = $start_open ? 'open' : 'start-closed';
 
   $output = <<< HTML
-  <div class="page-header exhibition-info {$open_class}">
+  <div class="page-header exhibition-info" id="content">
     <h1 class="title">{$title}</h1>
-    <div class="accordian-content">
-      <div class="description user-content">
-        {$description}
-      </div>
-      <div class="additional">
-        <div class="exhibited">
-          <h2>Exhibited</h2>
-          <ul class="exhibition-exhibit-list">
-            {$exhibited_list}
-          </ul>
-        </div>
-        <div class="catalogue">
-          <h2>Exhibition Catalogue</h2>
-          <a href="{$catalogue_link}">Purchase through Firebelly</a>
-        </div>
-      </div>
-    </div>
-  </div>
 HTML;
+
+  if(!$title_only){
+    $output .= <<< HTML
+      <div class="accordian-content">
+        <div class="description user-content">
+          {$description}
+        </div>
+        <div class="additional">
+          <div class="exhibited">
+            <h2>Exhibited</h2>
+            <ul class="exhibition-exhibit-list">
+              {$exhibited_list}
+            </ul>
+          </div>
+          <div class="catalogue">
+            <h2>Exhibition Catalogue</h2>
+            <a href="{$catalogue_link}">Purchase through Firebelly</a>
+          </div>
+        </div>
+      </div>
+HTML;
+  }
+
+  $output .= '</div>';
 
   return $output;
 

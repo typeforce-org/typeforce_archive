@@ -13,31 +13,14 @@
     .highlight{
       background-color: $gray-dark;
       padding: 0.3em;
-    }
-  }
-
-}
-
-
-  .info-link{
-    .info{
-      transition: color .2s;
-    }
-    &:hover {
-      .info{
-        color: $white;
+      .info-link-exhibition {
+        display: inline-block;
+    text-decoration: underline;
       }
     }
   }
 
-.header-slider{
-    .exhibit-listing-info {
-      .info{
-        padding: 2em 2em 2em $site-pad-left;
-      }
-    }
 }
-
 
 .exhibit-list{
   @extend %delistify;
@@ -47,12 +30,21 @@
     position: relative;
     display: block;
     float: left;
-    width: 33.333%;
     height: 0;
-    padding-bottom: 16.6667%;
+    width: 100%;
+    padding-bottom: 50%;
+    @include media-md {
+      width: 50%;
+      padding-bottom: 25%;
+    }
+    @include media-lg {
+      width: 33.333%;
+      padding-bottom: 16.6667%;
+    }
     .exhibit-listing-info {
       .info-link{
         @extend %fill;
+        max-width: 80%;
       }
     }
   }
@@ -60,20 +52,26 @@
 
 
 
+.load-more {
+  display: block;
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
+  .icon-load-more {
+    display: block;
+    margin: 0 auto 10px auto;
+  }
+  a {
+    display: inline-block;
+  }
+  color: $gray;
+  @extend %small-caps;
+  @extend %delinkify;
+
+}
 
 
-// MOUSE OVERS
-.duo, .headline, .update {
-  transition: opacity 0.2s;
-  opacity: 1;
-  &.disappeared {  //for header-slider, the bevior is complicated and we need to disappear things with js-added class
-    opacity: 0;
-  }
-}
-.exhibit-list {
-  .exhibit-listing-info:hover {
-    .duo{
-      opacity: 0;
-    }
-  }
-}
+
+
+
+

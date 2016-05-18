@@ -84,9 +84,10 @@ function get_category($post) {
 /**
  * Get num_pages for category given slug + per_page
  */
-function get_total_pages($category, $per_page) {
-  $cat_info = get_category_by_slug($category);
-  $num_pages = ceil($cat_info->count / $per_page);
+function get_total_pages($post_type,$per_page) {
+  $count_posts = wp_count_posts($post_type);
+  $total_published = $count_posts->publish;
+  $num_pages = ceil($total_published/ $per_page);
   return $num_pages;
 }
 
@@ -116,3 +117,4 @@ function get_page_blocks($post) {
   }
   return $output;
 }
+

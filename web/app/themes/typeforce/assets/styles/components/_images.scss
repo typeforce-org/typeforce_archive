@@ -4,5 +4,7 @@
   @extend %fill;
   background-position: center center;
   background-size: cover;
+
+  transition: opacity 0.3s, transform 20s ease-out;
 }
 

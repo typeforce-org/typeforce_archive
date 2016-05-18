@@ -10,6 +10,7 @@
     position: relative;
     height: $main-slider-slide-height;
     width:  $main-slider-slide-width;
+    overflow: hidden;
 
     // Add a gray overlay over slide;
     &:after {
@@ -17,17 +18,25 @@
         position: absolute;
         width: 100%; height:100%;
         top:0; left:0;
-        background:rgba(0,0,0,0.8);
+        background:rgba(0,0,0,0.6);
         opacity: 1;
         visibility: visible;
         transition: opacity 0.5s, visibility 0s 0.5s;
     }
     // Make overlay visible when not active;
+    .duo, .color {
+        transition: transform 1s;
+        transform: scale(1);
+    }
     &.slick-center {
        &:after {
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.5s, visibility 0.5s;
+       }
+       .duo, .color {
+          transform: scale(1.1);
+          transition: transform 20s ease-out, opacity 0.3s;
        }
     }
   }
@@ -37,6 +46,10 @@
     transform: translateY(-50%);
     left: $main-slider-slide-width+2vw;
     @extend %clickable;
+      transition: transform 0.2s;
+      // &:hover {
+      //   transform: scale(1.5) translateY(-50%);
+      // }
   }
 }
 

@@ -16,22 +16,46 @@
       top: 0;
       left: 0;
       margin-top: 1.5em;
-      margin-left: 75px;
-      max-width: 750px;
-      width: 80%;
+      margin-left: $site-pad-left;
+      max-width: 350px;
+      width: calc( 87vw - 50px);
+      @include media-md {
+        margin-left: $site-pad-left-md;
+        max-width: 750px;
+        width: calc( 87vw - 100px);
+      }
       h1 {
         margin:0;
+        @extend %big-title;
       }
     }
     .update {
       bottom: 0;
-      right: 100vw - $main-slider-slide-width;
+      left: $site-pad-left;
+      @include media-md {
+        left: $site-pad-left-md;
+        right: 100vw - $main-slider-slide-width;
+        left: auto;
+      }
       margin-bottom: 1em;
       margin-right: 50px;
+      margin-top: 70px;
     }
   }
 }
 
 
-
+.header-slider{
+  .exhibit-listing-info {
+    .info{
+      padding: 2em 2em 2em $site-pad-left;
+      max-width: 60%;
+      visibility: hidden;
+      @include media-md {
+        padding: 10vh 10vw 2em $site-pad-left-md;
+        visibility: visible;
+      }
+    }
+  }
+}
 
