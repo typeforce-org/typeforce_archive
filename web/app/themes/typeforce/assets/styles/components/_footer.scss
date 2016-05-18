@@ -6,17 +6,9 @@ $footer-lg: 1400px;
   @extend .container;
   padding: 100px $site-pad-right $site-pad-bottom $site-pad-left;
   @include media-md { padding: 100px $site-pad-right-md $site-pad-bottom-md $site-pad-left-md; }
-  color: $gray;
   @extend %small-caps;
-  h1,h2,h3,h4,h5,h6 {
-    color: $white;
-  }
-  a{
-    transition: color .2s;
-    &:hover {
-      color: $white;
-    }
-  }
+  @extend %gray-text; 
+
   .description, .links, .sponsors {
     float: left;
     display: block;

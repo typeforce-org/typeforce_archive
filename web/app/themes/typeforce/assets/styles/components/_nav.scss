@@ -26,90 +26,87 @@ $nav-col-width: 175px;
   transition: transform 0.5s;
 
 
-  &:not(.active) {
-    transform: translateX(-100%);
-  }
-
-  .column-wrap {
-    position: relative;
-    column-gap: 0;
-    columns: 1;
-    height: auto;
-    @include min-screen($site-pad-left-md+$nav-col-width*2) { columns: 2; }
-    @include min-screen($site-pad-left-md+$nav-col-width*3) { columns: 3; }
-    @include min-screen($site-pad-left-md+$nav-col-width*4) { columns: 4; }
-    @include min-screen($site-pad-left-md+$nav-col-width*5) { columns: 5; }
-    @include min-screen($site-pad-left-md+$nav-col-width*6) { columns: 6; }
-    @include min-screen($site-pad-left-md+$nav-col-width*7) { columns: 7; }
-    @include min-screen($site-pad-left-md+$nav-col-width*8) { columns: 8; }
-    @include min-screen($site-pad-left-md+$nav-col-width*9) { columns: 9; }
-    visibility: hidden;
-    display: none;
-    &.active {
-      visibility: visible;
-      display: block;
+    &:not(.active) {
+      transform: translateX(-100%);
     }
- 
-    .nav {
-      padding: 0;
-      margin: 0;
-      display: block;
-      @extend %delistify;
-      @extend %delinkify;
 
-
-      .menu-item{
+    .column-wrap {
+      position: relative;
+      column-gap: 0;
+      columns: 1;
+      height: auto;
+      @include min-screen($site-pad-left-md+$nav-col-width*2) { columns: 2; }
+      @include min-screen($site-pad-left-md+$nav-col-width*3) { columns: 3; }
+      @include min-screen($site-pad-left-md+$nav-col-width*4) { columns: 4; }
+      @include min-screen($site-pad-left-md+$nav-col-width*5) { columns: 5; }
+      @include min-screen($site-pad-left-md+$nav-col-width*6) { columns: 6; }
+      @include min-screen($site-pad-left-md+$nav-col-width*7) { columns: 7; }
+      @include min-screen($site-pad-left-md+$nav-col-width*8) { columns: 8; }
+      @include min-screen($site-pad-left-md+$nav-col-width*9) { columns: 9; }
+      visibility: hidden;
+      display: none;
+      &.active {
+        visibility: visible;
         display: block;
-        height: 1em;
-        a {
-          transition: color .2s;
-          &:hover {
+      }
+   
+      .nav {
+        padding: 0;
+        margin: 0;
+        display: block;
+        @extend %delistify;
+        @extend %delinkify;
+
+
+        .menu-item{
+          display: block;
+          height: 1em;
+          a:hover {
             color: $gray-dark;
           }
         }
       }
     }
-  }
 
-  .search {
-    position: absolute;
-    top: 0;
-    left: $site-pad-left-md;
-    right: 0;
-    display: flex;
-    height: 100%;
-    padding: 0 $site-pad-left-md 0 0 0;
-    flex-direction: column;
-    justify-content: center;
-    visibility: hidden;
-    &.active {
-      visibility: visible;
-    }
-    .search-form{
-      @extend %big-title;
-      .search-field {
-        width: 100%;
-        border: none;
-        outline: none;
+    .search {
+      position: absolute;
+      top: 0;
+      left: $site-pad-left-md;
+      right: 0;
+      display: flex;
+      height: 100%;
+      padding: 0 $site-pad-left-md 0 0 0;
+      flex-direction: column;
+      justify-content: center;
+      visibility: hidden;
+      &.active {
+        visibility: visible;
       }
-      .search-submit {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 25px;
-        border: none;
-        outline: none;
-        background: transparent;
-        .icon-search {
-          height: 30px;
-          width: 30px;
+      .search-form{
+        @extend %big-title;
+        .search-field {
+          width: 100%;
+          border: none;
+          outline: none;
+        }
+        .search-submit {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 25px;
+          border: none;
+          outline: none;
+          background: transparent;
+          .icon-search {
+            height: 30px;
+            width: 30px;
+          }
         }
       }
     }
-  }
-  .open-search{
-    @extend %clickable;
-  }
+    .open-search{
+      @extend %clickable;
+    }
 
 }
 

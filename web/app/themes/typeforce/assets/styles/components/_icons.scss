@@ -1,3 +1,17 @@
+.icon-caret,
+.icon-load-more,
+.icon-x,
+.icon-search,
+.icon-hamburger,
+.icon-arrow-r,
+.icon-grid,
+.icon-filter {
+  transition: fill $hover-trans-time;
+}
+
+
+
+
 .icon-caret {
   fill: $white;
   height: 22px;
@@ -5,6 +19,7 @@
 }
 
 .icon-load-more {
+  transition: fill $hover-trans-time, transform $hover-trans-time;
   fill: $gray;
   height: 50px;
   width: 50px;
@@ -44,7 +59,7 @@
 }
 
 .icon-filter {
-    fill: $white;
+  fill: $white;
   height: 7.5px;
   width: 21px;
 }

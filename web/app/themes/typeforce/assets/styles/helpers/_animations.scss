@@ -1,78 +1,13 @@
 // Animations
-
-// MOUSE OVERS
-.duo, .headline, .update {
-  opacity: 1;
-  &.disappeared {  //for header-slider, the behavior is complicated and we need to disappear things with js-added class
-    opacity: 0;
-  }
-}
-.headline {
-  transition: opacity 0.3s, transform 0.4s;
-  &.disappeared {
-    transform: translateY(-100%);
-  }
-}
-.update {
-  transition: opacity 0.3s, transform 0.4s;
-  &.disappeared {
-    transform: translateX(200%);
-  }
-}
-
-// .exhibit {
-//   transition: opacity 1s ease-out, transition 1s ease-out;
-//   transform: scale(1);
-//   opacity: 1
-//   &.loading {
-//     opacity: 0;
-//     transform: scale(0.1);
-//   }
-// }
-
-.load-more {
-  transition: opacity 1s;
-  opacity: 1;
-  &.hide {
+  @keyframes pop-in {
+    0% {
       opacity: 0;
-      display: none;
-  }
-}
-
-// .load-more-container {
-//   &.loading {
-//     .load-more {
-//       opacity: 0;
-//     }
-//   }
-// }
-
-.exhibit-list {
-  .exhibit-listing-info {
-    overflow: hidden;
-    .duo, .color {
+      transform: scale(0.1);
     }
-    &:hover {
-      .duo, .color {
-        transform: scale(1.1);
-      }
-      .duo{
-        opacity: 0;
-      }
+    100% {
+      opacity: 1;
+      transform: scale(1);
     }
   }
-}
-
-.info-link{
-  .info{
-    transition: color .2s;
-  }
-  &:hover {
-    .info{
-      color: $white;
-    }
-  }
-}
-
 
 

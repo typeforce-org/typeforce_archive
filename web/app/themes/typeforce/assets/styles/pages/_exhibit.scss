@@ -65,7 +65,7 @@
 
         .entry-materials {
           @extend %small-caps;
-          color: $gray;
+          @extend %gray-text; 
         }
 
         .entry-bio {
@@ -82,15 +82,7 @@
           margin-top: auto;
           width: 25%;
         }
-        color: $gray;
-        @extend %small-caps;
-        h1, h2, h3, h4, h5, h6 {
-          color: $white;
-        }
-        a {
-          transition: color 0.2s;
-          &:hover { color: $white; }
-        }
+        @extend %gray-text; 
       }
     }
 
@@ -134,10 +126,6 @@
 
       }
     }
-
-
-
-
 
     .user-content {
       h1, h2, h3, h4, h5, h6 {

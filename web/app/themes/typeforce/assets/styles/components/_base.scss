@@ -31,6 +31,7 @@ p {
 
 a {
   color: inherit;
+  transition: color $hover-trans-time;
 }
 
 img {
@@ -40,18 +41,9 @@ img {
 
 // Browser alert
 .alert-warning {
-  top: 0;
-  left: 0;
-  right: 0;
-  color: $white;
-  padding: 50px 0 0 $site-pad-left;
-  @include media-md { padding: 50px 0 0 $site-pad-left-md; }
-  background: $black;
+  padding-left: $site-pad-left;
+  @include media-md { padding-left: $site-pad-left-md; }
   @extend %small-title;
-}
-.alert {
-  // padding: 50px;
-  // background: #fff;
 }
 
 // Disable scrolling when modals are active
@@ -64,14 +56,16 @@ img {
   display: none;
 }
 
+.disappeared {
+  opacity: 0;
+}
+
 .container {
   width: 100%;
   margin: 0 auto;
   padding: 0;
   position: relative;
   @include clearfix();
-  @include media-md {
-  }
 }
 
 %fill {

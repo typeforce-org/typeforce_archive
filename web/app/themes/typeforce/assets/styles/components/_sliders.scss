@@ -22,11 +22,16 @@
         opacity: 1;
         visibility: visible;
         transition: opacity 0.5s, visibility 0s 0.5s;
+
+    }        
+    &.next-slide-hover:after {
+      opacity: 0;
     }
     // Make overlay visible when not active;
     .duo, .color {
         transition: transform 1s;
         transform: scale(1);
+          transition: transform 5s ease-out, opacity $hover-trans-time;
     }
     &.slick-center {
        &:after {
@@ -34,22 +39,37 @@
         visibility: hidden;
         transition: opacity 0.5s, visibility 0.5s;
        }
-       .duo, .color {
+       .duo, .color { //ken burns effect
           transform: scale(1.1);
-          transition: transform 20s ease-out, opacity 0.3s;
+          transition: transform 15s ease-out, opacity $hover-trans-time;
+       }
+       &.site-just-loaded { //.slick-center will be on the first slide immediately, so transition won't be fired.  This will override it then be immediately be removed by js so we still get ken burns on first slide.
+          .duo, .color {
+            transform: scale(1);
+          }
        }
     }
   }
   .slider-nav-right{
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: $main-slider-slide-width+2vw;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 12.5vw;
     @extend %clickable;
-      transition: transform 0.2s;
-      // &:hover {
-      //   transform: scale(1.5) translateY(-50%);
-      // }
+    &:hover{
+      .icon-caret {
+        transform: translate(2vw,-50%);
+      }
+      // background-color: rgba($white,0.1);
+    }
+    .icon-caret {
+      position: absolute;
+      top: 50%;
+      transition: transform $hover-trans-time;
+      transform: translateY(-50%);
+      left: 2vw;
+    }
   }
 }
 

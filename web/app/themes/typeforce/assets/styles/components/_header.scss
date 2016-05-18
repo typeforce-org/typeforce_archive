@@ -28,6 +28,10 @@
         margin:0;
         @extend %big-title;
       }
+      transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
+      &.disappeared {
+        transform: translateY(-100%);
+      }
     }
     .update {
       bottom: 0;
@@ -40,6 +44,10 @@
       margin-bottom: 1em;
       margin-right: 50px;
       margin-top: 70px;
+      transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
+      &.disappeared {
+        transform: translateX(200%);
+      }
     }
   }
 }

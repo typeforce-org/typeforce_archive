@@ -1,10 +1,5 @@
 
 .page-header.exhibition-info {
-  .exhibition-toggle {
-    margin-left: 0.8em;
-    @extend %clickable;
-    transition: transform 0.2s;
-  }
   overflow: hidden;
   .description, .additional {
     float: left;
@@ -20,15 +15,8 @@
   }
   .additional {
     @extend %small-caps;
-    color: $gray;
+    @extend %gray-text; 
     margin-bottom: 70px;
-    h1,h2,h3,h4,h5,h6 {
-      color: $white;
-    }
-    a {
-      transition: color, 0.2s;
-      &:hover { color: $white; }
-    }
     .exhibited {
       .exhibition-exhibit-list {
         @include min-screen(1000px) { columns: 2; }
@@ -40,19 +28,6 @@
     }
     .catalogue {
       margin-top: 40px;
-    }
-  }
-  .accordian-content {
-    @extend .container;
-  }
-  &.start-closed {
-    .accordian-content {
-      display: none;
-    }
-  }
-  &.open {
-    .exhibition-toggle {
-      transform: rotate(90deg);
     }
   }
 }
