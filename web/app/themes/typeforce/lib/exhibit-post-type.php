@@ -173,7 +173,7 @@ function get_intro_slider() {
 }
 
 
-function get_exhibits($args) {
+function get_exhibits($args, $loadmore = true) {
 
   $output ='';
 
@@ -196,7 +196,7 @@ function get_exhibits($args) {
     wp_reset_postdata();
 
     ob_start();
-    include(locate_template('templates/load-more-exhibits-button.php'));
+    if($loadmore) { include(locate_template('templates/load-more-exhibits-button.php')); }
     $output .= ob_get_clean();
     
   }else{

@@ -25,4 +25,7 @@ $exhibition_info = Firebelly\PostTypes\Exhibition\get_exhibition_info();
 
   <?php endwhile; ?>
   </ul>
+  <?php
+  include(locate_template('templates/load-more-exhibits-button.php'));
+  ?>
 <?php endif; ?>

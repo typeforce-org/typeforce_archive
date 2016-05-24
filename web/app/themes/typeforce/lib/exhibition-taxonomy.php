@@ -146,15 +146,6 @@ function get_exhibition_object($exhibit_id) {
   return wp_get_post_terms($exhibit_id,'exhibition')[0];
 }
 
-// function get_exhibition_title($exhibit_id) {
-//   $exhibition_obj = get_exhibition_object($exhibit_id)->term_id;
-//   $exhibition_id = $exhibition_obj;
-//   $exhibition_title = get_term_meta(get_exhibition_object($exhibit_id)->term_id,'_cmb2_full_title',true);
-//   return $exhibition_title;
-// }
-
-
-
 function get_exhibition_info() {
 
   global $wp_query;
@@ -168,9 +159,10 @@ function get_exhibition_info() {
     'post_type'   => 'exhibit',
     'tax_query'   => array(
       array(
-          'taxonomy'  => 'exhibition',
-          'field'     =>  'id',
-          'terms'     => $exhibition_id,
+          'taxonomy'        => 'exhibition',
+          'field'           =>  'id',
+          'terms'           => $exhibition_id,
+          'posts_per_page'  => -1,
         )
     ),
   );

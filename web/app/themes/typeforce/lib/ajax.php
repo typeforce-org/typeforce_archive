@@ -21,19 +21,25 @@ function is_ajax() {
  */
 function load_more_posts() {
   
-  // news or projects?
+  // get potential args:
   $post_type = !empty($_REQUEST['post_type']) ? $_REQUEST['post_type'] : 'post';
   $exhibition_id = !empty($_REQUEST['exhibition_id']) ? $_REQUEST['exhibition_id'] : '';
   $search_query = !empty($_REQUEST['search_query']) ? $_REQUEST['search_query'] : '';
+  $orderby = !empty($_REQUEST['orderby']) ? $_REQUEST['orderby'] : '';
+  //post__not_in comes as a csv string
+  $post__not_in_str = !empty($_REQUEST['post__not_in']) ? $_REQUEST['post__not_in'] : '';
+  $post__not_in = $post__not_in_str ? array_map("intval", explode(",", $post__not_in_str)) : '';
   // get page offsets
   $page = !empty($_REQUEST['page']) ? $_REQUEST['page'] : 1;
   $per_page = !empty($_REQUEST['per_page']) ? $_REQUEST['per_page'] : get_option('posts_per_page');
   $offset = ($page-1) * $per_page;
+  //base args
   $args = [
     'offset' => $offset,
     'posts_per_page' => $per_page,
     'post_type' => $post_type,
   ];
+  //check for any additional args
   if($exhibition_id) {
     $args['tax_query'] = [
       [
@@ -46,6 +52,13 @@ function load_more_posts() {
   if($search_query) {
     $args['s'] = $search_query;
   }
+  if($post__not_in) {
+    $args['post__not_in'] = $post__not_in;
+  }
+  if($orderby) {
+    $args['orderby'] = $orderby;
+  }
+
 
   $posts = get_posts($args);
 

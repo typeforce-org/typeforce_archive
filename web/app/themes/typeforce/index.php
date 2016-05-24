@@ -23,5 +23,4 @@
   <?php
   include(locate_template('templates/load-more-exhibits-button.php'));
   ?>
-  <!-- <?php the_posts_navigation(); ?> -->
 <?php endif; ?>

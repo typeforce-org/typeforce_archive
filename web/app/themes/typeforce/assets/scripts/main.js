@@ -185,6 +185,8 @@ var FBSage = (function($) {
       var post_type = $load_more.attr('data-post-type') ? $load_more.attr('data-post-type') : 'exhibit';
       var exhibition_id = $load_more.attr('data-exhibition-id');
       var search_query = $load_more.attr('data-search-query');
+      var post__not_in = $load_more.attr('data-post--not-in');
+      var orderby = $load_more.attr('data-orderby');
       var page = parseInt($load_more.attr('data-page-at'));
       var per_page = parseInt($load_more.attr('data-per-page'));
       var $more_container = $load_more.parents('main').find('.load-more-container');
@@ -199,6 +201,8 @@ var FBSage = (function($) {
           post_type: post_type,
           exhibition_id: exhibition_id,
           search_query: search_query,
+          post__not_in: post__not_in,
+          orderby: orderby,
           page: page+1,
           per_page: per_page,
         },

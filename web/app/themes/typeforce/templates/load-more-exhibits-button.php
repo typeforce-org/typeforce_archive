@@ -3,7 +3,8 @@
   global $wp_query;
   $exhibition_id = isset($wp_query->queried_object->term_id) ? $wp_query->queried_object->term_id : '';
   $search_query = get_search_query();
-  $per_page = get_query_var( 'posts_per_page', get_option( 'posts_per_page', 12 ));
+  $per_page = get_query_var( 'posts_per_page', get_option( 'posts_per_page', 25 ));
+  $orderby = get_query_var('orderby');
   // $wp_ajax_url = admin_url('admin-ajax.php');
   //get total post count for all query
   if($exhibition_id) {
@@ -17,6 +18,6 @@
   $total_pages = ceil( $total_posts / $per_page);
 ?>
 
-<div class="load-more" data-page-at="1" data-exhibition-id="<?= $exhibition_id ?>" data-search-query="<?= $search_query ?>" data-per-page="<?= $per_page ?>" data-total-pages="<?= $total_pages ?>" >
+<div class="load-more" data-page-at="1" data-exhibition-id="<?= $exhibition_id ?>" data-search-query="<?= $search_query ?>" data-per-page="<?= $per_page ?>" data-total-pages="<?= $total_pages ?>" data-orderby="<?= $orderby ?>" data-post--not-in="<?= $post__not_in ?>">
   <a class="no-ajaxy" href="#">Load More</a>
 </div>

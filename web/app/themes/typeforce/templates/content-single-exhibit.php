@@ -11,6 +11,8 @@ $thumbs = Firebelly\PostTypes\Exhibit\get_exhibit_thumbnails();
 
 $args = array(
   'post_type'   => 'exhibit',
+  'posts_per_page'  => -1,
+  'numberposts'     => -1,
   'tax_query'   => array(
     array(
         'taxonomy'  => 'exhibition',
@@ -19,7 +21,7 @@ $args = array(
       )
   ),
 );
-$more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args); 
+$more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args,false); 
 
 
 ?>
