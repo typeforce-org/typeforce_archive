@@ -55,11 +55,11 @@ $more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args,false);
     <footer class="footer-wrap">
       <nav class="exhibit-nav">
         <div class="next">
-          <?php next_post_link('%link','Next Designer <svg class="icon-arrow-right" role="img"><use xlink:href="#icon-arrow-right"></use></svg>'); ?>
+          <?php next_post_link('%link','<div class="anim-wrap">Next Designer <svg class="icon-arrow-right" role="img"><use xlink:href="#icon-arrow-right"></use></svg></div>', TRUE, ' ', 'exhibition' ); ?>
         </div>
         <div class="prev">
 
-          <?php previous_post_link('%link','<svg class="icon-arrow-left" role="img"><use xlink:href="#icon-arrow-left"></use></svg> Previous Designer'); ?>
+          <?php previous_post_link('%link','<div class="anim-wrap"><svg class="icon-arrow-left" role="img"><use xlink:href="#icon-arrow-left"></use></svg> Previous Designer</div>', TRUE, ' ', 'exhibition' ); ?>
         </div>
       </nav>
     </footer>
