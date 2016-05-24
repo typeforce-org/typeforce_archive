@@ -60,38 +60,6 @@ function post_type() {
 }  
 add_action( 'init', __NAMESPACE__ . '\post_type', 0 );
 
-/**
- * Register Exhibition Taxonomy
- */
-$labels = array(
-  'name'              => 'Exhibitions',
-  'singular_name'     => 'Exhibition',
-  'search_items'      => 'Search Exhibitions',
-  'all_items'         => 'All Exhibitions',
-  'parent_item'       => 'Parent Exhibition',
-  'parent_item_colon' => 'Parent Exhibition:',
-  'edit_item'         => 'Edit Exhibition',
-  'update_item'       => 'Update Exhibition',
-  'add_new_item'      => 'Add New Exhibition',
-  'new_item_name'     => 'New Exhibition',
-);
-$rewrite = array(
-  'slug'                => 'exhibitions',
-  'with_front'          => false,
-  'pages'               => true,
-  'feeds'               => true,
-);
-$args = array( 
-  'hierarchical'      => true,
-  'labels'            => $labels,
-  'show_admin_column' => true,
-  'show_ui'           => true,
-  'query_var'         => true,
-  'show_in_nav_menus' => true,
-  'rewrite'           => $rewrite,
-);
-register_taxonomy( 'exhibition', array('exhibit'), $args);
-
 
 /**
  * Custom admin cols for post type
@@ -274,11 +242,6 @@ HTML;
   $output .= '</div>';
 
   return $output;
-}
-
-
-function get_exhibition_object($exhibit_id) {
-  return wp_get_post_terms($exhibit_id,'exhibition')[0];
 }
 
 

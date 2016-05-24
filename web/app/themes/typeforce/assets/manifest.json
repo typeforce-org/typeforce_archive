@@ -28,8 +28,11 @@
     },
     "svg4everybody.js": {
       "bower": ["svg4everybody"]
-    }
+    },
   },
+  // "admin_scripts.js": {
+  //   "vendor": ["assets/scripts/admin_scripts.js"]
+  // },
   "config": {
     "devUrl": "http://typeforce.dev"
   }

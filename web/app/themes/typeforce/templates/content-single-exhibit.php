@@ -2,7 +2,7 @@
 while (have_posts()) : the_post(); 
 
 
-$exhibition = Firebelly\PostTypes\Exhibition\get_exhibition_link_from_exhibit_id($post->ID,true);
+$exhibition = Firebelly\PostTypes\Exhibition\get_exhibition_year($post->ID,true);
 $title = get_post_meta($post->ID,'_cmb2_title',true);
 $materials = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_materials',true));
 $bio = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_bio',true));

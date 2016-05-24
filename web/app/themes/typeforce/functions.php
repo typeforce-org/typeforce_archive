@@ -29,8 +29,7 @@ $firebelly_includes = [
   'lib/page-meta-boxes.php',           // Various tweaks for multiple post types
   'lib/post-meta-boxes.php',           // Various tweaks for multiple post types
   'lib/exhibit-post-type.php',         // Exhibit Post Type
-  'lib/exhibition-post-type.php',         // Exhibition Post Type
-
+  'lib/exhibition-taxonomy.php',       // Exhibition Type
 ];
 
 $sage_includes = array_merge($sage_includes, $firebelly_includes);

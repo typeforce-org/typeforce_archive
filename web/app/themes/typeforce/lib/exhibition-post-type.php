@@ -1,4 +1,4 @@
-<?php 
+<!-- <?php 
 /**
  * Exhibition Post Type
  */
@@ -298,3 +298,4 @@ HTML;
 
 
 
+ -->
