@@ -1,8 +1,8 @@
 <?php 
 while (have_posts()) : the_post(); 
 
-
-$exhibition = Firebelly\PostTypes\Exhibition\get_exhibition_year($post->ID,true);
+$exhibition_obj = Firebelly\PostTypes\Exhibition\get_exhibition_object($post->ID);
+$exhibition_year = $exhibition_obj->name;
 $title = get_post_meta($post->ID,'_cmb2_title',true);
 $materials = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_materials',true));
 $bio = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_bio',true));
@@ -10,11 +10,17 @@ $social = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_social',tru
 $thumbs = Firebelly\PostTypes\Exhibit\get_exhibit_thumbnails(); 
 
 $args = array(
-  'post_type'       => 'exhibit',
-  'numberposts'     => -1,
-  'posts_per_page'  => get_option( 'posts_per_page', 12 ),
+  'post_type'   => 'exhibit',
+  'tax_query'   => array(
+    array(
+        'taxonomy'  => 'exhibition',
+        'field'     =>  'id',
+        'terms'     => $exhibition_obj->term_id,
+      )
+  ),
 );
 $more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args); 
+
 
 ?>
 
@@ -23,7 +29,7 @@ $more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args);
     <div class="header-wrap">
       <?= $thumbs ?>
       <header>
-        <div class="entry-exhibition"><?= $exhibition ?></h1>
+        <div class="entry-exhibition"><?= $exhibition_year ?></h1>
         <h1 class="entry-artist"><?php the_title(); ?></h1>
       </header>
     </div>

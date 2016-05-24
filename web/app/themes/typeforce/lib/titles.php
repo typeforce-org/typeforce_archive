@@ -24,3 +24,4 @@ function title() {
     return get_the_title();
   }
 }
+

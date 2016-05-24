@@ -78,7 +78,7 @@
           margin-left: 2em;
           margin-top: 0;
         }
-        a:hover{ 
+        a:hover, &.current-menu-item a { 
           color: $gray-dark;
           @include min-screen($breakpoint-nav) {
             color: $white;

@@ -94,6 +94,20 @@ function edit_columns($columns){
 }
 add_filter('manage_edit-exhibition_columns', __NAMESPACE__ . '\edit_columns');
 
+
+
+
+function hack_away_the_unnecessary_fields() {
+  echo <<<HTML
+  <style>
+    .taxonomy-exhibition .term-description-wrap, .taxonomy-exhibition .term-parent-wrap {
+      display: none !important; 
+    }
+  </style>
+HTML;
+}
+add_action('admin_head', __NAMESPACE__ . '\hack_away_the_unnecessary_fields');
+
 //  function custom_columns($column){ //BROKEN
 //   global $post;
 //   global $wp_query;
@@ -132,10 +146,14 @@ function get_exhibition_object($exhibit_id) {
   return wp_get_post_terms($exhibit_id,'exhibition')[0];
 }
 
-function get_exhibition_year($exhibit_id) {
-  $exhibition_obj = get_exhibition_object($exhibit_id);
-  return $exhibition_obj->name;
-}
+// function get_exhibition_title($exhibit_id) {
+//   $exhibition_obj = get_exhibition_object($exhibit_id)->term_id;
+//   $exhibition_id = $exhibition_obj;
+//   $exhibition_title = get_term_meta(get_exhibition_object($exhibit_id)->term_id,'_cmb2_full_title',true);
+//   return $exhibition_title;
+// }
+
+
 
 function get_exhibition_info() {
 
@@ -193,6 +211,37 @@ HTML;
 HTML;
 
   return $output;
-
 }
+
+
+
+/**
+ * Add current menu class to menu items that are exhibitions containing the exhibit for the current post
+ */
+function highlight_exhibitions( $classes, $item ) {
+  if(is_singular('exhibit') && $item->object === 'exhibition') {
+
+    $item_exhibition_id = $item->object_id;
+    global $post;
+    $post_exhibition_id = \Firebelly\PostTypes\Exhibition\get_exhibition_object($post->ID)->term_id;
+    
+    if( $item_exhibition_id == $post_exhibition_id ){
+      $classes[] = "current-menu-item";
+    }
+  }
+    return $classes;
+}
+add_filter( 'nav_menu_css_class' , __NAMESPACE__ . '\highlight_exhibitions', 10, 2 );
+
+
+
+
+
+
+
+
+
+
+
+
 
