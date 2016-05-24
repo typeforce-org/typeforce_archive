@@ -28,7 +28,7 @@
     },
     "svg4everybody.js": {
       "bower": ["svg4everybody"]
-    },
+    }
   },
   "config": {
     "devUrl": "http://typeforce.dev"
