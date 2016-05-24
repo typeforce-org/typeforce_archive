@@ -2,7 +2,7 @@
 $args = array(
   'post_type'       => 'exhibit',
   'numberposts'     => -1,
-  'posts_per_page'  => get_option( 'posts_per_page', 12 ),
+  'posts_per_page'  => get_option( 'posts_per_page', 25 ),
 );
 $exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args); 
 

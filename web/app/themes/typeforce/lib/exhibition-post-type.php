@@ -148,9 +148,55 @@ function cmb2_get_term_options( $taxonomy = 'category', $args = array() ) {
 }
 
 
+function get_exhibition_info_object($exhibit_id) {
+     $exhibition_term = wp_get_post_terms($exhibit_id,'exhibition')[0];
+     $exhibition_id = $exhibition_term->term_id;
+      $args = array (
+      'post_type' => 'exhibition_info',
+      'meta_key' => '_cmb2_exhibition_link',
+      'meta_value' => $exhibition_id,
+    );
+     return get_posts($args)[0];
+  }
 
+function get_exhibition_title_from_exhibition_id ($exhibition_id) {
+    $args = array (
+      'post_type' => 'exhibition_info',
+      'meta_key' => '_cmb2_exhibition_link',
+      'meta_value' => $exhibition_id,
+    );
+    $exhibition_info = get_posts($args)[0];
 
-function get_exhibition_info($exhibition_id, $title_only=false ) {
+    $title = $exhibition_info->post_title;
+    return $title;
+} 
+
+function get_exhibition_link_from_exhibit_id ($exhibit_id,$short_title = false) {
+
+  $exhibition_term = wp_get_post_terms($exhibit_id,'exhibition')[0];
+  $exhibition_id = $exhibition_term->term_id;
+
+  if($short_title){
+    $title = $exhibition_term->name;
+  } else {
+    $args = array (
+      'post_type' => 'exhibition_info',
+      'meta_key' => '_cmb2_exhibition_link',
+      'meta_value' => $exhibition_id,
+    );
+    $exhibition_info = get_posts($args)[0];
+
+    $title = $exhibition_info->post_title;
+
+  }
+
+  $url = get_term_link($exhibition_id);
+
+  return '<a href="'.$url.'">'.$title.'</a>';
+
+}
+
+function get_exhibition_info($exhibition_id) {
 
   $args = array (
     'post_type' => 'exhibition_info',
@@ -185,22 +231,20 @@ function get_exhibition_info($exhibition_id, $title_only=false ) {
   $catalogue_link = get_post_meta($exhibition_info->ID,'_cmb2_catalogue',true);
 
   $output = <<< HTML
-  <div class="exhibition-info" id="content">
-      <div class="accordian-content">
-        <div class="description user-content">
-          {$description}
+    <div class="exhibition-info" id="content">
+      <div class="description user-content">
+        {$description}
+      </div>
+      <div class="additional">
+        <div class="exhibited">
+          <h2>Exhibited</h2>
+          <ul class="exhibition-exhibit-list">
+            {$exhibited_list}
+          </ul>
         </div>
-        <div class="additional">
-          <div class="exhibited">
-            <h2>Exhibited</h2>
-            <ul class="exhibition-exhibit-list">
-              {$exhibited_list}
-            </ul>
-          </div>
-          <div class="catalogue">
-            <h2>Exhibition Catalogue</h2>
-            <a href="{$catalogue_link}">Purchase through Firebelly</a>
-          </div>
+        <div class="catalogue">
+          <h2>Exhibition Catalogue</h2>
+          <a href="{$catalogue_link}">Purchase through Firebelly</a>
         </div>
       </div>
 HTML;

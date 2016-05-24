@@ -15,7 +15,7 @@
 
 .single-exhibit {
 
-  article {
+  .exhibit {
     position: relative;
     @include clearfix();
 
@@ -51,38 +51,37 @@
     .content-wrap{
       margin-top: 55px;
 
+
       .entry-main {
         float: left;
         width: 100%;
         @include media-md {
           width: 75%;
         }
+        @include min-screen(1200px) {
+          max-width: 50%;
+        }
         padding-right: 50px;
 
-        .entry-statement, .entry-materials, .entry-bio {
-          // max-width: 750px;
-        }
-
-        .entry-materials {
-          @extend %small-caps;
-          @extend %gray-text; 
-        }
-
         .entry-bio {
-          margin-top: 2em;
+          margin-top: 30px;
         }
       }
 
-      .entry-social {
-        word-wrap: break-word;
+      .entry-secondary {
         float: left;
-        width: 100%;
-        margin-top: 2em;
+        margin-top: 30px;
         @include media-md {
           margin-top: auto;
           width: 25%;
         }
-        @extend %gray-text; 
+         .entry-social {
+          margin-top: 30px;
+          word-wrap: break-word;
+          width: 100%;
+          @extend %gray-text;
+          @extend %small-caps; 
+        }
       }
     }
 

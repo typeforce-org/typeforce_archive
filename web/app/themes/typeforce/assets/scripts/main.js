@@ -8,7 +8,7 @@ var FBSage = (function($) {
       breakpoint_small = false,
       breakpoint_medium = false,
       breakpoint_large = false,
-      breakpoint_array = [480,1000,1200],
+      breakpoint_array = [480,768,1200],
       $document,
       $sidebar,
       loadingTimer,
@@ -40,12 +40,9 @@ var FBSage = (function($) {
     // Give mouse over behavior to exhibit listings (e.g. duo images and other elements fade away)
     _exhibitListingMouseOver();
 
-    // Scroll to the header immediately on every page but home
-    _startScrolledToHeader();
-
     _initSliders();
 
-    _resizeHeaderOnScroll();
+    _fixHeaderOnScroll();
 
 
     // Esc handlers
@@ -123,27 +120,26 @@ var FBSage = (function($) {
   // Handles main nav
   function _initNav() {
     //SEO-useless nav togglers
-    // $('<svg class="menu-toggle menu-toggle-close icon-x" role="img"><use xlink:href="#icon-x"></use></svg>')
-    //   .prependTo('.site-nav')
-    //   .on('click', function(e) {
-    //     _hideNav();
-    //   });
-    // $('<svg class="menu-toggle menu-toggle-open icon-hamburger" role="img"><use xlink:href="#icon-hamburger"></use></svg>')
-    //   .prependTo('.page-header .title')
-    //   .on('click', function(e) {
-    //     _showNav();
-    //   });
+    $('<svg class="menu-toggle menu-toggle-close icon-x" role="img"><use xlink:href="#icon-x"></use></svg>')
+      .prependTo('.site-nav')
+      .on('click', function(e) {
+        _hideNav();
+      });
+    $('<svg class="menu-toggle menu-toggle-open icon-hamburger" role="img"><use xlink:href="#icon-hamburger"></use></svg>')
+      .prependTo('.site-header')
+      .on('click', function(e) {
+        _showNav();
+      });
   }
 
   function _showNav() {
-    $('.menu-toggle').addClass('menu-open');
-    $('.site-nav').addClass('active');
+    $('.menu-toggle').addClass('menu-active');
+    $('.site-nav').addClass('menu-active');
   }
 
   function _hideNav() {
-    $('.menu-toggle').removeClass('menu-open');
-    $('.site-nav').removeClass('active');
-    _closeSearch();
+    $('.menu-toggle').removeClass('menu-active');
+    $('.site-nav').removeClass('menu-active');
   }
 
   // function _initExhibition() {
@@ -223,20 +219,22 @@ var FBSage = (function($) {
 
   // Scroll to the header immediately on every page but home
   function _startScrolledToHeader() {
-    // $body = $('body');
-    // $header = $('.page-header');
-    // if(!$body.hasClass('home')) {
+    $body = $('body');
+    $header = $('.page-header');
+    if(!$body.hasClass('home')) {
+      window.scroll(0,$header.offset().top-20);
+    }
+    // $(window).on('beforeunload', function() {
     //   window.scroll(0,$header.offset().top-20);
-    // }
-    // // $(window).on('beforeunload', function() {
-    // //   window.scroll(0,$header.offset().top-20);
-    // // });
+    // });
   }
 
-  function _resizeHeaderOnScroll() {
+  function _fixHeaderOnScroll() {
     $(window).scroll(function() {
       var wintop = $(window).scrollTop();
-      if (wintop > 50) {
+      distance = breakpoint_medium ? 50 : 30;
+      console.log(breakpoint_medium);
+      if (wintop > distance) {
         $('.site-header').addClass('scrolled');
       } else {
         $('.site-header').removeClass('scrolled');
@@ -249,8 +247,8 @@ var FBSage = (function($) {
     var updateHeight = $('.update').outerHeight(true);
     var totalHeight = headlineHeight + updateHeight; 
 
-    $('.header-slider .slide-item').css('min-height',totalHeight);
-    $('.header-content').css('min-height',totalHeight);
+    $('.intro-slider .slide-item').css('min-height',totalHeight);
+    $('.intro-content').css('min-height',totalHeight);
     console.log(headlineHeight);
     console.log(updateHeight);
     console.log(totalHeight);
@@ -324,9 +322,9 @@ var FBSage = (function($) {
   // Called in quick succession as window is resized
   function _resize() {
     screenWidth = document.documentElement.clientWidth;
-    breakpoint_small = (screenWidth > breakpoint_array[0]);
-    breakpoint_medium = (screenWidth > breakpoint_array[1]);
-    breakpoint_large = (screenWidth > breakpoint_array[2]);
+    breakpoint_small = (screenWidth >= breakpoint_array[0]);
+    breakpoint_medium = (screenWidth >= breakpoint_array[1]);
+    breakpoint_large = (screenWidth >= breakpoint_array[2]);
 
     _resizeSliders(); 
 

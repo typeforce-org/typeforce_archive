@@ -242,8 +242,6 @@ function get_exhibits($args) {
 }
 
 
-
-
 function get_exhibit_thumbnails() {
   // Do not proceed if no thumbnail
   if( !has_post_thumbnail() ){
@@ -279,9 +277,9 @@ HTML;
 }
 
 
-
-
-
+function get_exhibition_object($exhibit_id) {
+  return wp_get_post_terms($exhibit_id,'exhibition')[0];
+}
 
 
 

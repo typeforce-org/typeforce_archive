@@ -1,0 +1,6 @@
+.page-header {
+  margin-left: $site-pad-hor;
+  @include media-md {
+    margin-left: $site-pad-hor-md;
+  }
+}

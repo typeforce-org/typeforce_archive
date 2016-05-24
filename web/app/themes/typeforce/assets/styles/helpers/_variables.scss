@@ -19,13 +19,14 @@ $breakpoint-small: 480px;
 $breakpoint-medium: 768px;
 $breakpoint-large: 1000px;
 $breakpoint-huge: 1200px;
-$breakpoint-nav: 1050px;
+$breakpoint-nav: 1150px;
 
 
 //Sizes
 $main-slider-slide-height: calc(80vh);
 $main-slider-slide-width: 87.5vw;
-$header-height: 125px;
+$header-height: 75px;
+$header-height-md: 125px;
 
 //Padding
 $site-pad-hor-md: 75px;

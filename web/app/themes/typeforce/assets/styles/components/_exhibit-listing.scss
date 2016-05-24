@@ -58,7 +58,7 @@
       .info-link{
         @extend %fill;
         .info{
-          max-width: 80%;
+          //max-width: 80%;
         }
       }
     }
@@ -66,9 +66,6 @@
 }
 
 
-.load-more-container.loading {
-
-}
 
 
 .load-more {

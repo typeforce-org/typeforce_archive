@@ -10,8 +10,11 @@ html {
 body {
   color: $white;
   overflow-x: hidden;
-  background: $gray-dark;
+  background: $gray-dark;  
   margin-top: $header-height;
+  @include media-md {
+    margin-top: $header-height-md;
+  }
   @extend %body-text;
   @extend %smooth;
 }
