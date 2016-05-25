@@ -151,7 +151,7 @@ function get_exhibition_info() {
   global $wp_query;
   $exhibition_id = $wp_query->queried_object->term_id;
 
-  $title = '<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
+  $title = get_term_meta($exhibition_id,'_cmb2_full_title',true); //'<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
 
   $description = apply_filters('the_content', get_term_meta($exhibition_id,'_cmb2_description',true));
 
@@ -178,6 +178,7 @@ function get_exhibition_info() {
 
   $output = <<< HTML
     <div class="exhibition-info" id="content">
+      <h1>{$title}</h1>
       <div class="description user-content">
         {$description}
       </div>
