@@ -237,7 +237,7 @@ var FBSage = (function($) {
   function _fixHeaderOnScroll() {
     $(window).scroll(function() {
       var wintop = $(window).scrollTop();
-      distance = breakpoint_medium ? 50 : 30;
+      var distance = 30; //distance = breakpoint_medium ? 50 : 30;
       console.log(breakpoint_medium);
       if (wintop > distance) {
         $('.site-header').addClass('scrolled');

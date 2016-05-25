@@ -36,7 +36,7 @@
       left: $site-pad-hor;
       @include media-md {
         left: $site-pad-hor-md;
-        right: 100vw - $main-slider-slide-width;
+        right: 100vw - $main-slider-slide-width-md;
         left: auto;
       }
       margin-bottom: 1em;

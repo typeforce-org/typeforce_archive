@@ -12,23 +12,18 @@
   overflow: visible;
   background-color: $gray-dark;
   height: $header-height;
-  @include media-md {
-    height: $header-height-md;
-  }
   &.scrolled{
     position: fixed;
     height: 45px;
-    @include media-md{
-      height: 75px;
-    }
   }
 
   .title, .search {
+    @extend %small-title;
     position: absolute;
     bottom: 0;
     margin: 8px  $site-pad-hor;
     @include media-md {
-      margin: 10px  $site-pad-hor-md;
+      margin: 8px  $site-pad-hor-md;
     }
 
   }
@@ -65,7 +60,7 @@
     }
     .nav {
       margin: 0;
-      margin-bottom: 5px;
+      margin-bottom: -2px;
       @extend %delistify;
       .menu-item {
         margin: 0; padding: 0;
@@ -119,12 +114,12 @@
   .search-toggle {
     position: absolute;
     right: 25px;
-    bottom: 2.5px;
-    @include media-md {
-      bottom: 21px;
-    }
+    bottom: 3px;
+    // @include media-md {
+    //   bottom: 21px;
+    // }
     @include min-screen($breakpoint-nav) {
-      bottom: 9px;
+      bottom: 2px;
     }
     border: none;
     outline: none;
@@ -143,9 +138,9 @@
   .menu-toggle-open {
     right: 75px;
     bottom: 15px;
-    @include media-md {
-      bottom: 32.5px;
-    }
+    // @include media-md {
+    //   bottom: 32.5px;
+    // }
   }
   .menu-toggle-close {
     right: 25px;
@@ -160,10 +155,10 @@
     }
     .search-form{
       margin-bottom: -2px;
-      @include media-md {
-        margin-bottom: -6px;
-      }
-      @extend %big-title;
+      // @include media-md {
+      //   margin-bottom: -6px;
+      // }
+      @extend %small-title;
       .search-field {
         width: 100%;
         border: none;

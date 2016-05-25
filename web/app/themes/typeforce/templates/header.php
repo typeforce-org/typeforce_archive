@@ -1,15 +1,15 @@
 <?php 
 $title = '<a href="'.get_home_url().'">Typeforce</a>';
-if(is_singular('exhibit')) {
-  $exhibition_id = Firebelly\PostTypes\Exhibition\get_exhibition_object($post->ID)->term_id;
-  $title = '<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
-}
-if(is_tax('exhibition')) {
-  $exhibition_id = $wp_query->queried_object->term_id;
-  $title = '<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
-}
+// if(is_singular('exhibit')) {
+//   $exhibition_id = Firebelly\PostTypes\Exhibition\get_exhibition_object($post->ID)->term_id;
+//   $title = '<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
+// }
+// if(is_tax('exhibition')) {
+//   $exhibition_id = $wp_query->queried_object->term_id;
+//   $title = '<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
+// }
 
-
+// $title = Roots\Sage\Titles\title();
 
 
 ?>

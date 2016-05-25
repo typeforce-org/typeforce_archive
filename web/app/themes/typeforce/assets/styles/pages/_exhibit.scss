@@ -33,9 +33,10 @@
       header {
         max-width: 80vw;
         position: absolute;
-        bottom: 0;
+        top: 0;
         .entry-exhibition {
           @extend %small-caps;
+          display: none;
         }
         .entry-artist {
           margin-top: .2em;
@@ -49,7 +50,7 @@
     }
 
     .content-wrap{
-      margin-top: 55px;
+      margin-top: 25px;
 
 
       .entry-main {

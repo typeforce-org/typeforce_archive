@@ -31,7 +31,7 @@ $more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args,false);
     <div class="header-wrap">
       <?= $thumbs ?>
       <header>
-        <div class="entry-exhibition"><?= $exhibition_year ?></h1>
+        <div class="entry-exhibition"><?= $exhibition_year ?></div>
         <h1 class="entry-artist"><?php the_title(); ?></h1>
       </header>
     </div>

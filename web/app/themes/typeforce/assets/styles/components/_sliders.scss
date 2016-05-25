@@ -4,12 +4,14 @@
     width: 100vw;
     .slick-track {
         margin-left: ( $main-slider-slide-width - 100vw )/2;
+        @include media-md { margin-left: ( $main-slider-slide-width-md - 100vw )/2; }
     } 
 
   .slide-item {
     position: relative;
     height: $main-slider-slide-height;
     width:  $main-slider-slide-width;
+    @include media-md { width:  $main-slider-slide-width-md; }
     overflow: hidden;
 
     // Add a gray overlay over slide;
@@ -55,7 +57,10 @@
     top: 0;
     right: 0;
     height: 100%;
-    width: 12.5vw;
+    width: 100vw - $main-slider-slide-width;
+    @include media-md {
+      width: 100vw - $main-slider-slide-width-md;
+    }
     @extend %clickable;
     &:hover{
       .icon-caret {
@@ -68,7 +73,10 @@
       top: 50%;
       transition: transform $hover-trans-time;
       transform: translateY(-50%);
-      left: 2vw;
+      left: 1vw;
+      @include media-md {
+        left: 2vw;
+      }
     }
   }
 }

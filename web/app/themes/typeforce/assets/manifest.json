@@ -6,6 +6,18 @@
       ],
       "main": true
     },
+    "test.js": {
+      "files": [
+        "scripts/test.js"
+      ],
+      "main": true
+    },
+    "modernizr.custom.js": {
+      "files": [
+        "scripts/modernizr.custom.js"
+      ],
+      "main": true
+    },
     "main.css": {
       "files": [
         "styles/main.scss"
