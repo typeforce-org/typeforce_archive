@@ -112,8 +112,8 @@
     }
   }
   
-  .search, .title, .menu-toggle {
-    transition: transform 0.5s, opacity 0.5s;
+  .search, .title, .menu-toggle-open {
+    transition: transform 0.5s, opacity 0.5s, fill $hover-trans-time;
   }
 
   .search-toggle {
@@ -121,7 +121,10 @@
     right: 25px;
     bottom: 2.5px;
     @include media-md {
-      bottom: 18.5px;
+      bottom: 20px;
+    }
+    @include min-screen($breakpoint-nav) {
+      bottom: 6px;
     }
     border: none;
     outline: none;
@@ -170,6 +173,17 @@
     }
   }
 }
+
+  .icon-hamburger, .icon-search {
+    &:hover {
+      fill: $white;
+    }
+  }
+  .icon-x {
+    &:hover {
+      fill: $gray-dark;
+    }
+  }
 
 .search-title {
   margin-top: 50px;

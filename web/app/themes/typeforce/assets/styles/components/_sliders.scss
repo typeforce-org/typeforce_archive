@@ -40,7 +40,7 @@
         transition: opacity 0.5s, visibility 0.5s;
        }
        .duo, .color { //ken burns effect
-          transform: scale(1.1);
+          transform: scale(1.05);
           transition: transform 15s ease-out, opacity $hover-trans-time;
        }
        &.site-just-loaded { //.slick-center will be on the first slide immediately, so transition won't be fired.  This will override it then be immediately be removed by js so we still get ken burns on first slide.
