@@ -121,7 +121,7 @@
     right: 25px;
     bottom: 2.5px;
     @include media-md {
-      bottom: 20px;
+      bottom: 21px;
     }
     @include min-screen($breakpoint-nav) {
       bottom: 9px;
