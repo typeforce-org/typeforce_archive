@@ -14,7 +14,14 @@ if(is_tax('exhibition')) {
 
 ?>
 <header class="site-header" role="banner">
+
+  
   <h1 class="title"><?= $title ?></h1>
+
+  <div class="search">
+    <?php get_search_form(); ?>
+  </div>
+  <button class="search-toggle"></button>
   <nav class="site-nav" role="navigation">
 
     <?php
@@ -24,9 +31,5 @@ if(is_tax('exhibition')) {
     ?>
   </nav>
 
-  <div class="search">
-    <?php get_search_form(); ?>
-  </div>
 
-  
 </header>

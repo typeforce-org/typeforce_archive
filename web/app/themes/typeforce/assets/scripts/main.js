@@ -49,6 +49,7 @@ var FBSage = (function($) {
     $(document).keyup(function(e) {
       if (e.keyCode === 27) {
         _hideNav();
+        _closeSearch();
       }
     });
 
@@ -83,24 +84,24 @@ var FBSage = (function($) {
 
 
   function _openSearch() {
-    $('.search').addClass('active');
+    $('.site-header').addClass('search-active');
     $('.search-field:first').focus();
-    $('.nav-links').removeClass('active');
   }
   function _closeSearch() {
-    $('.search').removeClass('active');
-    $('.nav-links').addClass('active');
-
+    $('.site-header').removeClass('search-active');
   }
 
  function _initSearch() {
-  // $('<svg class="icon-search" role="img"><use xlink:href="#icon-search"></use></svg>')
-  //   .prependTo('.search-submit');
-  // $('.nav-links').addClass('active');
-  // $('.open-search').on('click', function (e) {
-  //   e.preventDefault();
-  //   _openSearch();
-  // });
+  $('<svg class="icon-search" role="img"><use xlink:href="#icon-search"></use></svg>')
+    .prependTo('.search-toggle');
+  $('.search-toggle').on('click', function (e) {
+    if ( $('.site-header').hasClass('search-active') ) {
+      $('.search-form').submit();
+    } else {
+      e.preventDefault();
+      _openSearch();
+    }
+  });
   // $('.search-form:not(.mobile-search) .search-submit').on('click', function (e) {
   //   if ($('.search-form').hasClass('active')) {
 

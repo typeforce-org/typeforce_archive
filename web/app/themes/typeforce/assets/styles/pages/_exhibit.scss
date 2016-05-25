@@ -30,8 +30,8 @@
 
     .header-wrap {
       position: relative;
-
       header {
+        max-width: 80vw;
         position: absolute;
         bottom: 0;
         .entry-exhibition {
@@ -57,11 +57,11 @@
         width: 100%;
         @include media-md {
           width: 75%;
+          padding-right: 50px;
         }
         @include min-screen(1200px) {
           max-width: 50%;
         }
-        padding-right: 50px;
 
         .entry-bio {
           margin-top: 30px;

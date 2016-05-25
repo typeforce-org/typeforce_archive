@@ -1,3 +1,8 @@
+<?php if(is_search()) : ?>
+  <div class="search-title">
+    <h1><?= Roots\Sage\Titles\title() ?></h1>
+  </div>
+<?php endif; ?>
 <?php if (!have_posts()) : ?>
   <div class="alert alert-warning">
     <?php _e('Sorry, no results were found.', 'sage'); ?>

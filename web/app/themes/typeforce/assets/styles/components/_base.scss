@@ -46,7 +46,11 @@ img {
 // Browser alert
 .alert-warning {
   padding-left: $site-pad-hor;
-  @include media-md { padding-left: $site-pad-hor-md; }
+  padding-right: $site-pad-hor;
+  @include media-md {
+    padding-left: $site-pad-hor-md;
+    padding-right: $site-pad-hor-md;
+  }
   @extend %small-title;
 }
 
