@@ -54,13 +54,13 @@ function register_taxonomy_metabox() {
        'taxonomies'       => array( 'exhibition' ), // Tells CMB2 which taxonomies should have these fields
       ) 
     );
-   $cmb_term->add_field( 
-      array(
-        'name'  => 'Full Title',
-        'id'    => $prefix . 'full_title',
-        'type'  => 'text_medium',
-      ) 
-    );
+   // $cmb_term->add_field( 
+   //    array(
+   //      'name'  => 'Full Title',
+   //      'id'    => $prefix . 'full_title',
+   //      'type'  => 'text_medium',
+   //    ) 
+   //  );
     $cmb_term->add_field( 
       array(
         'name'  => 'Description',
@@ -151,7 +151,7 @@ function get_exhibition_info() {
   global $wp_query;
   $exhibition_id = $wp_query->queried_object->term_id;
 
-  $title = get_term_meta($exhibition_id,'_cmb2_full_title',true); //'<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
+  $title = $wp_query->queried_object->name; //'<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
 
   $description = apply_filters('the_content', get_term_meta($exhibition_id,'_cmb2_description',true));
 

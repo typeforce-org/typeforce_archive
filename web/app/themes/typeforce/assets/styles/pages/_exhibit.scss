@@ -64,7 +64,20 @@
           max-width: 50%;
         }
 
-        .entry-bio {
+        .exhibit-titles {
+          @extend %delistify;
+          .exhibit-title {
+            display: inline;
+            &:after{
+              content: ', ';
+            }
+            &:last-child:after{
+              content: '';
+            }
+          }
+        }
+
+        .entry-bio, .entry-description {
           margin-top: 30px;
         }
       }

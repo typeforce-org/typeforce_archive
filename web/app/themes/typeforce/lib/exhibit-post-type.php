@@ -96,54 +96,82 @@ add_action('manage_posts_custom_column', __NAMESPACE__ . '\custom_columns');
 /**
  * Custom CMB2 fields for Exhibits
  */
-function metaboxes( array $meta_boxes ) {
+function register_exhibit_metaboxes() {
   $prefix = '_cmb2_'; //start with underscore to hide from custom fields list
 
-  $meta_boxes['exhibit_metabox'] = array(
+  $cmb = new_cmb2_box( array(
     'id'            => 'exhibit_metabox',
     'title'         => __( 'Additional Options', 'cmb2' ),
     'object_types'  => array( 'exhibit' ),
     'context'       => 'normal',
     'priority'      => 'high',
     'show_names'    => true,
-    'fields'        => array(
+    )
+  );
+  $cmb->add_field(
       array(
         'name'  => 'Title',
         'desc'  => 'Title of exhibit',
         'id'    => $prefix . 'title',
         'type'  => 'text_medium',
-      ),     
+      )
+  );
+  $group_field_id = $cmb->add_field(
+      array(
+        'name'  => 'Titles',
+        'desc'  => 'Titles of exhibit(s)',
+        'id'    => $prefix . 'titles',
+        'type'  => 'group',
+        'options'     => array(
+          'group_title'   => __( 'Title {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+          'add_button'    => __( 'Add Another Title', 'cmb2' ),
+          'remove_button' => __( 'Remove Title', 'cmb2' ),
+          'sortable'      => true, // beta
+        ),
+      )
+  );
+  $cmb->add_group_field( $group_field_id, array(
+    'name' => 'Title',
+    'id'   => 'title',
+    'type' => 'text_medium',
+    // 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
+) );
+  $cmb->add_field(     
       array(
         'name'  => 'Materials & Dimensions',
         'desc'  => '(optional)',
         'id'    => $prefix . 'materials',
         'type'  => 'wysiwyg',
-      ),     
+      )
+  );
+  $cmb->add_field(    
       array(
         'name'  => 'Bio',
         'desc'  => 'Artist\'s Biography (optional)',
         'id'    => $prefix . 'bio',
         'type'  => 'wysiwyg',
-      ),           
+      )
+  );
+  $cmb->add_field(         
       array(
         'name'  => 'Social',
         'desc'  => 'Website, Social Media, etc. (optional)',
         'id'    => $prefix . 'social',
         'type'  => 'wysiwyg',
-      ),   
+      )
+  );
+  $cmb->add_field(
       array(
         'name'  => 'More Images',
         'desc'  => 'Any images for exhibit page in addition to featured image (optional)',
         'id'    => $prefix . 'more_images',
         'type'  => 'file_list',
         'preview_size' => array( 150, 150 ),
-      ),
-    ),
+      )
   );
 
-  return $meta_boxes;
 }
-add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
+add_action( 'cmb2_admin_init', __NAMESPACE__ . '\register_exhibit_metaboxes' );
 
 function get_intro_slider() {
 
