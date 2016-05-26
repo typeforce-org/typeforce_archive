@@ -68,8 +68,8 @@ function edit_columns($columns){
   $columns = array(
     'cb' => '<input type="checkbox">',
     'title' => 'Artist',
-    '_cmb2_title' => 'Title',
-    'content' => 'Statement',
+    '_cmb2_titles' => 'Title(s)',
+    'content' => 'Description',
     'featured_image' => 'Featured Image',
     'taxonomy-exhibition' => 'Exhibition',
   );
@@ -84,7 +84,9 @@ function custom_columns($column){
       echo the_post_thumbnail('thumbnail');
     elseif ( $column == 'content') 
       echo Utils\get_excerpt($post);
-    else {
+    elseif ( $column == '_cmb2_titles') {
+      get_exhibit_titles();
+    } else {
       $custom = get_post_custom();
       if ( array_key_exists($column, $custom) ) 
         echo $custom[$column][0];
@@ -236,6 +238,18 @@ function get_exhibits($args, $loadmore = true) {
   return $output;
 }
 
+
+function get_exhibit_titles() {
+  global $post;
+  $title_entries = get_post_meta($post->ID,'_cmb2_titles',true);
+  $titles = '<ul class="exhibit-titles">';
+  foreach ( (array) $title_entries as $title_entry ) {
+    if ( isset ( $title_entry['title'] ) )
+      $titles .= '<li class="exhibit-title">'.$title_entry['title'].'</li>';
+  }
+  $titles .= '</ul>';
+  echo $titles;
+}
 
 function get_exhibit_thumbnails() {
   // Do not proceed if no thumbnail
