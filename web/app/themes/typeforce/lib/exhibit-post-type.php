@@ -110,14 +110,14 @@ function register_exhibit_metaboxes() {
     'show_names'    => true,
     )
   );
-  $cmb->add_field(
-      array(
-        'name'  => 'Title',
-        'desc'  => 'Title of exhibit',
-        'id'    => $prefix . 'title',
-        'type'  => 'text_medium',
-      )
-  );
+  // $cmb->add_field(
+  //     array(
+  //       'name'  => 'Title',
+  //       'desc'  => 'Title of exhibit',
+  //       'id'    => $prefix . 'title',
+  //       'type'  => 'text_medium',
+  //     )
+  // );
   $group_field_id = $cmb->add_field(
       array(
         'name'  => 'Titles',
