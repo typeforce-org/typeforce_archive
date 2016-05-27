@@ -187,8 +187,11 @@ var FBSage = (function($) {
 
   function _lazyLoadImages() {
     $("div.lazy").lazyload({
-      failure_limit : 20
-      // effect : 'fadeIn'
+      failure_limit : 20,
+      load : function() {
+        console.log($(this)); 
+        $(this).addClass('loaded');
+      }
     });
   }
 
@@ -252,26 +255,26 @@ var FBSage = (function($) {
 
   // Scroll to the header immediately on every page but home
   function _startScrolledToHeader() {
-    $body = $('body');
-    $header = $('.page-header');
-    if(!$body.hasClass('home')) {
-      window.scroll(0,$header.offset().top-20);
-    }
+    // $body = $('body');
+    // $header = $('.page-header');
+    // if(!$body.hasClass('home')) {
+    //   window.scroll(0,$header.offset().top-20);
+    // }
     // $(window).on('beforeunload', function() {
     //   window.scroll(0,$header.offset().top-20);
     // });
   }
 
   function _fixHeaderOnScroll() {
-    $(window).scroll(function() {
-      var wintop = $(window).scrollTop();
-      var distance = 30; //distance = breakpoint_medium ? 50 : 30;
-      if (wintop > distance) {
-        $('.home .site-header').addClass('scrolled');
-      } else {
-        $('.home .site-header').removeClass('scrolled');
-      }
-    });
+    // $(window).scroll(function() {
+    //   var wintop = $(window).scrollTop();
+    //   var distance = 30; //distance = breakpoint_medium ? 50 : 30;
+    //   if (wintop > distance) {
+    //     $('.home .site-header').addClass('scrolled');
+    //   } else {
+    //     $('.home .site-header').removeClass('scrolled');
+    //   }
+    // });
   }
 
 
