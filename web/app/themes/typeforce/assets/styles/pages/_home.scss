@@ -1,87 +1,51 @@
 // Home page
 
-  .intro-content {
-    position: relative;
+// .home {
+//   margin-top: $header-height;
+//   .site-header {
+//     height: $header-height-md;
+//     &.scrolled{
+//       position: fixed;
+//       height: $header-height;
+//     }
+//     .title, .search {
+//       @extend %big-title;
+//     }
+//   }
+// }
+
+
+.intro-content {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: $main-slider-slide-height;
+  width: 100%;
+  .headline {
+    @extend %small-caps;
+    position: absolute;
     top: 0;
     left: 0;
-    height: $main-slider-slide-height;
-    width: 100%;
-    .headline, .update {
-      @extend %small-caps;
-      position: absolute;
+    margin-top: 1.5em;
+    margin-left: $site-pad-hor;
+    max-width: 350px;
+    width: calc( 87vw - 50px);
+    @include media-md {
+      margin-left: $site-pad-hor-md;
+      max-width: 750px;
+      width: calc( 87vw - 100px);
     }
-    .headline {
-      top: 0;
-      left: 0;
-      margin-top: 1.5em;
-      margin-left: $site-pad-hor;
-      max-width: 350px;
-      width: calc( 87vw - 50px);
-      @include media-md {
-        margin-left: $site-pad-hor-md;
-        max-width: 750px;
-        width: calc( 87vw - 100px);
-      }
-      h1 {
-        margin:0;
-        @extend %big-title;
-      }
-      transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
-      &.disappeared {
-        transform: translateY(-100%);
-      }
+    h1 {
+      margin:0;
+      @extend %big-title;
     }
-  }
-
-
-
-.intro-slide {
-  .content {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    .intro-link, .update {
-    }
-    .intro-link {
-      position: relative;
-      max-width: 60%;
-      vertical-align: bottom;
-      margin: 0 0 15px $site-pad-hor;
-      @include media-md {
-        margin: 0 0 15px $site-pad-hor-md;
-      }
-
-      a{
-        @extend %small-caps;
-        color: $gray;
-        text-decoration: underline;
-        transition: color $hover-trans-time;
-        &:hover {
-          color: $white;
-        }
-        .highlight{
-          background-color: $gray-dark;
-          padding: 0.3em;
-        }
-      }
-    }
-    .update {
-      position: relative;
-      max-width: 150px;
-      margin: 70px 0 25px $site-pad-hor;      
-      transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
-      &.disappeared {
-        transform: translateX(100%);
-      }
-      @include media-md {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        margin: 70px 35px 10px 0;
-      }
+    transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
+    &.disappeared {
+      transform: translateY(-100%);
     }
   }
 }
+
 
 
 .exhibit-list {

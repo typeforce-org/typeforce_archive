@@ -1,7 +1,4 @@
 // Header
-
-
-
 .site-header {
   @extend .container;
   position: fixed;
@@ -25,7 +22,6 @@
     @include media-md {
       margin: 8px  $site-pad-hor-md;
     }
-
   }
 
   .title {

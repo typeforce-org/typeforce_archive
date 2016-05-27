@@ -79,7 +79,55 @@
       }
     }
   }
+
+  .content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .intro-link, .caption {
+      color: $gray;
+      @extend %small-caps;
+      position: relative;
+      max-width: 60%;
+      vertical-align: bottom;
+      margin: 0 0 15px $site-pad-hor;
+      @include media-md {
+        margin: 0 0 15px $site-pad-hor-md;
+      }
+      .highlight {
+        background-color: $gray-dark;
+        padding: 0.3em;
+      }
+      a { 
+        text-decoration: underline;
+        transition: color $hover-trans-time;
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+    .update {
+      @extend %small-caps;
+      position: relative;
+      max-width: 150px;
+      margin: 70px 0 25px $site-pad-hor;      
+      transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
+      &.disappeared {
+        transform: translateX(100%);
+      }
+      @include media-md {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 70px 35px 10px 0;
+      }
+    }
+  }
+
+
 }
+
+
 
 
 

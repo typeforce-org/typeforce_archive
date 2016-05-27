@@ -277,10 +277,16 @@ function get_exhibit_thumbnails() {
     $thumb_height = $thumb[2];
     $thumb_url = $thumb[0];
     $duo_url = \Firebelly\Media\get_duo_url($thumb_id, ['size' => 'slide'] );  //get duotone image url
+    $caption = get_post_field('post_excerpt', $thumb_id);
+
     $output .= <<< HTML
     <div class="slide-item">
       <div class="color lazy" style="background-image: url('{$dummy}');" data-original="{$thumb_url}"></div>
       <div class="duo lazy" style="background-image: url('{$dummy}');" data-original="{$duo_url}"></div>
+      
+      <div class="content">
+        <div class="caption"><span class="highlight">{$caption}</span></div>
+      </div>
     </div>
 HTML;
   }
