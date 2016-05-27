@@ -9,10 +9,6 @@
   overflow: visible;
   background-color: $gray-dark;
   height: $header-height;
-  &.scrolled{
-    position: fixed;
-    height: $header-height;
-  }
 
   .title, .search {
     @extend %small-title;

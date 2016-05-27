@@ -1,18 +1,31 @@
-// Home page
+//Home page
 
-// .home {
-//   margin-top: $header-height;
-//   .site-header {
-//     height: $header-height-md;
-//     &.scrolled{
-//       position: fixed;
-//       height: $header-height;
-//     }
-//     .title, .search {
-//       @extend %big-title;
-//     }
-//   }
-// }
+$big-header-height: 75px;
+
+.home {
+  .site-header {
+    .title, .search {
+      @extend %big-title;
+    }
+  }
+  @include media-md {
+    margin-top: $big-header-height;
+    .site-header {
+      position: fixed;
+      height: $big-header-height;
+
+      .site-nav.full-nav {
+        margin-bottom: 14px;
+      }
+      .search-toggle.full-nav {
+        bottom: 6px;
+      } 
+      .menu-open {
+        bottom: 19px;
+      }
+    }
+  }
+}
 
 
 .intro-content {
