@@ -30,6 +30,11 @@ p {
   }
 }
 
+p.small-caps {
+  @extend %small-caps;
+  @extend %gray-text;
+}
+
 a {
   color: inherit;
   transition: color $hover-trans-time;

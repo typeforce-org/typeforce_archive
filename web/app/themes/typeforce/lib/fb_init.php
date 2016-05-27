@@ -119,10 +119,10 @@ function simplify_tinymce($settings) {
     //   'wrapper' => true,
     // ),
     array( 
-      'title' => 'Button',
-      'block' => 'span',
-      'classes' => 'button',
-    ),
+      'title' => 'Small Caps',
+      'block' => 'p',
+      'classes' => 'small-caps',
+    ),    
     // array( 
     //   'title' => '» Arrow Link',
     //   'block' => 'span',
@@ -134,3 +134,6 @@ function simplify_tinymce($settings) {
   return $settings;
 }
 add_filter('tiny_mce_before_init', __NAMESPACE__ . '\simplify_tinymce');
+
+
+
