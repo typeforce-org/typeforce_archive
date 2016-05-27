@@ -256,6 +256,7 @@ function get_exhibit_thumbnails() {
   if( !has_post_thumbnail() ){
     return false;
   }
+  $dummy = \Roots\Sage\Assets\asset_path('images/gray.gif');
   // Lets get all the thumbnail ids
   $thumb_ids = array();
   // Grab the featured image ids as first id
@@ -271,12 +272,15 @@ function get_exhibit_thumbnails() {
   $output = '';
   $output .= '<div class="slider thumbnail-slider">';
   foreach($thumb_ids as $thumb_id){
-    $thumb_url = wp_get_attachment_image_src( $thumb_id, 'slide' )[0]; //get normal color image url
+    $thumb = wp_get_attachment_image_src( $thumb_id, 'slide' ); //get normal color image
+    $thumb_width = $thumb[1];
+    $thumb_height = $thumb[2];
+    $thumb_url = $thumb[0];
     $duo_url = \Firebelly\Media\get_duo_url($thumb_id, ['size' => 'slide'] );  //get duotone image url
     $output .= <<< HTML
     <div class="slide-item">
-      <div class="color" style="background-image: url('{$thumb_url}')" ></div>
-      <div class="duo" style="background-image: url('{$duo_url}')"></div>
+      <div class="color lazy" style="background-image: url('{$dummy}');" data-original="{$thumb_url}"></div>
+      <div class="duo lazy" style="background-image: url('{$dummy}');" data-original="{$duo_url}"></div>
     </div>
 HTML;
   }
@@ -284,7 +288,6 @@ HTML;
 
   return $output;
 }
-
 
 
 

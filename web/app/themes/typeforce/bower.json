@@ -18,7 +18,8 @@
     "fastclick": "~1.0.6",
     "slick-carousel": "^1.6.0",
     "boomsvgloader": "^0.0.2",
-    "jquery-widowfix": "^1.3.2"
+    "jquery-widowfix": "^1.3.2",
+    "jquery_lazyload": "jquery.lazyload#^1.9.7"
   },
   "overrides": {
     "modernizr": {
@@ -26,6 +27,9 @@
     },
     "boomsvgloader": {
       "main": "./dist/js/boomsvgloader.js"
+    },
+    "jquery_lazyload": {
+      "main": "./jquery.lazyload.js"
     }
   }
 }

@@ -4,7 +4,7 @@
 
 .site-header {
   @extend .container;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -14,7 +14,7 @@
   height: $header-height;
   &.scrolled{
     position: fixed;
-    height: 45px;
+    height: $header-height;
   }
 
   .title, .search {
