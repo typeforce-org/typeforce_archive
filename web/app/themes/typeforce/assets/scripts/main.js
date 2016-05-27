@@ -187,7 +187,7 @@ var FBSage = (function($) {
 
   function _lazyLoadImages() {
     $("div.lazy").lazyload({
-      failure_limit : 1000,
+      // failure_limit : 1000,
       effect : 'fadeIn',
       threshold: 1800
     });
