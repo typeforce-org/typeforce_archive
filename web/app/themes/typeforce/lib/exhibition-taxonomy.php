@@ -70,7 +70,7 @@ function register_taxonomy_metabox() {
     );
     $cmb_term->add_field( 
       array(
-        'name'  => 'Catalogue Purchase Link',
+        'name'  => 'Catalog Purchase Link',
         'id'    => $prefix . 'catalogue',
         'type'  => 'text_medium',
       ) 
@@ -193,7 +193,7 @@ HTML;
   if($catalogue_link) {
     $output .= <<< HTML
         <div class="catalogue">
-          <h2>Exhibition Catalogue</h2>
+          <h2>Exhibition Catalog</h2>
           <a href="{$catalogue_link}">Purchase through Firebelly</a>
         </div>
 HTML;
