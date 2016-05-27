@@ -1,7 +1,14 @@
 //Touch screen
 
 .touchevents {
-  a {
-    color: $white !important;
+  .exhibit-listing-info {
+    .info-link .info {
+      color: $white;
+    }
+  }
+  .slider .content .caption a, .slider .content .intro-link a {
+    color: $white;
   }
 }
+
+

@@ -222,7 +222,7 @@ var FBSage = (function($) {
 
   function _initLazyLoadImages() {
     $("div.lazy").lazyload({
-      failure_limit : 20,
+      failure_limit : 30,
       load : function() {
         $(this).addClass('loaded');
       }
