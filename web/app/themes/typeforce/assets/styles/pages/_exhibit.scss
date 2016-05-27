@@ -31,14 +31,19 @@
     .header-wrap {
       position: relative;
       header {
-        max-width: 80vw;
         position: absolute;
         top: 0;
+        width: 100%;
+        display: block;
+        background: $gray-dark;
+        background: rgba($gray-dark,0.3);
+        background: linear-gradient( rgba($gray-dark,0.5) , rgba($gray-dark,0) );
         .entry-exhibition {
           @extend %small-caps;
           display: none;
         }
         .entry-artist {
+          max-width: 80vw;
           margin-top: .2em;
           margin-bottom: .3em;
         }
