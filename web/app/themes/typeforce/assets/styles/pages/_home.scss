@@ -46,14 +46,14 @@
       position: relative;
       max-width: 60%;
       vertical-align: bottom;
+      margin: 0 0 15px $site-pad-hor;
+      @include media-md {
+        margin: 0 0 15px $site-pad-hor-md;
+      }
       &:hover .info {
         color: $white;
       }
       a{
-        margin: 0 0 15px $site-pad-hor;
-        @include media-md {
-          margin: 0 0 15px $site-pad-hor-md;
-        }
         @extend %small-caps;
         color: $gray;
         text-decoration: underline;
@@ -67,7 +67,7 @@
     .update {
       position: relative;
       max-width: 150px;
-      margin: 70px 0 35px $site-pad-hor;      
+      margin: 70px 0 25px $site-pad-hor;      
       transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
       &.disappeared {
         transform: translateX(100%);
@@ -76,7 +76,7 @@
         position: absolute;
         right: 0;
         bottom: 0;
-        margin: 70px 25px 35px 0;
+        margin: 70px 35px 10px 0;
       }
     }
   }
