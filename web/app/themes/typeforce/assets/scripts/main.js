@@ -118,6 +118,24 @@ var FBSage = (function($) {
  }
 
 
+  function _resizeNav() {
+
+    var $navWidth = 50 + (breakpoint_medium ? 75 : 25); //50 is a buffer, 75/25 is site padding; 
+    $('.site-header .site-nav .menu-item a').each(function() {
+      $navWidth += $(this).outerWidth()*2;
+    });
+    var $titleWidth = $('.site-header .title').outerWidth();
+    var $windowWidth = $( window ).width();
+    console.log('nav '+$navWidth+' title '+$titleWidth+' window '+$windowWidth);
+    if (($navWidth+$titleWidth)<$windowWidth){
+      $('.site-nav, .menu-toggle, .search-toggle').addClass('full-nav');
+      console.log('open');
+    } else {
+      $('.site-nav, .menu-toggle, .search-toggle').removeClass('full-nav');
+      console.log('close');
+    }
+  }
+
   // Handles main nav
   function _initNav() {
     //SEO-useless nav togglers
@@ -131,6 +149,8 @@ var FBSage = (function($) {
       .on('click', function(e) {
         _showNav();
       });
+
+    _resizeNav();
   }
 
   function _showNav() {
@@ -247,17 +267,37 @@ var FBSage = (function($) {
     });
   }
 
+
   function _resizeSliders() {
     var headlineHeight = $('.headline').outerHeight(true);
-    var updateHeight = $('.update').outerHeight(true);
-    var totalHeight = headlineHeight + updateHeight; 
+
+    var maxSlideContentHeight = 0;
+    $slideContent = $('.slide-item .content, .slide-item .update').each(function() {
+      myHeight = $(this).outerHeight(true);
+      maxSlideContentHeight = Math.max(maxSlideContentHeight,myHeight);
+    });
+    var totalHeight = headlineHeight + maxSlideContentHeight; 
 
     $('.intro-slider .slide-item').css('min-height',totalHeight);
     $('.intro-content').css('min-height',totalHeight);
-    console.log(headlineHeight);
-    console.log(updateHeight);
-    console.log(totalHeight);
   }
+
+  function _sliderArrowKeys() {
+
+   $(document).keyup(function(e) {
+      if (e.keyCode === 37) { //left arrow
+        // $('.slide-item.slick-center').removeClass('slick-center');
+        $('.slider').slick('slickPrev');
+
+      }
+      if (e.keyCode === 39) { //right arrow
+        // $('.slide-item.slick-center').removeClass('slick-center');
+        $('.slider').slick('slickNext');
+      }
+    });
+
+  }
+
 
   function _initSliders(){
 
@@ -268,7 +308,8 @@ var FBSage = (function($) {
       centerMode: true,
       centerPadding: '0',
       slidesToShow: 1,
-      autoplay: true,
+      accessibility: true,
+      // autoplay: true,
       autoplaySpeed: 5000,
       speed: 500,
       variableWidth: true,
@@ -276,15 +317,17 @@ var FBSage = (function($) {
       // touchMove: false,
       prevArrow: '',
       nextArrow: '<div class="slider-nav-right"><svg class="icon-caret" role="img"><use xlink:href="#icon-caret"></use></svg></div>',   
+    }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
+        // $('.slide-item[data-slick-index="'+nextSlide+'"]').removeClass('slick-center');
     });
 
     window.setTimeout(function() {
       $('.site-just-loaded').removeClass('site-just-loaded');
     },1);
 
-
     $(window).load(_resizeSliders); 
 
+    _sliderArrowKeys();
 
   }
 
@@ -294,10 +337,10 @@ var FBSage = (function($) {
 
   function _exhibitListingMouseOver() {
     // For exhibit listings in the slider...
-    $('.intro-slider .exhibit-listing-info').each(function() {
+    $('.intro-slider').each(function() {
       //... the desired behavior is to hide ...
       var $this = $(this);
-      var $link = $this.find('.info-link');
+      var $link = $this.find('.intro-link a');
       //... the duotone image of the slide, and the global headline and update...
       var $duo = $this.find('.duo');
       var $headline = $('.headline');
@@ -332,6 +375,7 @@ var FBSage = (function($) {
     breakpoint_large = (screenWidth >= breakpoint_array[2]);
 
     _resizeSliders(); 
+    _resizeNav();
 
   }
 

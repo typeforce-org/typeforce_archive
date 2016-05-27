@@ -9,24 +9,24 @@ namespace Firebelly\PostTypes\Pages;
 function metaboxes( array $meta_boxes ) {
   $prefix = '_cmb2_'; // Start with underscore to hide from custom fields list
 
-  $meta_boxes['home_metabox'] = array(
-    'id'            => 'home_metabox',
-    'title'         => __( 'Additional Content', 'cmb2' ),
-    'object_types'  => array( 'page', ), // Post type
-    'context'       => 'normal',
-    'priority'      => 'high',
-    'show_on'       => array( 'key' => 'page-template', 'value' => 'front-page.php'),
-    'show_names'    => true, // Show field names on the left
-    'fields'        => array(
-      // General page fields
-      array(
-        'name' => 'Update',
-        'desc' => 'What\'s the latest Typeforce news?',
-        'id'   => $prefix . 'update',
-        'type' => 'wysiwyg',
-      ),
-    ),
-  );
+  // $meta_boxes['home_metabox'] = array(
+  //   'id'            => 'home_metabox',
+  //   'title'         => __( 'Additional Content', 'cmb2' ),
+  //   'object_types'  => array( 'page', ), // Post type
+  //   'context'       => 'normal',
+  //   'priority'      => 'high',
+  //   'show_on'       => array( 'key' => 'page-template', 'value' => 'front-page.php'),
+  //   'show_names'    => true, // Show field names on the left
+  //   'fields'        => array(
+  //     // General page fields
+  //     array(
+  //       'name' => 'Update',
+  //       'desc' => 'What\'s the latest Typeforce news?',
+  //       'id'   => $prefix . 'update',
+  //       'type' => 'wysiwyg',
+  //     ),
+  //   ),
+  // );
 
   $meta_boxes['footer_metabox'] = array(
     'id'            => 'footer_metabox',

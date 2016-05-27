@@ -31,39 +31,57 @@
         transform: translateY(-100%);
       }
     }
-    .update {
-      bottom: 0;
-      left: $site-pad-hor;
-      @include media-md {
-        left: $site-pad-hor-md;
-        right: 100vw - $main-slider-slide-width-md;
-        left: auto;
-      }
-      margin-bottom: 1em;
-      margin-right: 50px;
-      margin-top: 70px;
-      transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
-      &.disappeared {
-        transform: translateX(200%);
-      }
-    }
   }
 
 
 
-.intro-slider{
-  .exhibit-listing-info {
-    .info{
-      padding: 2em 2em 2em $site-pad-hor;
+.intro-slide {
+  .content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .intro-link, .update {
+    }
+    .intro-link {
+      position: relative;
       max-width: 60%;
-      visibility: hidden;
+      vertical-align: bottom;
+      &:hover .info {
+        color: $white;
+      }
+      a{
+        margin: 0 0 15px $site-pad-hor;
+        @include media-md {
+          margin: 0 0 15px $site-pad-hor-md;
+        }
+        @extend %small-caps;
+        color: $gray;
+        text-decoration: underline;
+        transition: color $hover-trans-time;
+        .highlight{
+          background-color: $gray-dark;
+          padding: 0.3em;
+        }
+      }
+    }
+    .update {
+      position: relative;
+      max-width: 150px;
+      margin: 70px 0 35px $site-pad-hor;      
+      transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
+      &.disappeared {
+        transform: translateX(100%);
+      }
       @include media-md {
-        padding: 10vh 10vw 2em $site-pad-hor-md;
-        visibility: visible;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 70px 25px 35px 0;
       }
     }
   }
 }
+
 
 .exhibit-list {
   margin-top: 50px;

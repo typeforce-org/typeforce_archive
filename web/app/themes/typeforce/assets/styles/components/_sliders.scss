@@ -23,7 +23,7 @@
         background:rgba(0,0,0,0.6);
         opacity: 1;
         visibility: visible;
-        transition: opacity 0.5s, visibility 0s 0.5s;
+        transition: opacity 0.5s, visibility 0s 0s;
 
     }        
     &.next-slide-hover:after {
@@ -39,10 +39,10 @@
        &:after {
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.5s, visibility 0.5s;
+        transition: opacity 0.5s, visibility 0s 0.5s;
        }
        .duo, .color { //ken burns effect
-          transform: scale(1.05);
+          transform: scale(1.07);
           transition: transform 15s ease-out, opacity $hover-trans-time;
        }
        &.site-just-loaded { //.slick-center will be on the first slide immediately, so transition won't be fired.  This will override it then be immediately be removed by js so we still get ken burns on first slide.
@@ -80,6 +80,10 @@
     }
   }
 }
+
+
+
+
 
 
 
