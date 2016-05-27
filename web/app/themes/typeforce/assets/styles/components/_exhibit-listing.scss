@@ -1,7 +1,7 @@
 
 .exhibit-listing-info {
   .info-link {
-    &:hover .info {
+    &:hover .info, &.hover .info {
       color: $white;
     }
     .info{
@@ -47,7 +47,7 @@
       padding-bottom: 16.6667%;
     }
     .exhibit-listing-info {
-      &:hover {
+      &:hover, &.hover {
         .duo, .color {
           transform: scale(1.15);
         }

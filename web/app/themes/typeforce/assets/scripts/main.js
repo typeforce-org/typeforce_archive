@@ -42,9 +42,14 @@ var FBSage = (function($) {
 
     _initSliders();
 
+    //give the header a .scrolled class when past a certain point
     _fixHeaderOnScroll();
 
-    _lazyLoadImages();
+
+    _initLazyLoadImages();
+
+    //add classes to make up for the lack of hover event on touch devices;
+    _touchOnly();
 
     // Esc handlers
     $(document).keyup(function(e) {
@@ -137,6 +142,7 @@ var FBSage = (function($) {
     }
   }
 
+
   // Handles main nav
   function _initNav() {
     //SEO-useless nav togglers
@@ -164,6 +170,35 @@ var FBSage = (function($) {
     $('.site-nav').removeClass('menu-active');
   }
 
+  function _touchOnly() {
+    if(Modernizr.touchevents) {
+      var $exhibits = $('.exhibit-list .exhibit .exhibit-listing-info');
+      $(window).scroll(function() {
+        var wintop = $(window).scrollTop();
+        var winhalf = wintop + $(window).height()/2;
+        $exhibits.each(function() {
+          var top = $(this).offset().top;
+          var height = parseInt($(this).closest('.exhibit').css('padding-bottom'));
+          var bottom = height + top;
+          // console.log('wintop '+wintop);
+          // console.log('winhalf '+winhalf);
+          // console.log('top '+top);
+          // console.log('height '+height);
+          // console.log('bottom '+bottom);
+          if (winhalf > top && winhalf < bottom) {
+            $(this).addClass('hover');
+            // console.log('in');
+          } else {
+            $(this).removeClass('hover');  
+            // console.log('out');        
+          }
+        });
+      });
+      
+      console.log('touch screen');
+    }
+  }
+
   // function _initExhibition() {
   //   SEO-useless nav togglers
   //   $('<svg class="exhibition-toggle icon-caret" role="img"><use xlink:href="#icon-caret"></use></svg>')
@@ -185,11 +220,10 @@ var FBSage = (function($) {
   // }
 
 
-  function _lazyLoadImages() {
+  function _initLazyLoadImages() {
     $("div.lazy").lazyload({
       failure_limit : 20,
       load : function() {
-        console.log($(this)); 
         $(this).addClass('loaded');
       }
     });
