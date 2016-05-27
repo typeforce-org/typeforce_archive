@@ -8,7 +8,7 @@
 
   // Custom image size for post type?
   add_image_size( 'slide', 1200, 0, true );
-  add_image_size( 'listing', 800, 0, true );
+  add_image_size( 'listing', 768, 0, true );
 
  /**
   * Register Custom Post Type
