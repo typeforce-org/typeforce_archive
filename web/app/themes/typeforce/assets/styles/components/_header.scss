@@ -1,3 +1,8 @@
+
+body {
+  margin-top: 45px;
+}
+
 // Header
 .site-header {
   @extend .container;
@@ -8,18 +13,32 @@
   z-index: 100;
   overflow: visible;
   background-color: $gray-dark;
-  height: $header-height;
+  height: 45px;
+
+  .wrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 45px;
+    transition: height 0.5s;
+  }
+
+  .title, .search, 
+  .site-nav.full-nav, .menu-toggle-open,
+  .search-toggle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1em;
+  }
 
   .title, .search {
     @extend %small-title;
-    position: absolute;
-    bottom: 0;
-    margin: 8px  $site-pad-hor;
+    margin:  0 $site-pad-hor;
     @include media-md {
-      margin: 8px  $site-pad-hor-md;
+      margin: 0  $site-pad-hor-md;
     }
   }
-
   .title {
     left: 0;
     @extend %delinkify;
@@ -35,34 +54,8 @@
     transform: translateX(100%);
     transition: transform 0.2s, opacity 0.5s;
     text-align: center;
-    &.full-nav{
-      transition: opacity 0.5s;
-      width: auto;
-      position: absolute;
-      margin: 10px  $site-pad-hor-md;
-      bottom: 0;
-      padding: 0;
-      height: auto;
-      left: auto;
-      background: transparent;
-      transform: translateX(0%);
-      .nav {
-        .menu-item {
-            display: inline-block;
-            margin-left: 2em;
-            margin-top: 0;
-          a:hover, &.current-menu-item a { 
-              color: $white;
-          }
-        }
-      }
-    }
-    &.menu-active {
-      transform: translateX(0%);
-    }
     .nav {
       margin: 0;
-      margin-bottom: -2px;
       @extend %delistify;
       white-space: nowrap;
       .menu-item {
@@ -76,14 +69,80 @@
         }
       }
     }
+    &.full-nav{
+      transition: opacity 0.5s;
+      width: auto;
+      position: absolute;
+      margin: 0 $site-pad-hor-md;
+      padding: 0;
+      height: auto;
+      left: auto;
+      background: transparent;
+      transform: translateY(-50%);
+      .nav .menu-item {
+          display: inline-block;
+          margin-left: 2em;
+          margin-top: 0;
+        a:hover, &.current-menu-item a { 
+            color: $white;
+        }
+      }
+    }
+    &.menu-active {
+      transform: translateX(0%);
+    }
+  }
+
+  .search {
+    left: 0;
+    right: 50px;
+    @include media-md {
+      right: 0;
+    }
+    .search-form{
+      @extend %small-title;
+      .search-field {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+      }
+    }
+  }
+
+  .search-toggle {
+    position: absolute;
+    right: 25px;
+    border: none;
+    outline: none;
+    padding: 0;
+    background: transparent;
+  }
+  .menu-toggle {
+    @extend %clickable;
+    &.full-nav{
+      display: none;
+    }
+  }
+  .menu-toggle-open, .menu-toggle-close {
+    position: absolute;
+  }
+  .menu-toggle-open {
+    right: 75px;
+  }
+  .menu-toggle-close {
+    right: 25px;
+    top: 25px;
   }
 
 
-
+  .search, .title, .menu-toggle-open {
+    transition: transform 0.5s, opacity 0.5s, fill $hover-trans-time;
+  }
   &.search-active {
     .search {
       opacity: 1;
-      transform: translateY(0px);
+      transform: translateY(-55%);
     }
     .title, .site-nav, .menu-toggle {
       opacity: 0;
@@ -100,71 +159,11 @@
     .title, .site-nav, .menu-toggle {
       opacity: 1;
     }
-  }
-  
-  .search, .title, .menu-toggle-open {
-    transition: transform 0.5s, opacity 0.5s, fill $hover-trans-time;
-  }
-
-  .search-toggle {
-    position: absolute;
-    right: 25px;
-    bottom: 3px;
-    // @include media-md {
-    //   bottom: 21px;
-    // }
-    &.full-nav{
-      bottom: 2px;
-    }
-    border: none;
-    outline: none;
-    background: transparent;
-  }
-  .menu-toggle {
-    @extend %clickable;
-    &.full-nav{
-      display: none;
+    .title {
+      transform: translateY(-55%);
     }
   }
-  .menu-toggle-open, .menu-toggle-close {
-    position: absolute;
-    
-  }
-  .menu-toggle-open {
-    right: 75px;
-    bottom: 15px;
-    // @include media-md {
-    //   bottom: 32.5px;
-    // }
-  }
-  .menu-toggle-close {
-    right: 25px;
-    top: 25px;
-  }
-
-  .search {
-    left: 0;
-    right: 50px;
-    @include media-md {
-      right: 0;
-    }
-    .search-form{
-      margin-bottom: -2px;
-      // @include media-md {
-      //   margin-bottom: -6px;
-      // }
-      @extend %small-title;
-      .search-field {
-        width: 100%;
-        border: none;
-        outline: none;
-        background: transparent;
-      }
-    }
-  }
-}
-
-  .icon-hamburger, .icon-search {
+ .icon-hamburger, .icon-search {
     &:hover {
       fill: $white;
     }
@@ -174,6 +173,12 @@
       fill: $gray-dark;
     }
   }
+  .icon-search {
+    transform: translateY(10%);
+  }
+ 
+}
+
 
 .search-title {
   margin-top: 50px;

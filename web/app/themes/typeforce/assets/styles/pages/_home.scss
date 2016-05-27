@@ -1,27 +1,18 @@
 //Home page
 
-$big-header-height: 75px;
 
 .home {
   .site-header {
-    .title, .search {
+    .title, .search-field {
       @extend %big-title;
     }
   }
   @include media-md {
-    margin-top: $big-header-height;
+    margin-top: 75px;
     .site-header {
-      position: fixed;
-      height: $big-header-height;
-
-      .site-nav.full-nav {
-        margin-bottom: 14px;
-      }
-      .search-toggle.full-nav {
-        bottom: 6px;
-      } 
-      .menu-open {
-        bottom: 19px;
+      height: 75px;
+      .wrapper {
+        height: 75px;
       }
     }
   }

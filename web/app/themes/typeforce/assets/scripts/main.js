@@ -146,7 +146,7 @@ var FBSage = (function($) {
         _hideNav();
       });
     $('<svg class="menu-toggle menu-toggle-open icon-hamburger" role="img"><use xlink:href="#icon-hamburger"></use></svg>')
-      .prependTo('.site-header')
+      .prependTo('.site-header .wrapper')
       .on('click', function(e) {
         _showNav();
       });
@@ -263,15 +263,15 @@ var FBSage = (function($) {
   }
 
   function _fixHeaderOnScroll() {
-    // $(window).scroll(function() {
-    //   var wintop = $(window).scrollTop();
-    //   var distance = 30; //distance = breakpoint_medium ? 50 : 30;
-    //   if (wintop > distance) {
-    //     $('.home .site-header').addClass('scrolled');
-    //   } else {
-    //     $('.home .site-header').removeClass('scrolled');
-    //   }
-    // });
+    $(window).scroll(function() {
+      var wintop = $(window).scrollTop();
+      var distance = 30; //distance = breakpoint_medium ? 50 : 30;
+      if (wintop > distance) {
+        $('.home .site-header').addClass('scrolled');
+      } else {
+        $('.home .site-header').removeClass('scrolled');
+      }
+    });
   }
 
 
