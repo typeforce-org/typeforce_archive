@@ -283,12 +283,13 @@ function get_exhibit_thumbnails() {
     <div class="slide-item">
       <div class="color lazy" style="background-image: url('{$dummy}');" data-original="{$thumb_url}"></div>
       <div class="duo lazy" style="background-image: url('{$dummy}');" data-original="{$duo_url}"></div>
-      
-      <div class="content">
-        <div class="caption"><span class="highlight">{$caption}</span></div>
-      </div>
-    </div>
 HTML;
+
+    if($caption) {
+        $output .= '<div class="content"><div class="caption"><span class="highlight">'.$caption.'</span></div></div>';
+    }
+
+    $output .= '</div>';
   }
   $output .= '</div>';
 
