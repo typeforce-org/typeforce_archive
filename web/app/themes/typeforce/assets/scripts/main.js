@@ -121,7 +121,7 @@ var FBSage = (function($) {
 
   function _resizeNav() {
 
-    var $navWidth = 50 + (breakpoint_medium ? 75 : 25); //50 is a buffer, 75/25 is site padding; 
+    var $navWidth = 100 + (breakpoint_medium ? 75 : 25); //50 is a buffer, 75/25 is site padding; 
     $('.site-header .site-nav .menu-item a').each(function() {
       $navWidth += $(this).outerWidth()*2;
     });

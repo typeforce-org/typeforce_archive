@@ -50,14 +50,15 @@
       @include media-md {
         margin: 0 0 15px $site-pad-hor-md;
       }
-      &:hover .info {
-        color: $white;
-      }
+
       a{
         @extend %small-caps;
         color: $gray;
         text-decoration: underline;
         transition: color $hover-trans-time;
+        &:hover {
+          color: $white;
+        }
         .highlight{
           background-color: $gray-dark;
           padding: 0.3em;
