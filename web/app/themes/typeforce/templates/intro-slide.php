@@ -21,8 +21,8 @@ if ($links_to === 'exhibit') {
 $update = apply_filters('the_content',$intro_post->post_content);
 ?>
 <article class="intro-slide">
-  <div class="color" style="background-image: url('<?= $thumb_url ?>')" ></div>
-  <div class="duo" style="background-image: url('<?= $duo_url ?>')"></div>
+  <div class="color lazy" style="background-image: url('<?= $dummy ?>');" data-original="<?= $thumb_url ?>"></div>
+  <div class="duo lazy" style="background-image: url('<?= $dummy ?>');" data-original="<?= $duo_url ?>"></div>
   <div class="content">
 
 

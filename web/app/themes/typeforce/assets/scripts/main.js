@@ -127,13 +127,13 @@ var FBSage = (function($) {
     });
     var $titleWidth = $('.site-header .title').outerWidth();
     var $windowWidth = $( window ).width();
-    console.log('nav '+$navWidth+' title '+$titleWidth+' window '+$windowWidth);
+    //console.log('nav '+$navWidth+' title '+$titleWidth+' window '+$windowWidth);
     if (($navWidth+$titleWidth)<$windowWidth){
       $('.site-nav, .menu-toggle, .search-toggle').addClass('full-nav');
-      console.log('open');
+      //console.log('open');
     } else {
       $('.site-nav, .menu-toggle, .search-toggle').removeClass('full-nav');
-      console.log('close');
+      //console.log('close');
     }
   }
 
@@ -187,8 +187,9 @@ var FBSage = (function($) {
 
   function _lazyLoadImages() {
     $("div.lazy").lazyload({
-      // effect : 'fadeIn',
-      // threshold: 1500
+      failure_limit : 1000,
+      effect : 'fadeIn',
+      threshold: 1800
     });
   }
 
@@ -201,8 +202,8 @@ var FBSage = (function($) {
       $load_more = $(this);
       var page = parseInt($load_more.attr('data-page-at'));
       var tot_pages = parseInt($load_more.attr('data-total-pages'));
-      console.log('tot pages '+tot_pages);
-      console.log('page '+page);
+      //console.log('tot pages '+tot_pages);
+      //console.log('page '+page);
       if ( tot_pages <= page ) {
           $load_more.addClass('hide');
       }
@@ -266,7 +267,6 @@ var FBSage = (function($) {
     $(window).scroll(function() {
       var wintop = $(window).scrollTop();
       var distance = 30; //distance = breakpoint_medium ? 50 : 30;
-      console.log(breakpoint_medium);
       if (wintop > distance) {
         $('.home .site-header').addClass('scrolled');
       } else {
@@ -321,16 +321,12 @@ var FBSage = (function($) {
       autoplaySpeed: 5000,
       speed: 500,
       variableWidth: true,
-      lazyload: 'progressive',
       // draggable: false,
       // touchMove: false,
       prevArrow: '',
       nextArrow: '<div class="slider-nav-right"><svg class="icon-caret" role="img"><use xlink:href="#icon-caret"></use></svg></div>',   
     }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
-        _lazyLoadImages();
-      }).on('lazyLoaded', function(event, slick, currentSlide, nextSlide){
-        console.log('loaded');
-        _lazyLoadImages();
+        $(window).scroll();
       });
 
     window.setTimeout(function() {
@@ -361,7 +357,6 @@ var FBSage = (function($) {
       //... on mouseover.
       $link.mouseenter(function() {
         $toDisappear.addClass('disappeared');
-        console.log($toDisappear);
       }).mouseleave(function() {
         $toDisappear.removeClass('disappeared');
       });
