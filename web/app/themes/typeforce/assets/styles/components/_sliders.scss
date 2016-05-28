@@ -84,6 +84,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
+    z-index: $content-z;
     .intro-link, .caption {
       color: $gray;
       @extend %small-caps;
