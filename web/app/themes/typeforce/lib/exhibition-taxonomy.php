@@ -163,6 +163,9 @@ function get_exhibition_info() {
           'field'           =>  'id',
           'terms'           => $exhibition_id,
           'posts_per_page'  => -1,
+          'numberposts'     => -1,
+          'orderby'         => 'title', 
+          'order'           => 'ASC',
         )
     ),
   );
