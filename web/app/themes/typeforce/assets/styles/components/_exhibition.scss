@@ -29,7 +29,7 @@
         @include min-screen(1000px) { columns: 2; }
         @extend %delistify;
         .exhibit{
-          display: inline-block;
+          display: block;
         }
       }
     }
