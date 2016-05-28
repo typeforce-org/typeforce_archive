@@ -162,12 +162,12 @@ function get_exhibition_info() {
           'taxonomy'        => 'exhibition',
           'field'           =>  'id',
           'terms'           => $exhibition_id,
-          'posts_per_page'  => -1,
-          'numberposts'     => -1,
-          'orderby'         => 'title', 
-          'order'           => 'ASC',
-        )
-    ),
+      ),
+    ),  
+    'posts_per_page'  => -1,
+    'numberposts'     => -1,
+    'orderby'         => 'title', 
+    'order'           => 'ASC',
   );
   $exhibits = get_posts($args);
   $exhibited_list = ''; 
