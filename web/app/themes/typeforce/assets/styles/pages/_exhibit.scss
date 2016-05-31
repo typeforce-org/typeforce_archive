@@ -110,11 +110,11 @@
       .entry-description{
         margin-top: 40px;
       }
-      .entry-bio, .entry-social {
+      .entry-bio, .entry-social, .entry-materials  {
         margin-top: 25px;
       }
       .entry-materials {
-        @include media-md { margin-top: 25px; }
+        @include media-md { margin-top: 0; }
       }
     }
 
