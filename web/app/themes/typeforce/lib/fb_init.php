@@ -118,11 +118,11 @@ function simplify_tinymce($settings) {
     //   'classes' => 'three-column',
     //   'wrapper' => true,
     // ),
-    array( 
-      'title' => 'Small Caps',
-      'block' => 'p',
-      'classes' => 'small-caps',
-    ),    
+    // array( 
+    //   'title' => 'Small Caps',
+    //   'block' => 'p',
+    //   'classes' => 'small-caps',
+    // ),    
     // array( 
     //   'title' => '» Arrow Link',
     //   'block' => 'span',
