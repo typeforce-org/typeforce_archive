@@ -26,7 +26,7 @@ $update = apply_filters('the_content',$intro_post->post_content);
   <div class="content">
 
 
-    <div class="update"><?= $update ?></div>
+    <div class="update user-content"><?= $update ?></div>
 
     <?php if ( $link_text ) : ?>
       <h1 class="intro-link">

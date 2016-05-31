@@ -18,15 +18,15 @@ $font-body: "Karla", Helvetica, Arial, sans-serif;
 %small-caps {
   letter-spacing: .25em;
   text-transform: uppercase;
-  font: 12px/1.833333333em $font-body;
+  font: 12px/20px $font-body;
 }
 
 %big-title {
-  letter-spacing: 0em;
+  letter-spacing: 0;
   text-transform: none;
-  font: 24px/1.25em $font-display; // /0.916666666em
+  font: 24px/30px $font-display; // /0.916666666em
   @include media-md {
-    font: 48px/1.14583333333em $font-display;
+    font: 48px/55px $font-display;
   }
 }
 
@@ -34,15 +34,15 @@ $font-body: "Karla", Helvetica, Arial, sans-serif;
   position: relative;
   letter-spacing: 0em;
   text-transform: none;
-  font: 24px/1.25em $font-display; // /0.916666666em
+  font: 24px/30px $font-display; // /0.916666666em
 }
 
 %trailing-dash {
-  margin: 0 0 .6em;
-  padding-bottom: 0.8em;
+  margin: 0;
+  padding-bottom: 22px;
   &:after{
     left: 0;
-    bottom: 0;
+    bottom: 11px;
     content: '';
     height: 1px;
     width: .25em;
@@ -61,7 +61,7 @@ $font-body: "Karla", Helvetica, Arial, sans-serif;
 %body-text {
   letter-spacing: .05em;
   text-transform: none;
-  font: 16px/1.375em $font-body;
+  font: 16px/20px $font-body;
 }
 
 %smooth {

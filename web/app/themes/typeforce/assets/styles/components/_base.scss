@@ -17,13 +17,30 @@ body {
 
 h1 {
   @extend %big-title;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
-h2,h3,h4,h5,h6 {
+h2 {
+  margin-top: 40px;
   @extend %small-title;
   @extend %trailing-dash;
 }
 
+h3 {
+  margin-top: 20px;
+  @extend %small-caps;
+  @extend %gray-text;
+  margin-bottom: 0;
+}
+
+h2,h3,h4,h5,h6 {
+  & ~ p, & ~ ul, &:first-child { margin-top: 0; }
+}
+
+
 p {
+  margin-top: 1em;
+  &:first-child { margin-top: 0; }
   em {
     font-style: italic;
   }

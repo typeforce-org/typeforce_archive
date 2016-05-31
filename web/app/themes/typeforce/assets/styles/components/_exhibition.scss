@@ -14,28 +14,35 @@
   }
   .description {
     padding: 0;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
     @include media-md { 
       margin-bottom: 50px;
-      padding-right: 50px; 
+      padding-right: 75px; 
     }
   }
   .additional {
     @extend %small-caps;
     @extend %gray-text; 
     margin-bottom: 70px;
+    @include media-md{
+      margin-top: -53px;
+    }
     .exhibited {
+      margin-top: 25px;
+      @include media-md {
+        margin-top: 0;
+      }
       .exhibition-exhibit-list {
-        @include min-screen(1000px) { columns: 2; }
+        //@include min-screen(1000px) { columns: 2; }
         @extend %delistify;
         .exhibit{
           display: block;
-          break-inside: avoid-column;
+          //break-inside: avoid-column;
         }
       }
     }
     .catalogue {
-      margin-top: 40px;
+      margin-top: 45px;
     }
   }
 }

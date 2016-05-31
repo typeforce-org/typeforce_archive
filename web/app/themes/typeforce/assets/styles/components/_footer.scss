@@ -22,13 +22,13 @@ $footer-lg: 1400px;
   }
   .links, .sponsors {
     width: 100%;
-    margin-top: 1.5em;
+    margin-top: 30px;
     @include min-screen($footer-md) {width: 50%; margin-top: 0;}
     @include min-screen($footer-lg) {width: 25%; margin-top: 0;}
   }
   .sponsors {
     float: right;
-    margin-top: 1.5em;
+    margin-top: 30px;
     @include min-screen($footer-lg) {margin-top: 0;}
   }
 }
