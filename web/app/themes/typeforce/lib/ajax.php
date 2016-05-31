@@ -76,7 +76,6 @@ function load_more_posts() {
   $offset = ($page-1) * $per_page;
   //base args
   $args = [
-    // 'offset' => $offset,
     'posts_per_page' => $per_page,
     'post_type' => $post_type,
   ];
@@ -94,17 +93,16 @@ function load_more_posts() {
     $args['s'] = $search_query;
   }
   if($post__not_in) {
-    $args['post__not_in'] = $post__not_in; //explode(',',$post__not_in);
+    $args['post__not_in'] = $post__not_in; 
   }
   if($orderby) {
     $args['orderby'] = $orderby;
   }
   //offset breaks orderby rand
-  // if($orderby != 'rand') {
-  //   $args['offset'] = $offset;
-  // }
+  if($orderby != 'rand') {
+    $args['offset'] = $offset;
+  }
 
- // echo "<pre>".print_r($args,true)."</pre>";
 
   $posts = get_posts($args);
 
