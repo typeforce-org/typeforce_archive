@@ -221,13 +221,14 @@ var FBSage = (function($) {
 
 
   function _initLazyLoadImages() {
-    $("div.lazy").lazyload({
-      threshold: 200,
+    $('div.lazy').lazyload({
+      threshold: 800,
       failure_limit : 10,
       load : function() {
         $(this).addClass('loaded');
       }
     });
+    $('.slide-item .lazy').trigger('appear'); //force load of sliders;
   }
 
   function _initLoadMore() {
