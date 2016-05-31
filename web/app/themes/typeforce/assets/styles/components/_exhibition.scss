@@ -30,6 +30,7 @@
         @extend %delistify;
         .exhibit{
           display: block;
+          break-inside: avoid-column;
         }
       }
     }
