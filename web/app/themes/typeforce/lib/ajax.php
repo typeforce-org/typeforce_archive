@@ -17,10 +17,10 @@ function is_ajax() {
 }
 
 
-function load_more_button($orig_query) {
+function load_more_button($orig_query=false) {
 
   //if a query obj is not provided, grab the global wp_query
-  if (!isset($orig_query)) {
+  if (!$orig_query) {
     global $wp_query;
     $orig_query = $wp_query;
   }
@@ -36,7 +36,7 @@ function load_more_button($orig_query) {
   //extract query vars
   $exhibition_id = isset($orig_query->queried_object->term_id) ? $orig_query->queried_object->term_id : '';
   $search_query = isset($orig_query->query_vars['s']) ? $orig_query->query_vars['s'] : '';
-  $per_page = isset($orig_query->query['posts_per_page']) ? $orig_query->query['posts_per_page'] : 25;
+  $per_page = isset($orig_query->query['posts_per_page']) ? $orig_query->query['posts_per_page'] : get_option( 'posts_per_page', 24 );
   $orderby = isset($orig_query->query['orderby']) ? $orig_query->query['orderby'] : '';
 
 
@@ -67,18 +67,20 @@ function load_more_posts() {
   $exhibition_id = !empty($_REQUEST['exhibition_id']) ? $_REQUEST['exhibition_id'] : '';
   $search_query = !empty($_REQUEST['search_query']) ? $_REQUEST['search_query'] : '';
   $orderby = !empty($_REQUEST['orderby']) ? $_REQUEST['orderby'] : '';
-  //post__not_in comes as a csv string
   $post__not_in = !empty($_REQUEST['post__not_in']) ? $_REQUEST['post__not_in'] : '';
-  // $post__not_in = $post__not_in_str ? array_map("intval", explode(",", $post__not_in_str)) : '';
+
   // get page offsets
   $page = !empty($_REQUEST['page']) ? $_REQUEST['page'] : 1;
   $per_page = !empty($_REQUEST['per_page']) ? $_REQUEST['per_page'] : get_option('posts_per_page');
   $offset = ($page-1) * $per_page;
+
   //base args
   $args = [
     'posts_per_page' => $per_page,
     'post_type' => $post_type,
+    'suppress_filters' => true, 
   ];
+
   //check for any additional args
   if($exhibition_id) {
     $args['tax_query'] = [
@@ -102,6 +104,11 @@ function load_more_posts() {
   if($orderby != 'rand') {
     $args['offset'] = $offset;
   }
+
+  //ICPO is MESSING STUFF UP!!!!  We gotta disable it for here.
+  //https://wordpress.org/support/topic/over-ride-cpo-in-shortcode-wp_query
+  global $hicpo; // Call the class variable for the ICO plugin, so we can disable its overriding of the orderby parameter
+  remove_filter( 'pre_get_posts', array( $hicpo, 'hicpo_pre_get_posts' ) );
 
 
   $posts = get_posts($args);

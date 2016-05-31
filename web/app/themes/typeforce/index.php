@@ -25,7 +25,6 @@
 
   <?php endwhile; ?>
   </ul>
-  <?php
-  include(locate_template('templates/load-more-exhibits-button.php'));
+  <?= \Firebelly\Ajax\load_more_button();
   ?>
 <?php endif; ?>

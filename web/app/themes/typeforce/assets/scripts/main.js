@@ -263,7 +263,6 @@ var FBSage = (function($) {
         $('.load-more-container .exhibit .exhibit-listing-info').each(function() {
           post__not_in.push( $(this).data('id') );
         });
-        console.log(post__not_in);
       }
 
       $.ajax({
