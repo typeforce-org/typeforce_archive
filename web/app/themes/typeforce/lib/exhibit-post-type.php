@@ -110,14 +110,6 @@ function register_exhibit_metaboxes() {
     'show_names'    => true,
     )
   );
-  // $cmb->add_field(
-  //     array(
-  //       'name'  => 'Title',
-  //       'desc'  => 'Title of exhibit',
-  //       'id'    => $prefix . 'title',
-  //       'type'  => 'text_medium',
-  //     )
-  // );
   $group_field_id = $cmb->add_field(
       array(
         'name'  => 'Titles',
@@ -136,7 +128,6 @@ function register_exhibit_metaboxes() {
     'name' => 'Title',
     'id'   => 'title',
     'type' => 'text_medium',
-    // 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
 ) );
   $cmb->add_field(     
       array(
@@ -208,9 +199,6 @@ function get_exhibits($args, $loadmore = true) {
   $output ='';
 
   $exhibit_posts = new \WP_Query( $args );
-
-  // $orderby = isset($exhibit_posts->query['orderby']) ? $exhibit_posts->query['orderby'] : '';
-  // $output .='<h1>'.$orderby.'</h1>';
 
   if ( $exhibit_posts->have_posts() ) {
 

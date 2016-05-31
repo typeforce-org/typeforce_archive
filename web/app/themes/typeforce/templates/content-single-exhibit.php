@@ -20,9 +20,11 @@ $social = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_social',tru
 $thumbs = Firebelly\PostTypes\Exhibit\get_exhibit_thumbnails(); 
 
 $args = array(
-  'post_type'   => 'exhibit',
+  'post_type'       => 'exhibit',
   'posts_per_page'  => -1,
   'numberposts'     => -1,
+  'orderby'         => 'title',
+  'order'           => 'ASC',
   'tax_query'   => array(
     array(
         'taxonomy'  => 'exhibition',

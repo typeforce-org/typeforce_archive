@@ -119,7 +119,20 @@ function get_page_blocks($post) {
 }
 
 
+/**
+ * Alphabetize Query and remove posts_per_page limits for exhibition archive pages
+ */
+function exhibition_query_alterations($query) {
 
+  if( is_tax('exhibition') ) {
+    $query->set('posts_per_page','-1');
+    $query->set('numberposts','-1');
+    $query->set('orderby','title');
+    $query->set('order','ASC');
+  }
+
+}
+add_action('pre_get_posts', __NAMESPACE__ . '\\exhibition_query_alterations');
 
 
 

@@ -30,9 +30,6 @@ function load_more_button($orig_query=false) {
     return '';
   }
 
-  // have a look at this object
-  // echo "<pre>".print_r($orig_query->query,true)."</pre>";
-
   //extract query vars
   $exhibition_id = isset($orig_query->queried_object->term_id) ? $orig_query->queried_object->term_id : '';
   $search_query = isset($orig_query->query_vars['s']) ? $orig_query->query_vars['s'] : '';
@@ -110,10 +107,7 @@ function load_more_posts() {
   global $hicpo; // Call the class variable for the ICO plugin, so we can disable its overriding of the orderby parameter
   remove_filter( 'pre_get_posts', array( $hicpo, 'hicpo_pre_get_posts' ) );
 
-
   $posts = get_posts($args);
-
- // echo "<pre>".print_r($posts,true)."</pre>";
 
   if ($posts): 
     foreach ($posts as $post) {
