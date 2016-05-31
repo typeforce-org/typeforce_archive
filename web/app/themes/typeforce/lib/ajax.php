@@ -104,7 +104,7 @@ function load_more_posts() {
   //   $args['offset'] = $offset;
   // }
 
- echo "<pre>".print_r($args,true)."</pre>";
+ // echo "<pre>".print_r($args,true)."</pre>";
 
   $posts = get_posts($args);
 
