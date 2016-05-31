@@ -30,14 +30,15 @@
     position: absolute;
     top: 0;
     left: 0;
-    margin-top: 1.5em;
+    margin-top: 22px;
     margin-left: $site-pad-hor;
     max-width: 350px;
-    width: calc( 87vw - 50px);
+    width: calc( 95vw - 50px);
     @include media-md {
+      margin-top: 43px;
       margin-left: $site-pad-hor-md;
       max-width: 750px;
-      width: calc( 87vw - 100px);
+      width: calc( 87vw - 150px);
     }
     h1 {
       margin:0;

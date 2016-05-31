@@ -35,7 +35,10 @@
         top: 0;
         width: 100%;
         display: block;
-        padding-top: 40px;
+        padding-top: 18px;
+        @include media-md {
+          padding-top: 40px;
+        }
         padding-bottom: 1em;
         background: $gray-dark;
         background: rgba($gray-dark,0.3);
@@ -45,9 +48,11 @@
           display: none;
         }
         .entry-artist {
-          max-width: calc(95vw - 50px);
+          max-width: 350px;
+          width: calc( 95vw - 50px);
           @include media-md {
-            max-width: calc(87.5vw - 150px);
+            max-width: 750px;
+            width: calc( 87vw - 150px);
           }
           margin-top: .2em;
           margin-bottom: .3em;
@@ -60,7 +65,11 @@
     }
 
     .content-wrap{
-      margin-top: 50px;
+      margin-top: 25px;
+
+      @include media-md {
+        margin-top: 50px;
+      }
 
       .entry-main {
         float: left;
