@@ -62,8 +62,6 @@
     .content-wrap{
       margin-top: 50px;
 
-
-
       .entry-main {
         float: left;
         width: 100%;
@@ -112,10 +110,12 @@
       .entry-description{
         margin-top: 40px;
       }
-      .entry-bio, .entry-materials, .entry-social {
+      .entry-bio, .entry-social {
         margin-top: 25px;
       }
-
+      .entry-materials {
+        @include media-md { margin-top: 25px; }
+      }
     }
 
     .footer-wrap{
