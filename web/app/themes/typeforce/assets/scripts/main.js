@@ -257,9 +257,9 @@ var FBSage = (function($) {
       loadingTimer = setTimeout(function() { $more_container.addClass('loading'); }, 0);
 
 
+      var post__not_in = [];
       //We want to exclude the posts that are currently displayed if we are a random query.
       if(orderby === 'rand') {
-        var post__not_in = [];
         $('.load-more-container .exhibit .exhibit-listing-info').each(function() {
           post__not_in.push( $(this).data('id') );
         });
