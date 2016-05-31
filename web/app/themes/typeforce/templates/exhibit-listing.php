@@ -1,5 +1,6 @@
 <?php
 
+$id = $exhibit_post->ID;
 $title = $exhibit_post->post_title;
 $exhibition = get_the_terms( $exhibit_post->ID, 'exhibition')[0]->name;
 
@@ -19,7 +20,7 @@ $url = get_permalink($exhibit_post->ID);
 $show_year = !(is_singular('exhibit') || is_tax('exhibition'))
 
 ?>
-<article class="exhibit-listing-info">
+<article class="exhibit-listing-info" data-id="<?= $id ?>">
   <div class="color lazy" style="background-image: url('<?= $dummy ?>');" data-original="<?= $thumb_url ?>"></div>
   <div class="duo lazy" style="background-image: url('<?= $dummy ?>');" data-original="<?= $duo_url ?>"></div>
   <a href="<?= $url ?>" class="info-link">

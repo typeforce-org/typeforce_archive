@@ -133,6 +133,3 @@ function get_page_blocks($post) {
 
 
 
-
-
-

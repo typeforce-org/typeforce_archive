@@ -222,7 +222,8 @@ var FBSage = (function($) {
 
   function _initLazyLoadImages() {
     $("div.lazy").lazyload({
-      failure_limit : 30,
+      threshold: 200,
+      failure_limit : 10,
       load : function() {
         $(this).addClass('loaded');
       }
@@ -238,8 +239,6 @@ var FBSage = (function($) {
       $load_more = $(this);
       var page = parseInt($load_more.attr('data-page-at'));
       var tot_pages = parseInt($load_more.attr('data-total-pages'));
-      //console.log('tot pages '+tot_pages);
-      //console.log('page '+page);
       if ( tot_pages <= page ) {
           $load_more.addClass('hide');
       }
@@ -251,13 +250,21 @@ var FBSage = (function($) {
       var post_type = $load_more.attr('data-post-type') ? $load_more.attr('data-post-type') : 'exhibit';
       var exhibition_id = $load_more.attr('data-exhibition-id');
       var search_query = $load_more.attr('data-search-query');
-      var post__not_in = $load_more.attr('data-post--not-in');
       var orderby = $load_more.attr('data-orderby');
       var page = parseInt($load_more.attr('data-page-at'));
       var per_page = parseInt($load_more.attr('data-per-page'));
       var $more_container = $load_more.parents('main').find('.load-more-container');
       loadingTimer = setTimeout(function() { $more_container.addClass('loading'); }, 0);
-      // var wp_ajax_url = $load_more.attr('data-wp-ajax-url'); 
+
+
+      //We want to exclude the posts that are currently displayed if we are a random query.
+      if(orderby === 'rand') {
+        var post__not_in = [];
+        $('.load-more-container .exhibit .exhibit-listing-info').each(function() {
+          post__not_in.push( $(this).data('id') );
+        });
+        console.log(post__not_in);
+      }
 
       $.ajax({
         url: wp_ajax_url,
@@ -282,21 +289,12 @@ var FBSage = (function($) {
           if ($load_more.attr('data-total-pages') <= page + 1 ) {
               $load_more.addClass('hide');
           }
+
+          // lazyload the new images
+          _initLazyLoadImages();
         }
       });
     });
-  }
-
-  // Scroll to the header immediately on every page but home
-  function _startScrolledToHeader() {
-    // $body = $('body');
-    // $header = $('.page-header');
-    // if(!$body.hasClass('home')) {
-    //   window.scroll(0,$header.offset().top-20);
-    // }
-    // $(window).on('beforeunload', function() {
-    //   window.scroll(0,$header.offset().top-20);
-    // });
   }
 
   function _fixHeaderOnScroll() {

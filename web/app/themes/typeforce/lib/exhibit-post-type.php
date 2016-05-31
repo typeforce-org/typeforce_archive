@@ -209,6 +209,9 @@ function get_exhibits($args, $loadmore = true) {
 
   $exhibit_posts = new \WP_Query( $args );
 
+  // $orderby = isset($exhibit_posts->query['orderby']) ? $exhibit_posts->query['orderby'] : '';
+  // $output .='<h1>'.$orderby.'</h1>';
+
   if ( $exhibit_posts->have_posts() ) {
 
     $output .= '<ul class="exhibit-list load-more-container">';
@@ -225,9 +228,10 @@ function get_exhibits($args, $loadmore = true) {
     $output .= '</ul>';
     wp_reset_postdata();
 
-    ob_start();
-    if($loadmore) { include(locate_template('templates/load-more-exhibits-button.php')); }
-    $output .= ob_get_clean();
+    if($loadmore) { 
+
+      $output .= \Firebelly\Ajax\load_more_button($exhibit_posts);
+     }
     
   }else{
     $output .= '<div class="alert alert-warning">' 

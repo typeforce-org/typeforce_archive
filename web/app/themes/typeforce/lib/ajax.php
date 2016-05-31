@@ -16,6 +16,47 @@ function is_ajax() {
   return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 }
 
+
+function load_more_button($orig_query) {
+
+  //if a query obj is not provided, grab the global wp_query
+  if (!isset($orig_query)) {
+    global $wp_query;
+    $orig_query = $wp_query;
+  }
+
+  //stop if no posts
+  if(!isset($orig_query->posts) && empty($orig_query->posts)){
+    return '';
+  }
+
+  // have a look at this object
+  // echo "<pre>".print_r($orig_query->query,true)."</pre>";
+
+  //extract query vars
+  $exhibition_id = isset($orig_query->queried_object->term_id) ? $orig_query->queried_object->term_id : '';
+  $search_query = isset($orig_query->query_vars['s']) ? $orig_query->query_vars['s'] : '';
+  $per_page = isset($orig_query->query['posts_per_page']) ? $orig_query->query['posts_per_page'] : 25;
+  $orderby = isset($orig_query->query['orderby']) ? $orig_query->query['orderby'] : '';
+
+
+  //get total post count for all posts in all pages of query
+  if($exhibition_id) {
+    $term = get_term_by('id',$exhibition_id,'exhibition');
+    $total_posts = $term->count;
+  } elseif ($search_query) {
+    $total_posts = $wp_query->found_posts;
+  } else {
+    $total_posts = wp_count_posts('exhibit')->publish;
+  }
+  $total_pages = ceil( $total_posts / $per_page);
+
+  //return the markup
+  $output = '<div class="load-more" data-page-at="1" data-exhibition-id="'.$exhibition_id.'" data-search-query="'.$search_query.'" data-per-page="'.$per_page.'" data-total-pages="'.$total_pages.'" data-orderby="'.$orderby.'"><a class="no-ajaxy" href="#">Load More</a></div>';
+  return $output;
+
+}
+
 /**
  * AJAX load more posts (news or events)
  */
@@ -27,15 +68,15 @@ function load_more_posts() {
   $search_query = !empty($_REQUEST['search_query']) ? $_REQUEST['search_query'] : '';
   $orderby = !empty($_REQUEST['orderby']) ? $_REQUEST['orderby'] : '';
   //post__not_in comes as a csv string
-  $post__not_in_str = !empty($_REQUEST['post__not_in']) ? $_REQUEST['post__not_in'] : '';
-  $post__not_in = $post__not_in_str ? array_map("intval", explode(",", $post__not_in_str)) : '';
+  $post__not_in = !empty($_REQUEST['post__not_in']) ? $_REQUEST['post__not_in'] : '';
+  // $post__not_in = $post__not_in_str ? array_map("intval", explode(",", $post__not_in_str)) : '';
   // get page offsets
   $page = !empty($_REQUEST['page']) ? $_REQUEST['page'] : 1;
   $per_page = !empty($_REQUEST['per_page']) ? $_REQUEST['per_page'] : get_option('posts_per_page');
   $offset = ($page-1) * $per_page;
   //base args
   $args = [
-    'offset' => $offset,
+    // 'offset' => $offset,
     'posts_per_page' => $per_page,
     'post_type' => $post_type,
   ];
@@ -53,14 +94,21 @@ function load_more_posts() {
     $args['s'] = $search_query;
   }
   if($post__not_in) {
-    $args['post__not_in'] = $post__not_in;
+    $args['post__not_in'] = $post__not_in; //explode(',',$post__not_in);
   }
   if($orderby) {
     $args['orderby'] = $orderby;
   }
+  //offset breaks orderby rand
+  // if($orderby != 'rand') {
+  //   $args['offset'] = $offset;
+  // }
 
+ echo "<pre>".print_r($args,true)."</pre>";
 
   $posts = get_posts($args);
+
+ // echo "<pre>".print_r($posts,true)."</pre>";
 
   if ($posts): 
     foreach ($posts as $post) {
