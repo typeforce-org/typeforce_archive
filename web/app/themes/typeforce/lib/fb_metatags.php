@@ -36,7 +36,9 @@ function build_tags() {
   // Site name
   echo '<meta property="og:site_name" content="' . get_bloginfo('name') . '"/>' . "\n";
   // Description
-  if (is_singular()) {
+  if(is_home() || is_front_page()) {
+    $metatag_description = get_bloginfo('description');
+  } elseif (is_singular()) {
     if (has_excerpt($post->ID)) {
       $metatag_description = strip_tags(get_the_excerpt());
     } else {

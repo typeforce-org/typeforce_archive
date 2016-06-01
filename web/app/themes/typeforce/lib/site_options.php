@@ -119,7 +119,7 @@ class FbSiteOptions {
       'desc'    => __( 'This will be used if unable to find an image for shared post/page', 'firebelly' ),
       'id'   => 'default_metatag_image',
       'type' => 'file',
-    ) );
+    ) );    
   }
   /**
    * Register settings notices for display
