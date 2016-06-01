@@ -24,9 +24,9 @@
     @extend %small-caps;
     @extend %gray-text; 
     margin-bottom: 70px;
-    @include media-md{
-      margin-top: -53px;
-    }
+    // @include media-md{
+    //   margin-top: -53px;
+    // }
     .exhibited {
       margin-top: 25px;
       @include media-md {
