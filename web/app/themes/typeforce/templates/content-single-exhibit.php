@@ -49,19 +49,38 @@ $more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args,false);
     </div>
     <div class="content-wrap">
       <div class="entry-main">
-        <div class="entry-title"><h2><?= $title_header ?></h2><?= $titles ?></div>
-        <div class="entry-description user-content"><h2><?= __('Description','sage') ?></h2><?php the_content(); ?></div>
-        <div class="entry-bio user-content"><h2><?= __('Bio','sage') ?></h2><?= $bio ?></div>
+        <?php if($titles) : ?>
+          <div class="entry-title user-content">
+            <h2><?= $title_header ?></h2>
+            <?= $titles ?>
+          </div>
+        <?php endif; ?>
+        <?php if($post->post_content) : ?>
+          <div class="entry-description user-content">
+            <h2><?= __('Description','sage') ?></h2>
+            <?php the_content(); ?>
+          </div>
+        <?php endif; ?>
+        <?php if($materials) : ?>
+          <div class="entry-bio user-content">
+            <h2><?= __('Bio','sage') ?></h2>
+            <?= $bio ?>
+          </div>
+        <?php endif; ?>
       </div>
       <div class="entry-secondary">
-        <div class="entry-materials user-content">
-          <h2><?= __('Materials','sage') ?></h2>
-          <?= $materials ?>
-        </div>
-        <div class="entry-social user-content">
-          <h2><?= __('Social','sage') ?></h2>
-          <?= $social; ?>
-        </div>
+        <?php if($materials) : ?>
+          <div class="entry-materials user-content">
+            <h2><?= __('Materials','sage') ?></h2>
+            <?= $materials ?>
+          </div>
+        <?php endif; ?>
+        <?php if($social) : ?>
+          <div class="entry-social user-content">
+            <h2><?= __('Social','sage') ?></h2>
+            <?= $social; ?>
+          </div>
+        <?php endif; ?>
       </div>
     </div>
     <footer class="footer-wrap">

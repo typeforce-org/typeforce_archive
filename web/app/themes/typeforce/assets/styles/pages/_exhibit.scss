@@ -81,7 +81,6 @@
         @include min-screen(1200px) {
           max-width: 50%;
         }
-
         .exhibit-titles {
           @extend %delistify;
           .exhibit-title {
@@ -94,10 +93,6 @@
             }
           }
         }
-
-        // .entry-bio, .entry-description {
-        //   margin-top: 0px;
-        // }
       }
 
       .entry-secondary {
@@ -116,15 +111,22 @@
         }
       }
 
-      .entry-description{
-        margin-top: 40px;
-      }
-      .entry-bio, .entry-social, .entry-materials  {
+      .entry-title, .entry-description, .entry-bio, .entry-social, .entry-materials,  {
         margin-top: 25px;
       }
-      .entry-materials {
-        @include media-md { margin-top: 0; }
+      .entry-title, .entry-description, .entry-bio {
+        &:first-child {
+          margin-top: 0; 
+        }
       }
+      .entry-materials, .entry-social {
+        @include media-md { 
+          &:first-child {
+            margin-top: 0; 
+          }
+        }
+      }
+
     }
 
     .footer-wrap{
@@ -175,42 +177,5 @@
         transform: translateX(-10px); 
       }
     }
-
-    .user-content {
-      h1, h2, h3, h4, h5, h6 {
-      }
-
-      img {
-      }
-
-      ul, ol {
-        padding-left: 0;
-        li {
-          font-size: 16px;
-          line-height: 1.5em;
-        }
-      }
-
-      figure, figure:first-child {
-        margin: 30px 0;
-      }
-
-      figure > img,
-      figure >img:first-child {
-        margin: 0;
-      }
-
-      figcaption {
-      }
-
-      blockquote {
-        padding: 20px 0;
-        p {
-          font-size: 24px;
-          margin-bottom: 0;
-        }
-      }
-    }
   }
-
 }
