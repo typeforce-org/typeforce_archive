@@ -120,10 +120,10 @@ function register_exhibit_metaboxes() {
     ) 
   );
 
-  $all_exhibits = get_posts($args);
-  foreach ( $all_exhibits as $an_exhibit ) {
-    update_post_meta($an_exhibit->ID, '_cmb2_type', 'exhibit');
-  }
+  // $all_exhibits = get_posts($args);
+  // foreach ( $all_exhibits as $an_exhibit ) {
+  //   update_post_meta($an_exhibit->ID, '_cmb2_type', 'exhibit');
+  // }
 
 
   $cmb = new_cmb2_box( array(
