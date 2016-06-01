@@ -217,7 +217,7 @@ HTML;
   if($window_list || $opening_list) {
     $output .= <<< HTML
         <div class="window-and-opening">
-          <h2>Window &amp; Opening</h2>
+          <h2>Title Window &amp; Opening</h2>
           <ul class="exhibit-link-list">
             {$window_list}
             {$opening_list}
