@@ -6,7 +6,8 @@
 namespace Firebelly\Media;
 
 // Custom image sizes
-add_image_size( 'tiny', 100, 0, true );
+add_image_size( 'tiny-slide', 1000, 0, true );
+add_image_size( 'tiny-listing', 600, 0, true );
 add_image_size( 'slide', 1800, 0, true );
 add_image_size( 'listing', 768, 0, true );
 
@@ -134,8 +135,10 @@ function get_color_and_duo_thumbs($thumb_id,$size){
   $duo_url = \Firebelly\Media\get_duo_url($thumb_id, ['size' => $size] );  //get duotone image url
 
   //tiny images for mobile
-  $thumb_url_tiny = wp_get_attachment_image_src( $thumb_id, 'tiny' )[0];
-  $duo_url_tiny = \Firebelly\Media\get_duo_url($thumb_id, ['size' => 'tiny'] );  
+  $tiny_size = $size==='slide' ? 'tiny-slide' : 'tiny-listing';
+
+  $thumb_url_tiny = wp_get_attachment_image_src( $thumb_id, $tiny_size )[0];
+  $duo_url_tiny = \Firebelly\Media\get_duo_url($thumb_id, ['size' => $tiny_size] );  
 
   $output = <<< HTML
   <div class="color lazy" style="background-image: url('{$dummy}');" data-original="{$thumb_url_tiny}" data-big-img-url="{$thumb_url}" data-current-img-size="tiny"></div>
