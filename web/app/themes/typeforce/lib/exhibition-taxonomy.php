@@ -176,7 +176,11 @@ function get_exhibition_info() {
     'numberposts'     => -1,
     'orderby'         => 'title', 
     'order'           => 'ASC',
+    'meta_key'    => '_cmb2_type',
+    'meta_value'  => 'exhibit'
   );
+
+
   $exhibits = get_posts($args);
   $exhibited_list = ''; 
   foreach ($exhibits as $exhibit) {

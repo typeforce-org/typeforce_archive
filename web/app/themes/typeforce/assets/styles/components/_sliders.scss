@@ -7,6 +7,15 @@
         @include media-md { margin-left: ( $main-slider-slide-width-md - 100vw )/2; }
     } 
 
+  &.single-slide {
+    .slide-item {
+      width: 100vw;
+    }
+    .slick-track {
+      margin-left: 0;
+    }
+  }
+
   .slide-item {
     position: relative;
     height: $main-slider-slide-height;

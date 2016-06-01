@@ -102,7 +102,7 @@
           margin-top: auto;
           width: 25%;
         }
-         .entry-social {
+         .entry-social, .entry-photographer {
           // margin-top: 30px;
           word-wrap: break-word;
           width: 100%;
@@ -111,7 +111,9 @@
         }
       }
 
-      .entry-title, .entry-description, .entry-bio, .entry-social, .entry-materials,  {
+      .entry-title, .entry-description, .entry-bio, 
+      .entry-social, .entry-materials, 
+      .entry-stats, .entry-photographer  {
         margin-top: 25px;
       }
       .entry-title, .entry-description, .entry-bio {
@@ -119,7 +121,8 @@
           margin-top: 0; 
         }
       }
-      .entry-materials, .entry-social {
+      .entry-materials, .entry-social, 
+      .entry-stats, .entry-photographer  {
         @include media-md { 
           &:first-child {
             margin-top: 0; 

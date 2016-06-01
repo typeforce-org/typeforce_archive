@@ -1,5 +1,10 @@
 <?php
 $exhibition_info = Firebelly\PostTypes\Exhibition\get_exhibition_info(); 
+
+
+
+
+
 ?>
 
 <?= $exhibition_info ?>

@@ -96,10 +96,39 @@ add_action('manage_posts_custom_column', __NAMESPACE__ . '\custom_columns');
  */
 function register_exhibit_metaboxes() {
   $prefix = '_cmb2_'; //start with underscore to hide from custom fields list
+  
+  $type = new_cmb2_box( array(
+    'id'            => 'exhibit_type_metabox',
+    'title'         => __( 'Exhibit Type', 'cmb2' ),
+    'object_types'  => array( 'exhibit' ),
+    'context'       => 'normal',
+    'priority'      => 'high',
+    'show_names'    => true,
+    )
+  );
+  $type->add_field( 
+    array(
+      'name'             => 'Choose:',
+      'id'               => $prefix . 'type',
+      'default'          => 'exhibit',
+      'type'             => 'radio',
+      'options'          => array(
+          'exhibit' => __( 'Normal Exhibit', 'cmb2' ),
+          'window'   => __( 'Window Display', 'cmb2' ),
+          'opening'     => __( 'Exhibition Opening', 'cmb2' ),
+      ),
+    ) 
+  );
+
+  $all_exhibits = get_posts($args);
+  foreach ( $all_exhibits as $an_exhibit ) {
+    update_post_meta($an_exhibit->ID, '_cmb2_type', 'exhibit');
+  }
+
 
   $cmb = new_cmb2_box( array(
     'id'            => 'exhibit_metabox',
-    'title'         => __( 'Additional Options', 'cmb2' ),
+    'title'         => __( 'More Information', 'cmb2' ),
     'object_types'  => array( 'exhibit' ),
     'context'       => 'normal',
     'priority'      => 'high',
@@ -120,6 +149,7 @@ function register_exhibit_metaboxes() {
         ),
       )
   );
+
   $cmb->add_group_field( $group_field_id, array(
     'name' => 'Title',
     'id'   => 'title',
@@ -135,7 +165,7 @@ function register_exhibit_metaboxes() {
   );
   $cmb->add_field(    
       array(
-        'name'  => 'Bio',
+        'name'  => 'Biography',
         'desc'  => 'Artist\'s Biography (optional)',
         'id'    => $prefix . 'bio',
         'type'  => 'wysiwyg',
@@ -146,6 +176,22 @@ function register_exhibit_metaboxes() {
         'name'  => 'Social',
         'desc'  => 'Website, Social Media, etc. (optional)',
         'id'    => $prefix . 'social',
+        'type'  => 'wysiwyg',
+      )
+  );
+  $cmb->add_field(         
+      array(
+        'name'  => 'Stats',
+        'desc'  => 'Event information',
+        'id'    => $prefix . 'stats',
+        'type'  => 'wysiwyg',
+      )
+  );
+  $cmb->add_field(         
+      array(
+        'name'  => 'Photographer',
+        'desc'  => 'Links for who photographed the event',
+        'id'    => $prefix . 'photographer',
         'type'  => 'wysiwyg',
       )
   );
@@ -242,7 +288,7 @@ function get_exhibit_titles() {
 function get_exhibit_thumbnails() {
   // Do not proceed if no thumbnail
   if( !has_post_thumbnail() ){
-    return false;
+    return '<div class="slider thumbnail-slider single-slide"><div class="slide-item"></div></div>';
   }
   // Lets get all the thumbnail ids
   $thumb_ids = array();
@@ -250,14 +296,16 @@ function get_exhibit_thumbnails() {
   $thumb_ids[$i=0] = get_post_thumbnail_id( get_the_ID() );
   // Grab all the image from our cmb2 file_list
   $files = get_post_meta( get_the_ID(), '_cmb2_more_images', true );
+  $single_slide = true;
   if($files) {
     foreach($files as  $file_id => $file_url) {
       $thumb_ids[++$i] = $file_id;
     }
+    $single_slide = false;
   }
   // Loop through each image gathered and make some html!
   $output = '';
-  $output .= '<div class="slider thumbnail-slider">';
+  $output .= '<div class="slider thumbnail-slider'.($single_slide ? ' single-slide' : '').'">';
   foreach($thumb_ids as $thumb_id){
     $thumbs = \Firebelly\Media\get_color_and_duo_thumbs($thumb_id, 'slide' );
     $caption = get_post_field('post_excerpt', $thumb_id);

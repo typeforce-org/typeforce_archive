@@ -129,6 +129,8 @@ function exhibition_query_alterations($query) {
     $query->set('numberposts','-1');
     $query->set('orderby','title');
     $query->set('order','ASC');
+    // $query->set('meta_key','_cmb2_type');
+    // $query->set('meta_value','exhibit');
   }
 
 }
