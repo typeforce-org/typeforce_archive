@@ -14,6 +14,9 @@
       .wrapper {
         height: 75px;
       }
+      .site-nav, .search-toggle, .menu-toggle-open {
+        margin-top: 10px;
+      }
       &.scrolled {
         .title, .search-field {
           font: 24px/30px $font-display;
@@ -21,6 +24,9 @@
         height: 45px;
         .wrapper {
           height: 45px;
+        }
+        .site-nav, .search-toggle, .menu-toggle-open {
+          margin-top: 0;
         }
       }
     }
