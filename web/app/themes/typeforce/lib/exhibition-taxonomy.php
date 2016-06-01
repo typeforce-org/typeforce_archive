@@ -153,17 +153,9 @@ function get_exhibition_object($exhibit_id) {
   return wp_get_post_terms($exhibit_id,'exhibition')[0];
 }
 
-function get_exhibition_info() {
 
-  global $wp_query;
-  $exhibition_id = $wp_query->queried_object->term_id;
-
-  $title = $wp_query->queried_object->name; //'<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
-
-  $description = apply_filters('the_content', get_term_meta($exhibition_id,'_cmb2_description',true));
-  $sponsors = apply_filters('the_content', get_term_meta($exhibition_id,'_cmb2_sponsors',true));
-
-  $args = array(
+function get_exhibit_link_li($exhibition_id,$type) {
+    $args = array(
     'post_type'   => 'exhibit',
     'tax_query'   => array(
       array(
@@ -176,18 +168,35 @@ function get_exhibition_info() {
     'numberposts'     => -1,
     'orderby'         => 'title', 
     'order'           => 'ASC',
-    'meta_key'    => '_cmb2_type',
-    'meta_value'  => 'exhibit'
+    'meta_key'        => '_cmb2_type',
+    'meta_value'      => $type
   );
-
-
   $exhibits = get_posts($args);
-  $exhibited_list = ''; 
+
+  $list = ''; 
   foreach ($exhibits as $exhibit) {
     $exhibit_title = $exhibit->post_title;
     $exhibit_url = get_permalink($exhibit->ID);
-    $exhibited_list .= '<li class="exhibit"><a href="'.$exhibit_url.'">'.$exhibit_title.'</a></li>';
+    $list .= '<li class="exhibit"><a href="'.$exhibit_url.'">'.$exhibit_title.'</a></li>';
   }
+
+  return $list;
+}
+
+
+function get_exhibition_info() {
+
+  global $wp_query;
+  $exhibition_id = $wp_query->queried_object->term_id;
+
+  $title = $wp_query->queried_object->name; //'<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
+
+  $description = apply_filters('the_content', get_term_meta($exhibition_id,'_cmb2_description',true));
+  $sponsors = apply_filters('the_content', get_term_meta($exhibition_id,'_cmb2_sponsors',true));
+
+  $exhibited_list = get_exhibit_link_li($exhibition_id,'exhibit');
+  $window_list = get_exhibit_link_li($exhibition_id,'window');
+  $opening_list = get_exhibit_link_li($exhibition_id,'opening');
 
   $catalogue_link = get_term_meta($exhibition_id,'_cmb2_catalogue',true);
 
@@ -200,11 +209,23 @@ function get_exhibition_info() {
       <div class="additional">
         <div class="exhibited">
           <h2>Exhibited</h2>
-          <ul class="exhibition-exhibit-list">
+          <ul class="exhibit-link-list">
             {$exhibited_list}
           </ul>
         </div>
 HTML;
+  if($window_list || $opening_list) {
+    $output .= <<< HTML
+        <div class="window-and-opening">
+          <h2>Window &amp; Opening</h2>
+          <ul class="exhibit-link-list">
+            {$window_list}
+            {$opening_list}
+          </ul>
+        </div>
+HTML;
+  }
+
   if($catalogue_link) {
     $output .= <<< HTML
         <div class="catalogue">

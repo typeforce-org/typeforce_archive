@@ -27,22 +27,19 @@
     // @include media-md{
     //   margin-top: -53px;
     // }
-    .exhibited {
-      margin-top: 25px;
-      @include media-md {
-        margin-top: 0;
-      }
-      .exhibition-exhibit-list {
-        //@include min-screen(1000px) { columns: 2; }
+    .exhibited, .window-and-opening {
+      .exhibit-link-list, {
         @extend %delistify;
         .exhibit{
           display: block;
-          //break-inside: avoid-column;
         }
       }
     }
-    .catalogue, .sponsors {
+    .catalogue, .sponsors, .exhibited, .window-and-opening {
       margin-top: 45px;
+      @include media-md {
+        &:first-child { margin-top: 0; }
+      }
     }
   }
 }
