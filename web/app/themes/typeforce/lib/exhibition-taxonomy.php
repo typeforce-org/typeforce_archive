@@ -74,6 +74,13 @@ function register_taxonomy_metabox() {
         'id'    => $prefix . 'catalogue',
         'type'  => 'text_medium',
       ) 
+    );    
+    $cmb_term->add_field( 
+      array(
+        'name'  => 'Sponsors',
+        'id'    => $prefix . 'sponsors',
+        'type'  => 'wysiwyg',
+      ) 
     );
 
 }
@@ -154,6 +161,7 @@ function get_exhibition_info() {
   $title = $wp_query->queried_object->name; //'<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
 
   $description = apply_filters('the_content', get_term_meta($exhibition_id,'_cmb2_description',true));
+  $sponsors = apply_filters('the_content', get_term_meta($exhibition_id,'_cmb2_sponsors',true));
 
   $args = array(
     'post_type'   => 'exhibit',
@@ -198,6 +206,14 @@ HTML;
         <div class="catalogue">
           <h2>Exhibition Catalog</h2>
           <a href="{$catalogue_link}">Purchase through Firebelly</a>
+        </div>
+HTML;
+  }
+  if($sponsors) {
+    $output .= <<< HTML
+        <div class="sponsors user-content">
+          <h2>Sponsors</h2>
+          {$sponsors}
         </div>
 HTML;
   }
