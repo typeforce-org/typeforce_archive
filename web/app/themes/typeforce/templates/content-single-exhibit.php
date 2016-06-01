@@ -66,7 +66,7 @@ $more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args,false);
             <?php the_content(); ?>
           </div>
         <?php endif; ?>
-        <?php if($materials) : ?>
+        <?php if($bio) : ?>
           <div class="entry-bio user-content">
             <h2><?= __('Biography','sage') ?></h2>
             <?= $bio ?>
