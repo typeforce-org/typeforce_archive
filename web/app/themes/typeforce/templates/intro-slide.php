@@ -2,9 +2,7 @@
 # Get absolute path of thumbnail for duo processing
 $thumb_size = 'slide';
 $thumb_id = get_post_thumbnail_id($intro_post->ID);
-$thumb_url = wp_get_attachment_image_src( $thumb_id, $thumb_size)[0];
-$duo_url = \Firebelly\Media\get_duo_url( $thumb_id, [ 'size' => $thumb_size ] );
-
+$thumbs = \Firebelly\Media\get_color_and_duo_thumbs($thumb_id, $thumb_size );
 $link_text = get_post_meta( $intro_post->ID, '_cmb2_link_text', true );
 
 $links_to = get_post_meta( $intro_post->ID, '_cmb2_links_to', true );
@@ -21,8 +19,9 @@ if ($links_to === 'exhibit') {
 $update = apply_filters('the_content',$intro_post->post_content);
 ?>
 <article class="intro-slide">
-  <div class="color lazy" style="background-image: url('<?= $dummy ?>');" data-original="<?= $thumb_url ?>"></div>
-  <div class="duo lazy" style="background-image: url('<?= $dummy ?>');" data-original="<?= $duo_url ?>"></div>
+  <?php if ($thumbs) {
+    echo $thumbs;
+  } ?>
   <div class="content">
 
 

@@ -6,10 +6,6 @@
  namespace Firebelly\PostTypes\Exhibit;
  use Firebelly\Utils;
 
-  // Custom image size for post type?
-  add_image_size( 'slide', 1800, 0, true );
-  add_image_size( 'listing', 768, 0, true );
-
  /**
   * Register Custom Post Type
   */
@@ -248,7 +244,6 @@ function get_exhibit_thumbnails() {
   if( !has_post_thumbnail() ){
     return false;
   }
-  $dummy = \Roots\Sage\Assets\asset_path('images/gray.gif');
   // Lets get all the thumbnail ids
   $thumb_ids = array();
   // Grab the featured image ids as first id
@@ -264,18 +259,14 @@ function get_exhibit_thumbnails() {
   $output = '';
   $output .= '<div class="slider thumbnail-slider">';
   foreach($thumb_ids as $thumb_id){
-    $thumb = wp_get_attachment_image_src( $thumb_id, 'slide' ); //get normal color image
-    $thumb_width = $thumb[1];
-    $thumb_height = $thumb[2];
-    $thumb_url = $thumb[0];
-    $duo_url = \Firebelly\Media\get_duo_url($thumb_id, ['size' => 'slide'] );  //get duotone image url
+    $thumbs = \Firebelly\Media\get_color_and_duo_thumbs($thumb_id, 'slide' );
     $caption = get_post_field('post_excerpt', $thumb_id);
 
-    $output .= <<< HTML
-    <div class="slide-item">
-      <div class="color lazy" style="background-image: url('{$dummy}');" data-original="{$thumb_url}"></div>
-      <div class="duo lazy" style="background-image: url('{$dummy}');" data-original="{$duo_url}"></div>
-HTML;
+    $output .= '<div class="slide-item">';
+
+    if ($thumbs) {
+      $output .= $thumbs;
+    }
 
     if($caption) {
         $output .= '<div class="content"><div class="caption"><span class="highlight">'.$caption.'</span></div></div>';

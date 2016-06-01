@@ -5,8 +5,10 @@
 
 namespace Firebelly\Media;
 
-// image size for popout thumbs
-add_image_size( 'popout-thumb', 250, 300, ['center', 'top'] );
+// Custom image sizes
+add_image_size( 'tiny', 100, 0, true );
+add_image_size( 'slide', 1800, 0, true );
+add_image_size( 'listing', 768, 0, true );
 
 /**
  * Get thumbnail image for post
@@ -118,4 +120,28 @@ function get_duo_url($post_or_id, $options=[]) {
   // Finally, get the URL
   $duo_url = $upload_dir['baseurl'] . '/duos/' . $treated_filename;
   return $duo_url;
+}
+
+
+/**
+ * Output duo and color thumbnails with all the lazy load, multiple size schmigamaroo
+ */
+function get_color_and_duo_thumbs($thumb_id,$size){
+
+  $dummy = \Roots\Sage\Assets\asset_path('images/gray.gif');
+
+  $thumb_url = wp_get_attachment_image_src( $thumb_id, $size )[0]; //get normal color image
+  $duo_url = \Firebelly\Media\get_duo_url($thumb_id, ['size' => $size] );  //get duotone image url
+
+  //tiny images for mobile
+  $thumb_url_tiny = wp_get_attachment_image_src( $thumb_id, 'tiny' )[0];
+  $duo_url_tiny = \Firebelly\Media\get_duo_url($thumb_id, ['size' => 'tiny'] );  
+
+  $output = <<< HTML
+  <div class="color lazy" style="background-image: url('{$dummy}');" data-original="{$thumb_url_tiny}" data-big-img-url="{$thumb_url}" data-current-img-size="tiny"></div>
+  <div class="duo lazy" style="background-image: url('{$dummy}');" data-original="{$duo_url_tiny}" data-big-img-url="{$duo_url}" data-current-img-size="tiny"></div>
+HTML;
+  
+  return $output;
+
 }

@@ -24,7 +24,7 @@ $font-body: "Karla", Helvetica, Arial, sans-serif;
 %big-title {
   letter-spacing: 0;
   text-transform: none;
-  font: 24px/30px $font-display; // /0.916666666em
+  font: 24px/30px $font-display; 
   @include media-md {
     font: 48px/55px $font-display;
   }
@@ -34,7 +34,7 @@ $font-body: "Karla", Helvetica, Arial, sans-serif;
   position: relative;
   letter-spacing: 0em;
   text-transform: none;
-  font: 24px/30px $font-display; // /0.916666666em
+  font: 24px/30px $font-display; 
 }
 
 %trailing-dash {

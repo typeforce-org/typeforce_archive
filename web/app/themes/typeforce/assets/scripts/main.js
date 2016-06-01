@@ -46,7 +46,7 @@ var FBSage = (function($) {
     _fixHeaderOnScroll();
 
 
-    _initLazyLoadImages();
+    _initImages();
 
     //add classes to make up for the lack of hover event on touch devices;
     _touchOnly();
@@ -220,7 +220,18 @@ var FBSage = (function($) {
   // }
 
 
-  function _initLazyLoadImages() {
+  function _initImages() {
+    if (breakpoint_medium) {
+      $('div.lazy').each( function() {
+        var bigUrl = $(this).attr('data-big-img-url');
+        if( bigUrl && $(this).attr('data-current-img-size')==='tiny'){
+          // console.log($(this));
+          $(this).attr('data-current-img-size','big');
+          $(this).removeClass('loaded');
+          $(this).attr('data-original', bigUrl);
+        }
+      });
+    }
     $('div.lazy').lazyload({
       threshold: 800,
       failure_limit : 10,
@@ -291,7 +302,7 @@ var FBSage = (function($) {
           }
 
           // lazyload the new images
-          _initLazyLoadImages();
+          _initImages();
         }
       });
     });
@@ -417,6 +428,7 @@ var FBSage = (function($) {
 
     _resizeSliders(); 
     _resizeNav();
+    _initImages();
 
   }
 
