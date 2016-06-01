@@ -21,7 +21,7 @@
     height: $main-slider-slide-height;
     width:  $main-slider-slide-width;
     @include media-md { width:  $main-slider-slide-width-md; }
-    overflow: hidden;
+    overflow: hidden; 
 
     // Add a gray overlay over slide;
     &:after {
