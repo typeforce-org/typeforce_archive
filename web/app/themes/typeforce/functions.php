@@ -31,6 +31,8 @@ $firebelly_includes = [
   'lib/intro-post-type.php',         // Intro Slider Post Type
   'lib/exhibit-post-type.php',         // Exhibit Post Type
   'lib/exhibition-taxonomy.php',       // Exhibition Type
+  'lib/site_options.php',             // Site Options
+  'lib/fb_metatags.php',              // FB Meta
 ];
 
 $sage_includes = array_merge($sage_includes, $firebelly_includes);
