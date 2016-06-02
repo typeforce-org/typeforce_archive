@@ -386,7 +386,7 @@ var FBSage = (function($) {
         centerPadding: '0',
         slidesToShow: 1,
         accessibility: true,
-        // autoplay: true,
+        autoplay: true,
         autoplaySpeed: 5000,
         speed: 500,
         variableWidth: true,
@@ -397,11 +397,13 @@ var FBSage = (function($) {
       }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
           $(window).scroll();
       });
+      //move slider-nav-left to after the track, so it can appear
       $('.slider-nav-left').each(function() {
           $mySlider = $(this).closest('.slider');
           $(this).detach().appendTo($mySlider);
         }
       );
+      $('.intro-slider .slider-nav-left').remove();
 
       _resizeSliders();
       window.setTimeout(function() {
