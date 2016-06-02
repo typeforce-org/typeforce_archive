@@ -40,7 +40,6 @@ $args = array(
 );
 $more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args,false); 
 
-
 ?>
 
   <article <?php post_class(); ?>>

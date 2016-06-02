@@ -1,25 +1,38 @@
 
 // Temporarily give height/width to 
 .duo, .color {
-  @extend %fill;
-  background-position: center center;
-  background-size: cover;
   transition: opacity $hover-trans-time, transform 20s ease-out;
-  &:after{
-    transition: opacity 0.5s, visibility 0s 0.5s;
-    position: absolute;
-    content: ' ';
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background-color: $gray;
-  }
-  &.loaded {
+  &.lazy {
     &:after{
-      opacity: 0;
-      visibility: hidden;
+      transition: opacity 0.5s, visibility 0s 0.5s;
+      position: absolute;
+      content: ' ';
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background-color: $gray;
+    }
+    &.loaded {
+      &:after{
+        opacity: 0;
+        visibility: hidden;
+      }
     }
   }
 }
+div.duo, div.color {
+  @extend %fill;
+  background-position: center center;
+  background-size: cover;
+}
 
+img.duo, img.color {
+  height: 100%;
+  width: auto;
+
+}
+img.duo {
+  position: absolute;
+  top: 0;
+}

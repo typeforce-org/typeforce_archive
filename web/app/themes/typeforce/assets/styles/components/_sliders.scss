@@ -1,11 +1,21 @@
-.slider {
-    
+.home {
+  .slider {
     //compensate for slick centerMode trying to center it
     width: 100vw;
     .slick-track {
         margin-left: ( $main-slider-slide-width - 100vw )/2;
         @include media-md { margin-left: ( $main-slider-slide-width-md - 100vw )/2; }
     } 
+    .slide-item {
+      width:  $main-slider-slide-width;
+      @include media-md { width:  $main-slider-slide-width-md; }
+    }
+  }
+}
+
+.slider {
+    
+
 
   &.single-slide {
     .slide-item {
@@ -19,8 +29,6 @@
   .slide-item {
     position: relative;
     height: $main-slider-slide-height;
-    width:  $main-slider-slide-width;
-    @include media-md { width:  $main-slider-slide-width-md; }
     overflow: hidden; 
 
     // Add a gray overlay over slide;

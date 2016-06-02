@@ -222,7 +222,7 @@ var FBSage = (function($) {
 
   function _initImages() {
     if (breakpoint_medium) {
-      $('div.lazy').each( function() {
+      $('.lazy').each( function() {
         var bigUrl = $(this).attr('data-big-img-url');
         if( bigUrl && $(this).attr('data-current-img-size')==='tiny'){
           // console.log($(this));
@@ -232,7 +232,7 @@ var FBSage = (function($) {
         }
       });
     }
-    $('div.lazy').lazyload({
+    $('.lazy').lazyload({
       threshold: 800,
       failure_limit : 10,
       load : function() {
@@ -322,17 +322,39 @@ var FBSage = (function($) {
 
 
   function _resizeSliders() {
-    var headlineHeight = $('.headline').outerHeight(true);
+    if($('.home').length) {
+      var headlineHeight = $('.headline').outerHeight(true);
 
-    var maxSlideContentHeight = 0;
-    $slideContent = $('.slide-item .content, .slide-item .update').each(function() {
-      myHeight = $(this).outerHeight(true);
-      maxSlideContentHeight = Math.max(maxSlideContentHeight,myHeight);
-    });
-    var totalHeight = headlineHeight + maxSlideContentHeight; 
+      var maxSlideContentHeight = 0;
+      $slideContent = $('.slide-item .content, .slide-item .update').each(function() {
+        myHeight = $(this).outerHeight(true);
+        maxSlideContentHeight = Math.max(maxSlideContentHeight,myHeight);
+      });
+      var totalHeight = headlineHeight + maxSlideContentHeight; 
 
-    $('.intro-slider .slide-item').css('min-height',totalHeight);
-    $('.intro-content').css('min-height',totalHeight);
+      $('.intro-slider .slide-item').css('min-height',totalHeight);
+      $('.intro-content').css('min-height',totalHeight);
+    }
+    if($('.single-exhibit').length) {
+      var widestRatio = 1;
+      $('.slide-item img').each(function() {
+        var h = $(this).height();
+        var w = $(this).width();
+        var ratio = w/h;
+        widestRatio = Math.max(ratio,widestRatio);
+      });
+      console.log(widestRatio);
+      maxWidth = $(window).width()*0.8;
+      maxHeight = maxWidth * (1/widestRatio);
+      console.log(maxHeight);
+      $('.slide-item').css('max-height',maxHeight+'px');
+      
+      if($('.slider.slick-slider').length){
+        var currentSlide = $('.slider.slick-slider').slick('slickCurrentSlide');
+        console.log(currentSlide);
+        $('.slider.slick-slider').slick('slickGoTo',currentSlide);
+      }
+    }
   }
 
   function _sliderArrowKeys() {
@@ -356,31 +378,31 @@ var FBSage = (function($) {
 
     $('.slide-item').addClass('site-just-loaded');
 
-    $('.slider').slick({
-      slide: '.slide-item',
-      centerMode: true,
-      centerPadding: '0',
-      slidesToShow: 1,
-      accessibility: true,
-      autoplay: true,
-      autoplaySpeed: 5000,
-      speed: 500,
-      variableWidth: true,
-      // draggable: false,
-      // touchMove: false,
-      prevArrow: '',
-      nextArrow: '<div class="slider-nav-right"><svg class="icon-caret" role="img"><use xlink:href="#icon-caret"></use></svg></div>',   
-    }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
-        $(window).scroll();
+    $(window).load(function() {
+      $('.slider').slick({
+        slide: '.slide-item',
+        centerMode: true,
+        centerPadding: '0',
+        slidesToShow: 1,
+        accessibility: true,
+        // autoplay: true,
+        autoplaySpeed: 5000,
+        speed: 500,
+        variableWidth: true,
+        // draggable: false,
+        // touchMove: false,
+        prevArrow: '',
+        nextArrow: '<div class="slider-nav-right"><svg class="icon-caret" role="img"><use xlink:href="#icon-caret"></use></svg></div>',   
+      }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
+          $(window).scroll();
       });
+      _resizeSliders();
+      window.setTimeout(function() {
+        $('.site-just-loaded').removeClass('site-just-loaded');
+      },0);
+      _sliderArrowKeys();
+    }); 
 
-    window.setTimeout(function() {
-      $('.site-just-loaded').removeClass('site-just-loaded');
-    },1);
-
-    $(window).load(_resizeSliders); 
-
-    _sliderArrowKeys();
 
   }
 
