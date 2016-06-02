@@ -22,6 +22,12 @@ function build_tags() {
   if(!is_object($post) || get_class($post) != 'WP_Post') {
     return;
   }
+  //Add twitter tags
+
+  echo '<meta name="twitter:card" content="summary" />';
+  echo '<meta name="twitter:site" content="@firebellydesign" />';
+  echo '<meta name="twitter:creator" content="@firebellydesign" />';
+
   // Get Facebook ID for OG tags
   $facebook_app_id = \Firebelly\SiteOptions\get_option('facebook_app_id');
   if ($facebook_app_id) {
