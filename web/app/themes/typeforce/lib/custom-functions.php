@@ -138,7 +138,72 @@ function get_page_blocks($post) {
 
 
 
+function set_exhibition_order($exhibition_id) {
 
+  $args = array(
+    'post_type'   => 'exhibit',
+    'tax_query'   => array(
+      array(
+          'taxonomy'        => 'exhibition',
+          'field'           =>  'id',
+          'terms'           => $exhibition_id,
+      ),
+    ),  
+    'posts_per_page'  => -1,
+    'numberposts'     => -1,
+    'orderby'         => 'title', 
+    'order'           => 'ASC',
+    'meta_key'        => '_cmb2_type',
+  );
+  $args['meta_value'] = 'window';
+  $windows = get_posts($args); 
+
+  $args['meta_value'] = 'exhibit';
+  $exhibits = get_posts($args); 
+
+  $args['meta_value'] = 'opening';
+  $openings = get_posts($args); 
+
+  $i=0;
+
+  if(!empty($windows)){
+    foreach( $windows as $window ) {
+      if (empty(get_post_meta($window->ID,'_exhibition_order',true))) {
+        add_post_meta($window->ID,'_exhibition_order',$i);
+      } else {
+        update_post_meta($window->ID,'_exhibition_order',$i);
+      }
+      // echo get_post_meta($window->ID,'_exhibition_order',true);
+      $i++;
+    }
+  }
+
+  if(!empty($exhibits)){
+    foreach( $exhibits as $exhibit ) {
+      if (empty(get_post_meta($exhibit->ID,'_exhibition_order',true))) {
+        add_post_meta($exhibit->ID,'_exhibition_order',$i);
+      } else {
+        update_post_meta($exhibit->ID,'_exhibition_order',$i);
+      }
+      // echo get_post_meta($exhibit->ID,'_exhibition_order',true);
+      $i++;
+    }
+  }
+
+  if(!empty($openings)){
+    foreach( $openings as $opening ) {
+      if (empty(get_post_meta($opening->ID,'_exhibition_order',true))) {
+        add_post_meta($opening->ID,'_exhibition_order',$i);
+      } else {
+        update_post_meta($opening->ID,'_exhibition_order',$i);
+      }
+      // echo get_post_meta($opening->ID,'_exhibition_order',true);
+      $i++;
+    }
+  }
+
+}
+// add_action('pre_get_posts', __NAMESPACE__ . '\\exhibition_query_alterations');
 
 
 

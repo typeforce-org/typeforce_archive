@@ -11,7 +11,7 @@ $thumb_id = get_post_thumbnail_id($exhibit_post->ID);
 $thumbs = \Firebelly\Media\get_color_and_duo_thumbs($thumb_id, $thumb_size );
 $url = get_permalink($exhibit_post->ID);
 
-$show_year = !(is_singular('exhibit') || is_tax('exhibition'))
+$show_year = !(is_tax('exhibition'));
 
 ?>
 <article class="exhibit-listing-info" data-id="<?= $id ?>">

@@ -24,12 +24,15 @@ $stats = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_stats',true)
 $photographer = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_photographer',true));
 $thumbs = Firebelly\PostTypes\Exhibit\get_exhibit_thumbnails(); 
 
+
+Firebelly\Utils\set_exhibition_order($exhibition_obj->term_id);
 $args = array(
   'post_type'       => 'exhibit',
   'posts_per_page'  => -1,
   'numberposts'     => -1,
-  'orderby'         => 'title',
+  'orderby'         => 'meta_value_num', 
   'order'           => 'ASC',
+  'meta_key'        => '_exhibition_order',
   'tax_query'   => array(
     array(
         'taxonomy'  => 'exhibition',
