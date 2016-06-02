@@ -11,6 +11,8 @@ add_image_size( 'tiny-listing', 600, 0, true );
 add_image_size( 'slide', 1800, 0, true );
 add_image_size( 'listing', 768, 0, true );
 
+add_image_size( 'fb-share', 600, 0, true );
+
 /**
  * Get thumbnail image for post
  * @param  integer $post_id
