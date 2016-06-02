@@ -4,6 +4,18 @@
  */
 // Heavily borrowing from https://wordpress.org/plugins/wp-facebook-open-graph-protocol/
 namespace Firebelly\Metatags;
+
+
+function new_robots($output, $public){
+
+  $output = "User-agent: *\n";
+  $output .= "Disallow: \n";
+  return $output;
+
+}
+add_filter( 'robots_txt',  __NAMESPACE__ . '\\new_robots', 100, 2 );
+
+
 add_action('wp_head', __NAMESPACE__ . '\build_tags', 50);
 function build_tags() {
   global $post;
