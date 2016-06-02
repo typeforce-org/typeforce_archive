@@ -213,18 +213,18 @@ function get_exhibition_info() {
 
   $thumb = \Firebelly\Media\get_color_and_duo_thumbs(get_term_meta($exhibition_id,'_cmb2_featured_image_id',true), 'slide' );
 
-  $thumb_src = wp_get_attachment_image_src(get_term_meta($exhibition_id,'_cmb2_featured_image_id',true), 'slide' );
-  $thumb_w = $thumb_src[1];
-  $thumb_h = $thumb_src[2];
-  $thumb_padding_bottom = ($thumb_h / $thumb_w)*100;
-  $thumb_css = 'padding-bottom: '.$thumb_padding_bottom.'%';
-
   $output = <<< HTML
     <div class="exhibition-info" id="content">
       <h1>{$title}</h1>
       <div class="main">
 HTML;
     if($thumb) {
+      //let's do a hacky thing to make sure this guy has aspect ratio.
+      $thumb_src = wp_get_attachment_image_src(get_term_meta($exhibition_id,'_cmb2_featured_image_id',true), 'slide' );
+      $thumb_w = $thumb_src[1];
+      $thumb_h = $thumb_src[2];
+      $thumb_padding_bottom = ($thumb_h / $thumb_w)*100;
+      $thumb_css = 'padding-bottom: '.$thumb_padding_bottom.'%';
       $output .= '<div class="featured-image" style="'.$thumb_css.'">'.$thumb.'</div>';
     }
     if($description) {

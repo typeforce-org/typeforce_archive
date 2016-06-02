@@ -131,7 +131,10 @@ function get_color_and_duo_thumbs($thumb_id,$size){
 
   $dummy = \Roots\Sage\Assets\asset_path('images/gray.gif');
 
-  $thumb_url = wp_get_attachment_image_src( $thumb_id, $size )[0]; //get normal color image
+  $thumb_src = wp_get_attachment_image_src( $thumb_id, $size );
+  if(!$thumb_src){ return ''; } //stop and return empty if no image
+
+  $thumb_url = $thumb_src[0]; //get normal color image url
   $duo_url = \Firebelly\Media\get_duo_url($thumb_id, ['size' => $size] );  //get duotone image url
 
   //tiny images for mobile
