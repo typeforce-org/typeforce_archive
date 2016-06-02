@@ -29,6 +29,13 @@ function build_tags() {
   // Title
   if (is_home() || is_front_page()) {
     $metatag_title = get_bloginfo('name');
+  } elseif (is_singular('exhibit')) {
+    $exhibition_year = \Firebelly\PostTypes\Exhibition\get_exhibition_object($post->ID)->name;
+    $metatag_title = get_bloginfo('name').' '.$exhibition_year.': '.get_the_title();
+  } elseif (is_tax('exhibition')){
+    global $wp_query;
+    $exhibition_year = $wp_query->queried_object->name;
+    $metatag_title = get_bloginfo('name').' '.$exhibition_year;
   } else {
     $metatag_title = get_bloginfo('name').': '.get_the_title();
   }
@@ -44,6 +51,10 @@ function build_tags() {
     } else {
       $metatag_description = str_replace("\r\n", ' ' , substr(strip_tags(strip_shortcodes(str_replace("</h3>", ':' , $post->post_content))), 0, 160)).'...';
     }
+  } elseif (is_tax('exhibition')) {
+    global $wp_query;
+    $exhibition_id = $wp_query->queried_object->term_id;
+    $metatag_description = str_replace("\r\n", ' ' , substr(strip_tags(strip_shortcodes(str_replace("</h3>", ':' , get_term_meta($exhibition_id,'_cmb2_description',true)))), 0, 160)).'...';
   } else {
     $metatag_description = get_bloginfo('description');
   }
@@ -57,8 +68,13 @@ function build_tags() {
   echo '<meta property="og:type" content="' . esc_attr(apply_filters('fb_metatag_type', $metatag_type)) . '"/>' . "\n";
   // Find/output any images for use in the OGP tags
   $metatag_images = array();
-  // Only find images if it isn't the homepage and the fallback isn't being forced
-  if (!is_home()) {
+  
+  // Find exhibition featured image if on exhibition archive
+  if (is_tax('exhibition')) {
+    global $wp_query;
+    $exhibition_id = $wp_query->queried_object->term_id;
+    $metatag_images[] = wp_get_attachment_image_src(get_term_meta($exhibition_id,'_cmb2_featured_image_id',true), 'large')[0];
+  } elseif (!is_home()) { // Find images if it isn't the homepage and the fallback isn't being forced
     // Find featured thumbnail of the current post/page
     if (function_exists('has_post_thumbnail') && has_post_thumbnail($post->ID)) {
       $thumbnail_src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large');

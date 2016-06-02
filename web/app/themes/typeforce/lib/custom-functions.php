@@ -137,7 +137,17 @@ function get_page_blocks($post) {
 // add_action('pre_get_posts', __NAMESPACE__ . '\\exhibition_query_alterations');
 
 
+/**
+ * This function creates a custom order for posts, stored in a meta data field.  The order goes windows->exhibits->openings each sorted alphabetically.
 
+ To sort in this order use in args:
+
+  'orderby'         => 'meta_value_num', 
+  'order'           => 'ASC',
+  'meta_key'        => '_exhibition_order',
+
+  after calling this function
+ */
 function set_exhibition_order($exhibition_id) {
 
   $args = array(
