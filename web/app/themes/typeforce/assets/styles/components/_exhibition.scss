@@ -5,20 +5,37 @@
   @include media-md {padding: 0 $site-pad-hor-md;}
   margin-top: 30px;
   overflow: hidden;
-  .description, .additional {
+  .main, .additional {
     float: left;
     width: 100%;
     @include media-md { 
       width: 50%; 
     }
   }
-  .description {
+  .main {
     padding: 0;
-    // margin-bottom: 20px;
     @include media-md { 
       margin-bottom: 50px;
       padding-right: 75px; 
     }
+    .featured-image {
+      position: relative;
+      height: 0;
+      padding-bottom: 100%;
+      width: 100%;
+      overflow: hidden;
+
+      @include media-md { 
+        padding-right: 75px; 
+      }
+      .duo {
+        animation: fade-out-ken-burns 5s ease-in 1s forwards;
+      }
+      .color {
+        animation: ken-burns 5s ease-in 1s forwards;
+      }
+    }
+
   }
   .additional {
     @extend %small-caps;
@@ -35,13 +52,15 @@
         }
       }
     }
-    .catalogue, .sponsors, .exhibited, .window-and-opening {
-      margin-top: 45px;
-      @include media-md {
-        &:first-child { margin-top: 0; }
-      }
+  }
+  .description, .featured-image, 
+  .catalogue, .sponsors, .exhibited, .window-and-opening {
+    margin-top: 45px;
+    @include media-md {
+      &:first-child { margin-top: 0; }
     }
   }
+
 }
 
 

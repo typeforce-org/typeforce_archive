@@ -64,20 +64,31 @@ function register_taxonomy_metabox() {
     $cmb_term->add_field( 
       array(
         'name'  => 'Description',
+        'desc'  => '(Optional)',
         'id'    => $prefix . 'description',
         'type'  => 'wysiwyg',
       ) 
     );
     $cmb_term->add_field( 
       array(
-        'name'  => 'Catalog Purchase Link',
+        'name'  => 'Featured Image',
+        'desc'  => '(Optional)',
+        'id'    => $prefix . 'featured_image',
+        'type'  => 'file',
+      ) 
+    );
+    $cmb_term->add_field( 
+      array(
+        'name'  => 'Catalog Purchase',
+        'desc'  => '(Optional) Put a link to purchase a catalog.  Or explain "Out of stock", "Coming soon", etc.',
         'id'    => $prefix . 'catalogue',
-        'type'  => 'text_medium',
+        'type'  => 'wysiwyg',
       ) 
     );    
     $cmb_term->add_field( 
       array(
         'name'  => 'Sponsors',
+        'desc'  => '(Optional)',
         'id'    => $prefix . 'sponsors',
         'type'  => 'wysiwyg',
       ) 
@@ -198,13 +209,30 @@ function get_exhibition_info() {
   $window_list = get_exhibit_link_li($exhibition_id,'window');
   $opening_list = get_exhibit_link_li($exhibition_id,'opening');
 
-  $catalogue_link = get_term_meta($exhibition_id,'_cmb2_catalogue',true);
+  $catalogue_link = apply_filters('the_content', get_term_meta($exhibition_id,'_cmb2_catalogue',true));
+
+  $thumb = \Firebelly\Media\get_color_and_duo_thumbs(get_term_meta($exhibition_id,'_cmb2_featured_image_id',true), 'slide' );
+
+  $thumb_src = wp_get_attachment_image_src(get_term_meta($exhibition_id,'_cmb2_featured_image_id',true), 'slide' );
+  $thumb_w = $thumb_src[1];
+  $thumb_h = $thumb_src[2];
+  $thumb_padding_bottom = ($thumb_h / $thumb_w)*100;
+  $thumb_css = 'padding-bottom: '.$thumb_padding_bottom.'%';
 
   $output = <<< HTML
     <div class="exhibition-info" id="content">
       <h1>{$title}</h1>
-      <div class="description user-content">
-        {$description}
+
+      
+      
+      <div class="main">
+        <div class="featured-image" style="{$thumb_css}">
+        {$thumb}
+        </div>
+        <div class="description user-content">
+          <h2>Description</h2>
+          {$description}
+        </div>
       </div>
       <div class="additional">
         <div class="exhibited">
@@ -230,7 +258,7 @@ HTML;
     $output .= <<< HTML
         <div class="catalogue">
           <h2>Exhibition Catalog</h2>
-          <a href="{$catalogue_link}">Purchase through Firebelly</a>
+          {$catalogue_link}
         </div>
 HTML;
   }
