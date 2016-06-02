@@ -1,4 +1,6 @@
 
+$exhibition-break: 1000px;
+
 .exhibition-info {
   margin-top: 30px;
   padding: 0 $site-pad-hor;
@@ -8,14 +10,14 @@
   .main, .additional {
     float: left;
     width: 100%;
-    @include media-md { 
+    @include min-screen($exhibition-break) { 
       width: 50%; 
     }
   }
   .main {
     padding: 0;
-    @include media-md { 
-      margin-bottom: 50px;
+    @include min-screen($exhibition-break) { 
+      // margin-bottom: 50px;
       padding-right: 75px; 
     }
     .featured-image {
@@ -56,7 +58,7 @@
   .description, .featured-image, 
   .catalogue, .sponsors, .exhibited, .window-and-opening {
     margin-top: 45px;
-    @include media-md {
+    @include min-screen($exhibition-break) {
       &:first-child { margin-top: 0; }
     }
   }
