@@ -24,7 +24,7 @@ function build_tags() {
   }
   //Add twitter tags
 
-  echo '<meta name="twitter:card" content="summary" />';
+  echo '<meta name="twitter:card" content="summary_large_image" />';
   echo '<meta name="twitter:site" content="@firebellydesign" />';
   echo '<meta name="twitter:creator" content="@firebellydesign" />';
 
