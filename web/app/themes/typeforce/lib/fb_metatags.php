@@ -106,8 +106,7 @@ function build_tags() {
     if (find_images() !== false && is_singular()) { // Use our function to find post/page images
       $metatag_images = array_merge($metatag_images, find_images()); // Returns an array already, so merge into existing
     }
-  }
-  if(!is_tax('exhibition')){
+  } else {
     // Get default metatag image from site_options
     $default_metatag_image = wp_get_attachment_image_src(\Firebelly\SiteOptions\get_option('default_metatag_image_id'), 'fb-share')[0];
     // Add the fallback image to the images array
