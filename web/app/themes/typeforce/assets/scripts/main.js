@@ -199,27 +199,6 @@ var FBSage = (function($) {
     }
   }
 
-  // function _initExhibition() {
-  //   SEO-useless nav togglers
-  //   $('<svg class="exhibition-toggle icon-caret" role="img"><use xlink:href="#icon-caret"></use></svg>')
-  //     .appendTo('.exhibition-info .title')
-  //     .on('click', function(e) {
-  //       _toggleExhibition();
-  //     });
-  // }
-
-  // function _toggleExhibition() {
-  //   if( $('.exhibition-info').hasClass('open') ) {
-  //     $('.exhibition-info').removeClass('open');
-  //     $('.accordian-content').velocity("slideUp",{time: 200});
-  //   } else {
-  //     $('.exhibition-info').addClass('open');
-  //     $('.accordian-content').velocity("slideDown",{time: 200});
-  //   }
-  //   console.log('toggle');
-  // }
-
-
   function _initImages() {
     if (breakpoint_medium) {
       $('.lazy').each( function() {
@@ -323,37 +302,59 @@ var FBSage = (function($) {
 
   function _resizeSliders() {
     if($('.home').length) {
+
+      //get height of headlines
       var headlineHeight = $('.headline').outerHeight(true);
 
+      //Find the tallest slide content
       var maxSlideContentHeight = 0;
       $slideContent = $('.slide-item .content, .slide-item .update').each(function() {
         myHeight = $(this).outerHeight(true);
         maxSlideContentHeight = Math.max(maxSlideContentHeight,myHeight);
       });
+
+      //the total hieght we need to be safe
       var totalHeight = headlineHeight + maxSlideContentHeight; 
 
+      //assign
       $('.intro-slider .slide-item').css('min-height',totalHeight);
       $('.intro-content').css('min-height',totalHeight);
+
     }
     if($('.single-exhibit').length) {
+
+      //find the widest width to height ratio for the images from data attr
       var widestRatio = 1;
-      $('.slide-item img').each(function() {
-        var h = $(this).height();
-        var w = $(this).width();
-        var ratio = w/h;
+      $('.slide-item').each(function() {
+        var ratio = $(this).data('width-height-ratio');
         widestRatio = Math.max(ratio,widestRatio);
       });
-      console.log(widestRatio);
-      maxWidth = $(window).width()*0.8;
-      maxHeight = maxWidth * (1/widestRatio);
-      console.log(maxHeight);
+
+      //calculate maximum height and width
+      var maxWidth = $(window).width()*0.8;
+      var maxHeightFromRatio = maxWidth * (1/widestRatio);
+      var maxHeightFromScreen = $(window).height()*0.5;
+      var maxHeight = Math.max(maxHeightFromScreen,maxHeightFromRatio);
+
+      //apply
       $('.slide-item').css('max-height',maxHeight+'px');
+      $('.slide-item').css('max-width',maxWidth+'px');
       
+      //give slides proper width (they do not have this on their own)
+      $('.slide-item').each(function() {
+        var ratio = $(this).data('width-height-ratio');
+        var h = $(this).height();
+        var w = h*ratio;
+        $(this).css('width',w+'px');
+      });
+
+      //re-goto the slide we are on already (this will recenter the track)
       if($('.slider.slick-slider').length){
         var currentSlide = $('.slider.slick-slider').slick('slickCurrentSlide');
         console.log(currentSlide);
         $('.slider.slick-slider').slick('slickGoTo',currentSlide);
       }
+
     }
   }
 
@@ -391,11 +392,17 @@ var FBSage = (function($) {
         variableWidth: true,
         // draggable: false,
         // touchMove: false,
-        prevArrow: '',
-        nextArrow: '<div class="slider-nav-right"><svg class="icon-caret" role="img"><use xlink:href="#icon-caret"></use></svg></div>',   
+        prevArrow: '<div class="slider-nav-left"><svg class="icon-caret-left" role="img"><use xlink:href="#icon-caret-left"></use></svg></div>',
+        nextArrow: '<div class="slider-nav-right"><svg class="icon-caret-right" role="img"><use xlink:href="#icon-caret-right"></use></svg></div>',   
       }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
           $(window).scroll();
       });
+      $('.slider-nav-left').each(function() {
+          $mySlider = $(this).closest('.slider');
+          $(this).detach().appendTo($mySlider);
+        }
+      );
+
       _resizeSliders();
       window.setTimeout(function() {
         $('.site-just-loaded').removeClass('site-just-loaded');

@@ -308,31 +308,28 @@ function get_exhibit_thumbnails() {
   $output = '';
   $output .= '<div class="slider thumbnail-slider'.($single_slide ? ' single-slide' : '').'">';
   foreach($thumb_ids as $thumb_id){
-    $thumbs = \Firebelly\Media\get_color_and_duo_thumbs($thumb_id, 'slide', false );
+
+    $thumbs = \Firebelly\Media\get_color_and_duo_thumbs($thumb_id, 'slide' );
     $caption = get_post_field('post_excerpt', $thumb_id);
 
-    
-
     if ($thumbs) {
-    //   //let's do a hacky thing to make sure this guy has aspect ratio.
-    //   $thumb_src = wp_get_attachment_image_src($thumb_id, 'slide' );
-    //   $thumb_w = $thumb_src[1];
-    //   $thumb_h = $thumb_src[2];
-    //   $thumb_width_to_height = ( $thumb_w / $thumb_h );
-    //   $thumb_css = 'padding-bottom: '.$thumb_padding_bottom.'%';
-       $output .= '<div class="slide-item">';
-    //   $output .= '<div class="featured-image" style="'.$thumb_css.'">'.$thumb.'</div>';
-
-
-
+      //let's do a hacky thing to make sure this guy has aspect ratio.
+      $thumb_src = wp_get_attachment_image_src($thumb_id, 'slide' );
+      $thumb_w = $thumb_src[1];
+      $thumb_h = $thumb_src[2];
+      $thumb_ratio = ( $thumb_w / $thumb_h );
+      $output .= '<div class="slide-item" data-width-height-ratio="'.$thumb_ratio.'">';
       $output .= $thumbs;
-    } //else
+    } else {
+      $output .= '<div class="slide-item">';
+    }
 
     if($caption) {
         $output .= '<div class="content"><div class="caption"><span class="highlight">'.$caption.'</span></div></div>';
     }
 
     $output .= '</div>';
+
   }
   $output .= '</div>';
 

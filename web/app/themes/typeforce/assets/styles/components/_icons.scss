@@ -1,9 +1,9 @@
-.icon-caret,
+.icon-caret-right,
 .icon-load-more,
 .icon-x,
 .icon-search,
 .icon-hamburger,
-.icon-arrow-r,
+.icon-arrow-right,
 .icon-grid,
 .icon-filter {
   transition: fill $hover-trans-time;
@@ -12,7 +12,7 @@
 
 
 
-.icon-caret {
+.icon-caret-right, .icon-caret-left {
   fill: $white;
   height: 22px;
   width: 11px;

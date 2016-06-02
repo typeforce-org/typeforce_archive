@@ -48,11 +48,12 @@
           display: none;
         }
         .entry-artist {
-          max-width: 350px;
-          width: calc( 95vw - 50px);
+          display: inline-block;
+          max-width: 250px;
+          // width: calc( 95vw - 50px);
           @include media-md {
-            max-width: 750px;
-            width: calc( 87vw - 150px);
+            max-width: 550px;
+            // width: calc( 87vw - 150px);
           }
           margin-top: .2em;
           margin-bottom: .3em;
