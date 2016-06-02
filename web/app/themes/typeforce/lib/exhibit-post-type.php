@@ -296,12 +296,13 @@ function get_exhibit_thumbnails() {
   $thumb_ids[$i=0] = get_post_thumbnail_id( get_the_ID() );
   // Grab all the image from our cmb2 file_list
   $files = get_post_meta( get_the_ID(), '_cmb2_more_images', true );
+  // well style differently if a single slide, lets assume there is only one until proven otherwise
   $single_slide = true;
   if($files) {
     foreach($files as  $file_id => $file_url) {
       $thumb_ids[++$i] = $file_id;
     }
-    $single_slide = false;
+    $single_slide = false; //proven otherwise
   }
   // Loop through each image gathered and make some html!
   $output = '';
