@@ -74,7 +74,7 @@ function build_tags() {
     }
   }
   // Get default metatag image from site_options
-  $default_metatag_image = \Firebelly\SiteOptions\wp_get_attachment_image_src(get_option('default_metatag_image_id'), 'large');
+  $default_metatag_image = wp_get_attachment_image_src(\Firebelly\SiteOptions\get_option('default_metatag_image_id'), 'large');
   // Add the fallback image to the images array
   if ($default_metatag_image) {
     $metatag_images[] = $default_metatag_image;
