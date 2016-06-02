@@ -92,7 +92,7 @@ function build_tags() {
     global $wp_query;
     $exhibition_id = $wp_query->queried_object->term_id;
     $metatag_images[] = wp_get_attachment_image_src(get_term_meta($exhibition_id,'_cmb2_featured_image_id',true), 'fb-share')[0];
-  } elseif (!is_home()) { // Find images if it isn't the homepage and the fallback isn't being forced
+  } elseif (!is_home() && !is_front_page()) { // Find images if it isn't the homepage and the fallback isn't being forced
     // Find featured thumbnail of the current post/page
     if (function_exists('has_post_thumbnail') && has_post_thumbnail($post->ID)) {
       $thumbnail_src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'fb-share');
