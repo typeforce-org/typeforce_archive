@@ -122,19 +122,19 @@ function get_page_blocks($post) {
 /**
  * Alphabetize Query and remove posts_per_page limits for exhibition archive pages
  */
-function exhibition_query_alterations($query) {
+// function exhibition_query_alterations($query) {
 
-  if( is_tax('exhibition') ) {
-    $query->set('posts_per_page','-1');
-    $query->set('numberposts','-1');
-    $query->set('orderby','title');
-    $query->set('order','ASC');
-    // $query->set('meta_key','_cmb2_type');
-    // $query->set('meta_value','exhibit');
-  }
+//   if( is_tax('exhibition') ) {
+//     $query->set('posts_per_page','-1');
+//     $query->set('numberposts','-1');
+//     $query->set('orderby','title');
+//     $query->set('order','ASC');
+//     $query->set('meta_key','_cmb2_type');
+//     $query->set('meta_value','exhibit');
+//   }
 
-}
-add_action('pre_get_posts', __NAMESPACE__ . '\\exhibition_query_alterations');
+// }
+// add_action('pre_get_posts', __NAMESPACE__ . '\\exhibition_query_alterations');
 
 
 

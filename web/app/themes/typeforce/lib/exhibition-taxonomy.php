@@ -182,6 +182,7 @@ function get_exhibit_link_li($exhibition_id,$type) {
     'meta_key'        => '_cmb2_type',
     'meta_value'      => $type
   );
+    // echo '<pre>'.print_r($args,true).'</pre>';
   $exhibits = get_posts($args);
 
   $list = ''; 

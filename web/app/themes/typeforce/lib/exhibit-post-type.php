@@ -236,7 +236,7 @@ function get_intro_slider() {
 }
 
 
-function get_exhibits($args, $loadmore = true) {
+function get_exhibits($args, $loadmore = true, $li_only=false) {
 
   $output ='';
 
@@ -244,7 +244,7 @@ function get_exhibits($args, $loadmore = true) {
 
   if ( $exhibit_posts->have_posts() ) {
 
-    $output .= '<ul class="exhibit-list load-more-container">';
+    if(!$li_only) { $output .= '<ul class="exhibit-list load-more-container">'; }
     while ( $exhibit_posts->have_posts() ) { 
       $exhibit_posts->the_post();
       global $post;
@@ -255,7 +255,7 @@ function get_exhibits($args, $loadmore = true) {
       $output .= ob_get_clean();
       $output .= '</li>';
     }
-    $output .= '</ul>';
+    if(!$li_only) { $output .= '</ul>'; }
     wp_reset_postdata();
 
     if($loadmore) { 
@@ -264,9 +264,7 @@ function get_exhibits($args, $loadmore = true) {
      }
     
   }else{
-    $output .= '<div class="alert alert-warning">' 
-      . __('Sorry, no results were found.', 'sage')
-      .'</div>';
+    return '';
   }
 
   return $output;
