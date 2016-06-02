@@ -378,8 +378,6 @@ var FBSage = (function($) {
   function _initSliders(){
 
     $('.slide-item').addClass('site-just-loaded');
-
-    $(window).load(function() {
       $('.slider').slick({
         slide: '.slide-item',
         centerMode: true,
@@ -397,6 +395,10 @@ var FBSage = (function($) {
       }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
           $(window).scroll();
       });
+      _resizeSliders();
+
+    $(window).load(function() {
+
       //move slider-nav-left to after the track, so it can appear
       $('.slider-nav-left').each(function() {
           $mySlider = $(this).closest('.slider');
