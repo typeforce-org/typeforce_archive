@@ -228,7 +228,7 @@ HTML;
       $output .= '<div class="featured-image" style="'.$thumb_css.'">'.$thumb.'</div>';
     }
     if($description) {
-      $output .= '<div class="description user-content"><h2>Description</h2>'.$description.'</div>'
+      $output .= '<div class="description user-content"><h2>Description</h2>'.$description.'</div>';
     }
   $output .= <<< HTML
       </div>
