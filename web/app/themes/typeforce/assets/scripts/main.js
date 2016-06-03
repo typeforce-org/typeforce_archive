@@ -301,27 +301,27 @@ var FBSage = (function($) {
 
 
   function _resizeSliders() {
-    if($('.home').length) {
+    // if($('.home').length) {
 
-      //get height of headlines
-      var headlineHeight = $('.headline').outerHeight(true);
+    //   //get height of headlines
+    //   var headlineHeight = $('.headline').outerHeight(true);
 
-      //Find the tallest slide content
-      var maxSlideContentHeight = 0;
-      $slideContent = $('.slide-item .content, .slide-item .update').each(function() {
-        myHeight = $(this).outerHeight(true);
-        maxSlideContentHeight = Math.max(maxSlideContentHeight,myHeight);
-      });
+    //   //Find the tallest slide content
+    //   var maxSlideContentHeight = 0;
+    //   $slideContent = $('.slide-item .content, .slide-item .update').each(function() {
+    //     myHeight = $(this).outerHeight(true);
+    //     maxSlideContentHeight = Math.max(maxSlideContentHeight,myHeight);
+    //   });
 
-      //the total hieght we need to be safe
-      var totalHeight = headlineHeight + maxSlideContentHeight; 
+    //   //the total hieght we need to be safe
+    //   var totalHeight = headlineHeight + maxSlideContentHeight; 
 
-      //assign
-      $('.intro-slider .slide-item').css('min-height',totalHeight);
-      $('.intro-content').css('min-height',totalHeight);
+    //   //assign
+    //   $('.intro-slider .slide-item').css('min-height',totalHeight);
+    //   $('.intro-content').css('min-height',totalHeight);
 
-    }
-    if($('.single-exhibit').length) {
+    // }
+    // if($('.single-exhibit').length) {
 
       //find the widest width to height ratio for the images from data attr
       var widestRatio = 1;
@@ -355,7 +355,7 @@ var FBSage = (function($) {
         $('.slider.slick-slider').slick('slickGoTo',currentSlide);
       }
 
-    }
+    // }
   }
 
   function _sliderArrowKeys() {
@@ -384,7 +384,7 @@ var FBSage = (function($) {
         centerPadding: '0',
         slidesToShow: 1,
         accessibility: true,
-        autoplay: true,
+        //autoplay: true,
         autoplaySpeed: 5000,
         speed: 500,
         variableWidth: true,
@@ -405,7 +405,6 @@ var FBSage = (function($) {
           $(this).detach().appendTo($mySlider);
         }
       );
-      $('.intro-slider .slider-nav-left').remove();
 
       _resizeSliders();
       window.setTimeout(function() {

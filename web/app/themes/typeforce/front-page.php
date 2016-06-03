@@ -20,7 +20,9 @@ $intro_slider = Firebelly\PostTypes\Intro\get_intro_slider();
 <div class="intro-content">
   <?= $intro_slider ?>
   <div class="headline">
-    <?= $headline ?>
+    <div class="wrap">
+      <?= $headline ?>
+    </div>
   </div>
 </div>
 
