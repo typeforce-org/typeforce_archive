@@ -1,16 +1,16 @@
 // Single Posts
 
 
-.thumbnail-slider {
-  .slide-item {
-    height: 75vh;
-  }
-  .slick-center { //Make the active slide in color
-    .duo {
-      opacity: 0;
-    }
-  }
-}
+// .thumbnail-slider {
+//   .slide-item {
+//     height: 75vh;
+//   }
+//   .slick-center { //Make the active slide in color
+//     .duo {
+//       opacity: 0;
+//     }
+//   }
+// }
 
 
 .single-exhibit {
@@ -41,7 +41,7 @@
         }
         padding-bottom: 1em;
         background: $gray-dark;
-        background: rgba($gray-dark,0.3);
+        background: rgba($gray-dark,0.2);
         background: linear-gradient( rgba($gray-dark,0.5) , rgba($gray-dark,0) );
         .entry-exhibition {
           @extend %small-caps;

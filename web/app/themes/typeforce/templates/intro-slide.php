@@ -3,10 +3,13 @@
 $thumb_size = 'slide';
 $thumb_id = get_post_thumbnail_id($intro_post->ID);
 $thumbs = \Firebelly\Media\get_color_and_duo_thumbs($thumb_id, $thumb_size );
+$thumb_src = wp_get_attachment_image_src($thumb_id, 'slide' );
+$thumb_w = $thumb_src[1];
+$thumb_h = $thumb_src[2];
+$thumb_ratio = ( $thumb_w / $thumb_h );
+
 $link_text = get_post_meta( $intro_post->ID, '_cmb2_link_text', true );
-
 $links_to = get_post_meta( $intro_post->ID, '_cmb2_links_to', true );
-
 if ($links_to === 'exhibit') {
   $url = get_permalink(get_post_meta( $intro_post->ID, '_cmb2_link_exhibit', true ));
 } elseif ($links_to === 'exhibition') {
@@ -18,21 +21,24 @@ if ($links_to === 'exhibit') {
 
 $update = apply_filters('the_content',$intro_post->post_content);
 ?>
-<article class="intro-slide">
-  <?php if ($thumbs) {
-    echo $thumbs;
-  } ?>
-  <div class="content">
+
+<div class="slide-item" data-width-height-ratio="<?= $thumb_ratio ?>">
+  <article class="intro-slide">
+    <?php if ($thumbs) {
+      echo $thumbs;
+    } ?>
+    <div class="content">
 
 
-    <div class="update user-content"><?= $update ?></div>
+      <div class="update user-content"><?= $update ?></div>
 
-    <?php if ( $link_text ) : ?>
-      <h1 class="intro-link">
-        <a href="<?= $url ?>"><span class="highlight"><?= $link_text ?></span></a>
-      </h1>
-    <?php endif; ?>
+      <?php if ( $link_text ) : ?>
+        <h1 class="intro-link">
+          <a href="<?= $url ?>"><span class="highlight"><?= $link_text ?></span></a>
+        </h1>
+      <?php endif; ?>
 
 
-  </div>
-</article>
+    </div>
+  </article>
+</div>

@@ -10,7 +10,6 @@ add_image_size( 'tiny-slide', 1000, 0, true );
 add_image_size( 'tiny-listing', 600, 0, true );
 add_image_size( 'slide', 1800, 0, true );
 add_image_size( 'listing', 768, 0, true );
-
 add_image_size( 'fb-share', 600, 0, true );
 
 /**

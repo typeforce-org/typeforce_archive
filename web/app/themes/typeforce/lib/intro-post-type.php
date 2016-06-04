@@ -206,11 +206,9 @@ function get_intro_slider() {
   $output = '<div class="slider intro-slider">';
 
   foreach ($intro_posts as $intro_post):
-    $output .= '<div class="slide-item">';
     ob_start();
     include(locate_template('templates/intro-slide.php'));
     $output .= ob_get_clean();
-    $output .=  '</div>';
   endforeach;
 
   $output .=  '</div>';
