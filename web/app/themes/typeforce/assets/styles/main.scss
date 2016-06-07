@@ -6,7 +6,7 @@
 // endbower
 
 // Reset
-@import "vendor/normalize";
+@import "helpers/normalize";
 
 // Helpers and Variables
 @import "helpers/variables";
@@ -16,8 +16,6 @@
 @import "helpers/animations";
 @import "helpers/accessibility";
 @import "helpers/ie";
-
-// Vendor
 
 // Components
 @import "common/global";
