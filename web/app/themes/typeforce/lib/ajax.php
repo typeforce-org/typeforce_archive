@@ -16,7 +16,6 @@ function is_ajax() {
   return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 }
 
-
 function load_more_button($orig_query=false) {
 
   //if a query obj is not provided, grab the global wp_query
@@ -35,7 +34,6 @@ function load_more_button($orig_query=false) {
   $search_query = isset($orig_query->query_vars['s']) ? $orig_query->query_vars['s'] : '';
   $per_page = isset($orig_query->query['posts_per_page']) ? $orig_query->query['posts_per_page'] : get_option( 'posts_per_page', 24 );
   $orderby = isset($orig_query->query['orderby']) ? $orig_query->query['orderby'] : '';
-
 
   //get total post count for all posts in all pages of query
   if($exhibition_id) {

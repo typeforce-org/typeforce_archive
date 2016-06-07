@@ -35,9 +35,6 @@ $args = array(
 register_taxonomy( 'exhibition', array('exhibit'), $args);
 
 
-
-
-
 /**
  * Extra fields for Taxonomies
  */
@@ -97,7 +94,6 @@ function register_taxonomy_metabox() {
 }
 add_action( 'cmb2_admin_init', __NAMESPACE__ . '\register_taxonomy_metabox' );
 
-
 /**
  * Custom admin cols for taxonomy
  */
@@ -112,9 +108,6 @@ function edit_columns($columns){
 }
 add_filter('manage_edit-exhibition_columns', __NAMESPACE__ . '\edit_columns');
 
-
-
-
 function hack_away_the_unnecessary_fields() {
   echo <<<HTML
   <style>
@@ -126,44 +119,12 @@ HTML;
 }
 add_action('admin_head', __NAMESPACE__ . '\hack_away_the_unnecessary_fields');
 
-//  function custom_columns($column){ //BROKEN
-//   global $post;
-//   global $wp_query;
-//   $term_id = $wp_query->queried_object->term_id;
-//   print_r(get_term($term_id));
-//   // if ( $post->post_type == 'exhibit' ) {
-//     if ( $column == 'featured_image' ) 
-//       echo the_post_thumbnail('thumbnail');
-//     elseif ( $column == 'content') 
-//       echo Utils\get_excerpt($post);
-//     else {
-//       $custom = get_post_custom();
-//       if ( array_key_exists($column, $custom) ) 
-//         echo $custom[$column][0];
-//     }
-//   // }
-// }
-// add_action('manage_exhibition_custom_column', __NAMESPACE__ . '\custom_columns');
-
-
-/**
- * Enqueue admin_scripts.js //BROKEN
- */
-
-// function admin_scripts() {
-//    wp_enqueue_script( 'adminscripts', get_template_directory_uri(). '/assets/js/admin.min.js', array('jquery'), NULL, true );
-// }
-// add_action( 'admin_enqueue_scripts', __NAMESPACE__ . 'admin_scripts' );
-
-
-
 /**
  * Utilities & Content
  */
 function get_exhibition_object($exhibit_id) {
   return wp_get_post_terms($exhibit_id,'exhibition')[0];
 }
-
 
 function get_exhibit_link_li($exhibition_id,$type) {
     $args = array(
@@ -195,13 +156,12 @@ function get_exhibit_link_li($exhibition_id,$type) {
   return $list;
 }
 
-
 function get_exhibition_info() {
 
   global $wp_query;
   $exhibition_id = $wp_query->queried_object->term_id;
 
-  $title = $wp_query->queried_object->name; //'<a href="'.get_term_link($exhibition_id).'">'.get_term_meta($exhibition_id,'_cmb2_full_title',true).'</a>';
+  $title = $wp_query->queried_object->name;
 
   $description = apply_filters('the_content', get_term_meta($exhibition_id,'_cmb2_description',true));
   $sponsors = apply_filters('the_content', get_term_meta($exhibition_id,'_cmb2_sponsors',true));
@@ -277,8 +237,6 @@ HTML;
   return $output;
 }
 
-
-
 /**
  * Add current menu class to menu items that are exhibitions containing the exhibit for the current post
  */
@@ -296,16 +254,3 @@ function highlight_exhibitions( $classes, $item ) {
     return $classes;
 }
 add_filter( 'nav_menu_css_class' , __NAMESPACE__ . '\highlight_exhibitions', 10, 2 );
-
-
-
-
-
-
-
-
-
-
-
-
-

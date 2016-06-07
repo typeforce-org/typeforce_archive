@@ -1,34 +1,3 @@
-// .home {
-
-//   .slider {
-//     //compensate for slick centerMode trying to center it
-//     width: 100vw;
-
-//     .slick-track {
-//         margin-left: ( $main-slider-slide-width - 100vw )/2;
-//         @include media-md { margin-left: ( $main-slider-slide-width-md - 100vw )/2; }
-//     } 
-
-//     .slide-item {
-//       width:  $main-slider-slide-width;
-//       @include media-md { width:  $main-slider-slide-width-md; }
-//     }
-//   }
-
-//   .slider-nav-right{
-//     width: 100vw - $main-slider-slide-width;
-//     @include media-md {
-//       width: 100vw - $main-slider-slide-width-md;
-//     }
-//   }
-//   .slider-nav-left{
-//     display: none !important;
-//   }
-
-// }
-
-
-
 .slider {
   background: rgba(0,0,0,.5);
     
@@ -185,12 +154,3 @@
     }
   }
 }
-
-
-
-
-
-
-
-
-

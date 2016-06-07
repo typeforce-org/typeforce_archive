@@ -118,25 +118,6 @@ function get_page_blocks($post) {
   return $output;
 }
 
-
-/**
- * Alphabetize Query and remove posts_per_page limits for exhibition archive pages
- */
-// function exhibition_query_alterations($query) {
-
-//   if( is_tax('exhibition') ) {
-//     $query->set('posts_per_page','-1');
-//     $query->set('numberposts','-1');
-//     $query->set('orderby','title');
-//     $query->set('order','ASC');
-//     $query->set('meta_key','_cmb2_type');
-//     $query->set('meta_value','exhibit');
-//   }
-
-// }
-// add_action('pre_get_posts', __NAMESPACE__ . '\\exhibition_query_alterations');
-
-
 /**
  * This function creates a custom order for posts, stored in a meta data field.  The order goes windows->exhibits->openings each sorted alphabetically.
 
@@ -183,7 +164,6 @@ function set_exhibition_order($exhibition_id) {
       } else {
         update_post_meta($window->ID,'_exhibition_order',$i);
       }
-      // echo get_post_meta($window->ID,'_exhibition_order',true);
       $i++;
     }
   }
@@ -195,7 +175,6 @@ function set_exhibition_order($exhibition_id) {
       } else {
         update_post_meta($exhibit->ID,'_exhibition_order',$i);
       }
-      // echo get_post_meta($exhibit->ID,'_exhibition_order',true);
       $i++;
     }
   }
@@ -207,19 +186,8 @@ function set_exhibition_order($exhibition_id) {
       } else {
         update_post_meta($opening->ID,'_exhibition_order',$i);
       }
-      // echo get_post_meta($opening->ID,'_exhibition_order',true);
       $i++;
     }
   }
 
 }
-// add_action('pre_get_posts', __NAMESPACE__ . '\\exhibition_query_alterations');
-
-
-
-
-
-
-
-
-

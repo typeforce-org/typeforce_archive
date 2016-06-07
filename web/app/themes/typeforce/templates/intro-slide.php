@@ -29,7 +29,6 @@ $update = apply_filters('the_content',$intro_post->post_content);
     } ?>
     <div class="content">
 
-
       <div class="update user-content"><?= $update ?></div>
 
       <?php if ( $link_text ) : ?>
@@ -37,7 +36,6 @@ $update = apply_filters('the_content',$intro_post->post_content);
           <a href="<?= $url ?>"><span class="highlight"><?= $link_text ?></span></a>
         </h1>
       <?php endif; ?>
-
 
     </div>
   </article>

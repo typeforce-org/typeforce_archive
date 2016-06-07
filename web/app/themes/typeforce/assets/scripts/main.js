@@ -45,7 +45,6 @@ var FBSage = (function($) {
     //give the header a .scrolled class when past a certain point
     _fixHeaderOnScroll();
 
-
     _initImages();
 
     //add classes to make up for the lack of hover event on touch devices;
@@ -88,7 +87,6 @@ var FBSage = (function($) {
     }, "easeOutSine");
   }
 
-
   function _openSearch() {
     $('.site-header').addClass('search-active');
     $('.search-field:first').focus();
@@ -123,7 +121,6 @@ var FBSage = (function($) {
   // });
  }
 
-
   function _resizeNav() {
 
     var $navWidth = 100 + (breakpoint_medium ? 75 : 25); //50 is a buffer, 75/25 is site padding; 
@@ -141,7 +138,6 @@ var FBSage = (function($) {
       //console.log('close');
     }
   }
-
 
   // Handles main nav
   function _initNav() {
@@ -247,7 +243,6 @@ var FBSage = (function($) {
       var $more_container = $load_more.parents('main').find('.load-more-container');
       loadingTimer = setTimeout(function() { $more_container.addClass('loading'); }, 0);
 
-
       var post__not_in = [];
       //We want to exclude the posts that are currently displayed if we are a random query.
       if(orderby === 'rand') {
@@ -298,7 +293,6 @@ var FBSage = (function($) {
       }
     });
   }
-
 
   function _resizeSliders() {
     // if($('.home').length) {
@@ -374,7 +368,6 @@ var FBSage = (function($) {
 
   }
 
-
   function _initSliders(){
 
     $('.slide-item').addClass('site-just-loaded');
@@ -412,7 +405,6 @@ var FBSage = (function($) {
       },0);
       _sliderArrowKeys();
     }); 
-
 
   }
 
@@ -463,11 +455,6 @@ var FBSage = (function($) {
     _initImages();
 
   }
-
-  // Called on scroll
-  // function _scroll(dir) {
-  //   var wintop = $(window).scrollTop();
-  // }
 
   // Public functions
   return {

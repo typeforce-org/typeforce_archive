@@ -51,9 +51,6 @@ function metaboxes( array $meta_boxes ) {
     ),
   );
 
-
   return $meta_boxes;
 }
 add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
-
-

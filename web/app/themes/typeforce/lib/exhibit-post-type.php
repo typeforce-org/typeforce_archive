@@ -56,7 +56,6 @@ function post_type() {
 }  
 add_action( 'init', __NAMESPACE__ . '\post_type', 0 );
 
-
 /**
  * Custom admin cols for post type
  */
@@ -124,7 +123,6 @@ function register_exhibit_metaboxes() {
   // foreach ( $all_exhibits as $an_exhibit ) {
   //   update_post_meta($an_exhibit->ID, '_cmb2_type', 'exhibit');
   // }
-
 
   $cmb = new_cmb2_box( array(
     'id'            => 'exhibit_metabox',
@@ -235,7 +233,6 @@ add_action( 'cmb2_admin_init', __NAMESPACE__ . '\register_exhibit_metaboxes' );
 //   return $output;
 // }
 
-
 function get_exhibits($args, $loadmore = true, $li_only=false) {
 
   $output ='';
@@ -269,7 +266,6 @@ function get_exhibits($args, $loadmore = true, $li_only=false) {
 
   return $output;
 }
-
 
 function get_exhibit_titles() {
   global $post;
@@ -333,34 +329,3 @@ function get_exhibit_thumbnails() {
 
   return $output;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

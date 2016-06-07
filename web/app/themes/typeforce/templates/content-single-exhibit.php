@@ -4,7 +4,6 @@ while (have_posts()) : the_post();
 $exhibition_obj = Firebelly\PostTypes\Exhibition\get_exhibition_object($post->ID);
 $exhibition_year = $exhibition_obj->name;
 
-
 $title_entries = get_post_meta($post->ID,'_cmb2_titles',true);
 $title_header = __('Title'.( (count($title_entries)>1) ? 's' : ''),'sage');
 $titles = '';
@@ -23,7 +22,6 @@ $social = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_social',tru
 $stats = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_stats',true));
 $photographer = apply_filters('the_content',get_post_meta($post->ID,'_cmb2_photographer',true));
 $thumbs = Firebelly\PostTypes\Exhibit\get_exhibit_thumbnails(); 
-
 
 Firebelly\Utils\set_exhibition_order($exhibition_obj->term_id);
 $args = array(
@@ -116,7 +114,3 @@ $more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args,false);
   </article>
   <?= $more_exhibits ?>
 <?php endwhile; ?>
-
-
-
-
