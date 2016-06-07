@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Exhibit Post Type
  */
@@ -53,7 +53,7 @@ function post_type() {
     'capability_type'     => 'page',
   );
   register_post_type( 'exhibit', $args );
-}  
+}
 add_action( 'init', __NAMESPACE__ . '\post_type', 0 );
 
 
@@ -76,15 +76,15 @@ add_filter('manage_exhibit_posts_columns', __NAMESPACE__ . '\edit_columns');
 function custom_columns($column){
   global $post;
   if ( $post->post_type == 'exhibit' ) {
-    if ( $column == 'featured_image' ) 
+    if ( $column == 'featured_image' )
       echo the_post_thumbnail('thumbnail');
-    elseif ( $column == 'content') 
+    elseif ( $column == 'content')
       echo Utils\get_excerpt($post);
     elseif ( $column == '_cmb2_titles') {
       get_exhibit_titles();
     } else {
       $custom = get_post_custom();
-      if ( array_key_exists($column, $custom) ) 
+      if ( array_key_exists($column, $custom) )
         echo $custom[$column][0];
     }
   }
@@ -96,7 +96,7 @@ add_action('manage_posts_custom_column', __NAMESPACE__ . '\custom_columns');
  */
 function register_exhibit_metaboxes() {
   $prefix = '_cmb2_'; //start with underscore to hide from custom fields list
-  
+
   $type = new_cmb2_box( array(
     'id'            => 'exhibit_type_metabox',
     'title'         => __( 'Exhibit Type', 'cmb2' ),
@@ -106,7 +106,7 @@ function register_exhibit_metaboxes() {
     'show_names'    => true,
     )
   );
-  $type->add_field( 
+  $type->add_field(
     array(
       'name'             => 'Choose:',
       'id'               => $prefix . 'type',
@@ -117,7 +117,7 @@ function register_exhibit_metaboxes() {
           'window'   => __( 'Window Display', 'cmb2' ),
           'opening'     => __( 'Exhibition Opening', 'cmb2' ),
       ),
-    ) 
+    )
   );
 
   // $all_exhibits = get_posts($args);
@@ -155,7 +155,7 @@ function register_exhibit_metaboxes() {
     'id'   => 'title',
     'type' => 'text_medium',
 ) );
-  $cmb->add_field(     
+  $cmb->add_field(
       array(
         'name'  => 'Materials & Dimensions',
         'desc'  => '(optional)',
@@ -163,7 +163,7 @@ function register_exhibit_metaboxes() {
         'type'  => 'wysiwyg',
       )
   );
-  $cmb->add_field(    
+  $cmb->add_field(
       array(
         'name'  => 'Biography',
         'desc'  => 'Artist\'s Biography (optional)',
@@ -171,7 +171,7 @@ function register_exhibit_metaboxes() {
         'type'  => 'wysiwyg',
       )
   );
-  $cmb->add_field(         
+  $cmb->add_field(
       array(
         'name'  => 'Social',
         'desc'  => 'Website, Social Media, etc. (optional)',
@@ -179,7 +179,7 @@ function register_exhibit_metaboxes() {
         'type'  => 'wysiwyg',
       )
   );
-  $cmb->add_field(         
+  $cmb->add_field(
       array(
         'name'  => 'Stats',
         'desc'  => 'Event information',
@@ -187,7 +187,7 @@ function register_exhibit_metaboxes() {
         'type'  => 'wysiwyg',
       )
   );
-  $cmb->add_field(         
+  $cmb->add_field(
       array(
         'name'  => 'Photographer',
         'desc'  => 'Links for who photographed the event',
@@ -231,7 +231,7 @@ add_action( 'cmb2_admin_init', __NAMESPACE__ . '\register_exhibit_metaboxes' );
 //   endforeach;
 
 //   $output .=  '</div>';
- 
+
 //   return $output;
 // }
 
@@ -245,7 +245,7 @@ function get_exhibits($args, $loadmore = true, $li_only=false) {
   if ( $exhibit_posts->have_posts() ) {
 
     if(!$li_only) { $output .= '<ul class="exhibit-list load-more-container">'; }
-    while ( $exhibit_posts->have_posts() ) { 
+    while ( $exhibit_posts->have_posts() ) {
       $exhibit_posts->the_post();
       global $post;
       $exhibit_post = $post;
@@ -258,11 +258,11 @@ function get_exhibits($args, $loadmore = true, $li_only=false) {
     if(!$li_only) { $output .= '</ul>'; }
     wp_reset_postdata();
 
-    if($loadmore) { 
+    if($loadmore) {
 
       $output .= \Firebelly\Ajax\load_more_button($exhibit_posts);
      }
-    
+
   }else{
     return '';
   }
@@ -334,33 +334,18 @@ function get_exhibit_thumbnails() {
   return $output;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * Add meta__in option for get_posts() that uses ORDER BY FIELD to order by [window,exhibit,opening],title
+ * (adapted from http://wordpress.stackexchange.com/a/204118)
+ */
+function order_by_field($orderby, \WP_Query $q) {
+  if ($meta__in = $q->get('meta__in')) {
+    if (is_array($meta__in) && !empty($meta__in)) {
+      global $wpdb;
+      $list = '"' . join('","', $meta__in) . '"';
+      $orderby = " FIELD({$wpdb->postmeta}.meta_value, {$list}), {$wpdb->posts}.post_title ASC ";
+    }
+  }
+  return $orderby;
+}
+add_filter('posts_orderby', __NAMESPACE__ . '\order_by_field', 10, 2);

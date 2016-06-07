@@ -23,7 +23,7 @@ $rewrite = array(
   'pages'               => true,
   'feeds'               => true,
 );
-$args = array( 
+$args = array(
   'hierarchical'      => true,
   'labels'            => $labels,
   'show_admin_column' => true,
@@ -46,52 +46,52 @@ function register_taxonomy_metabox() {
     /**
     * Metabox to add fields to categories and tags
     */
-    $cmb_term = new_cmb2_box( 
+    $cmb_term = new_cmb2_box(
       array(
        'id'               => $prefix . 'edit',
        'title'            => __( 'Exhibition Information', 'cmb2' ),
        'object_types'     => array( 'term' ), // Tells CMB2 to use term_meta vs post_meta
        'taxonomies'       => array( 'exhibition' ), // Tells CMB2 which taxonomies should have these fields
-      ) 
+      )
     );
-   // $cmb_term->add_field( 
+   // $cmb_term->add_field(
    //    array(
    //      'name'  => 'Full Title',
    //      'id'    => $prefix . 'full_title',
    //      'type'  => 'text_medium',
-   //    ) 
+   //    )
    //  );
-    $cmb_term->add_field( 
+    $cmb_term->add_field(
       array(
         'name'  => 'Description',
         'desc'  => '(Optional)',
         'id'    => $prefix . 'description',
         'type'  => 'wysiwyg',
-      ) 
+      )
     );
-    $cmb_term->add_field( 
+    $cmb_term->add_field(
       array(
         'name'  => 'Featured Image',
         'desc'  => '(Optional)',
         'id'    => $prefix . 'featured_image',
         'type'  => 'file',
-      ) 
+      )
     );
-    $cmb_term->add_field( 
+    $cmb_term->add_field(
       array(
         'name'  => 'Catalog Purchase',
         'desc'  => '(Optional) Put a link to purchase a catalog.  Or explain "Out of stock", "Coming soon", etc.',
         'id'    => $prefix . 'catalogue',
         'type'  => 'wysiwyg',
-      ) 
-    );    
-    $cmb_term->add_field( 
+      )
+    );
+    $cmb_term->add_field(
       array(
         'name'  => 'Sponsors',
         'desc'  => '(Optional)',
         'id'    => $prefix . 'sponsors',
         'type'  => 'wysiwyg',
-      ) 
+      )
     );
 
 }
@@ -119,7 +119,7 @@ function hack_away_the_unnecessary_fields() {
   echo <<<HTML
   <style>
     .taxonomy-exhibition .term-description-wrap, .taxonomy-exhibition .term-parent-wrap {
-      display: none !important; 
+      display: none !important;
     }
   </style>
 HTML;
@@ -132,13 +132,13 @@ add_action('admin_head', __NAMESPACE__ . '\hack_away_the_unnecessary_fields');
 //   $term_id = $wp_query->queried_object->term_id;
 //   print_r(get_term($term_id));
 //   // if ( $post->post_type == 'exhibit' ) {
-//     if ( $column == 'featured_image' ) 
+//     if ( $column == 'featured_image' )
 //       echo the_post_thumbnail('thumbnail');
-//     elseif ( $column == 'content') 
+//     elseif ( $column == 'content')
 //       echo Utils\get_excerpt($post);
 //     else {
 //       $custom = get_post_custom();
-//       if ( array_key_exists($column, $custom) ) 
+//       if ( array_key_exists($column, $custom) )
 //         echo $custom[$column][0];
 //     }
 //   // }
@@ -164,7 +164,6 @@ function get_exhibition_object($exhibit_id) {
   return wp_get_post_terms($exhibit_id,'exhibition')[0];
 }
 
-
 function get_exhibit_link_li($exhibition_id,$type) {
     $args = array(
     'post_type'   => 'exhibit',
@@ -174,10 +173,10 @@ function get_exhibit_link_li($exhibition_id,$type) {
           'field'           =>  'id',
           'terms'           => $exhibition_id,
       ),
-    ),  
+    ),
     'posts_per_page'  => -1,
     'numberposts'     => -1,
-    'orderby'         => 'title', 
+    'orderby'         => 'title',
     'order'           => 'ASC',
     'meta_key'        => '_cmb2_type',
     'meta_value'      => $type
@@ -185,7 +184,7 @@ function get_exhibit_link_li($exhibition_id,$type) {
     // echo '<pre>'.print_r($args,true).'</pre>';
   $exhibits = get_posts($args);
 
-  $list = ''; 
+  $list = '';
   foreach ($exhibits as $exhibit) {
     $exhibit_title = $exhibit->post_title;
     $exhibit_url = get_permalink($exhibit->ID);
@@ -194,7 +193,6 @@ function get_exhibit_link_li($exhibition_id,$type) {
 
   return $list;
 }
-
 
 function get_exhibition_info() {
 
@@ -277,8 +275,6 @@ HTML;
   return $output;
 }
 
-
-
 /**
  * Add current menu class to menu items that are exhibitions containing the exhibit for the current post
  */
@@ -288,7 +284,7 @@ function highlight_exhibitions( $classes, $item ) {
     $item_exhibition_id = $item->object_id;
     global $post;
     $post_exhibition_id = \Firebelly\PostTypes\Exhibition\get_exhibition_object($post->ID)->term_id;
-    
+
     if( $item_exhibition_id == $post_exhibition_id ){
       $classes[] = "current-menu-item";
     }
@@ -296,16 +292,3 @@ function highlight_exhibitions( $classes, $item ) {
     return $classes;
 }
 add_filter( 'nav_menu_css_class' , __NAMESPACE__ . '\highlight_exhibitions', 10, 2 );
-
-
-
-
-
-
-
-
-
-
-
-
-
