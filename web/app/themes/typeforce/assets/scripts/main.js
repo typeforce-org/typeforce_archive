@@ -1,4 +1,4 @@
-// FBSage - Firebelly 2015
+// Typeforce Archive - Firebelly
 /*jshint latedef:false*/
 
 // Good Design for Good Reason for Good Namespace
@@ -31,6 +31,7 @@ var FBSage = (function($) {
     _initNav();
     _initSearch();
     _initLoadMore();
+
     // Set up the show/hide exhibition functionality;
     // _initExhibition();
 
@@ -40,15 +41,16 @@ var FBSage = (function($) {
     // Give mouse over behavior to exhibit listings (e.g. duo images and other elements fade away)
     _exhibitListingMouseOver();
 
+    // Fire up the Slick sliders
     _initSliders();
 
-    //give the header a .scrolled class when past a certain point
+    // Give the header a .scrolled class when past a certain point
     _fixHeaderOnScroll();
 
-
+    // Init lazyload images
     _initImages();
 
-    //add classes to make up for the lack of hover event on touch devices;
+    // Add classes to make up for the lack of hover event on touch devices;
     _touchOnly();
 
     // Esc handlers
@@ -88,7 +90,6 @@ var FBSage = (function($) {
     }, "easeOutSine");
   }
 
-
   function _openSearch() {
     $('.site-header').addClass('search-active');
     $('.search-field:first').focus();
@@ -123,10 +124,8 @@ var FBSage = (function($) {
   // });
  }
 
-
   function _resizeNav() {
-
-    var $navWidth = 100 + (breakpoint_medium ? 75 : 25); //50 is a buffer, 75/25 is site padding; 
+    var $navWidth = 100 + (breakpoint_medium ? 75 : 25); //50 is a buffer, 75/25 is site padding;
     $('.site-header .site-nav .menu-item a').each(function() {
       $navWidth += $(this).outerWidth()*2;
     });
@@ -142,7 +141,6 @@ var FBSage = (function($) {
     }
   }
 
-
   // Handles main nav
   function _initNav() {
     //SEO-useless nav togglers
@@ -156,7 +154,6 @@ var FBSage = (function($) {
       .on('click', function(e) {
         _showNav();
       });
-
     _resizeNav();
   }
 
@@ -180,22 +177,13 @@ var FBSage = (function($) {
           var top = $(this).offset().top;
           var height = parseInt($(this).closest('.exhibit').css('padding-bottom'));
           var bottom = height + top;
-          // console.log('wintop '+wintop);
-          // console.log('winhalf '+winhalf);
-          // console.log('top '+top);
-          // console.log('height '+height);
-          // console.log('bottom '+bottom);
           if (winhalf > top && winhalf < bottom) {
             $(this).addClass('hover');
-            // console.log('in');
           } else {
-            $(this).removeClass('hover');  
-            // console.log('out');        
+            $(this).removeClass('hover');
           }
         });
       });
-      
-      console.log('touch screen');
     }
   }
 
@@ -204,7 +192,6 @@ var FBSage = (function($) {
       $('.lazy').each( function() {
         var bigUrl = $(this).attr('data-big-img-url');
         if( bigUrl && $(this).attr('data-current-img-size')==='tiny'){
-          // console.log($(this));
           $(this).attr('data-current-img-size','big');
           $(this).removeClass('loaded');
           $(this).attr('data-original', bigUrl);
@@ -218,7 +205,7 @@ var FBSage = (function($) {
         $(this).addClass('loaded');
       }
     });
-    $('.slide-item .lazy').trigger('appear'); //force load of sliders;
+    $('.slide-item .lazy').trigger('appear'); // Force load of sliders
   }
 
   function _initLoadMore() {
@@ -247,12 +234,11 @@ var FBSage = (function($) {
       var $more_container = $load_more.parents('main').find('.load-more-container');
       loadingTimer = setTimeout(function() { $more_container.addClass('loading'); }, 0);
 
-
       var post__not_in = [];
       //We want to exclude the posts that are currently displayed if we are a random query.
       if(orderby === 'rand') {
         $('.load-more-container .exhibit .exhibit-listing-info').each(function() {
-          post__not_in.push( $(this).data('id') );
+          post__not_in.push( $(this).attr('data-id') );
         });
       }
 
@@ -314,7 +300,7 @@ var FBSage = (function($) {
     //   });
 
     //   //the total hieght we need to be safe
-    //   var totalHeight = headlineHeight + maxSlideContentHeight; 
+    //   var totalHeight = headlineHeight + maxSlideContentHeight;
 
     //   //assign
     //   $('.intro-slider .slide-item').css('min-height',totalHeight);
@@ -326,7 +312,7 @@ var FBSage = (function($) {
       //find the widest width to height ratio for the images from data attr
       var widestRatio = 1;
       $('.slide-item').each(function() {
-        var ratio = $(this).data('width-height-ratio');
+        var ratio = $(this).attr('data-width-height-ratio');
         widestRatio = Math.max(ratio,widestRatio);
       });
 
@@ -339,10 +325,10 @@ var FBSage = (function($) {
       //apply
       $('.slide-item').css('max-height',maxHeight+'px');
       $('.slide-item').css('max-width',maxWidth+'px');
-      
+
       //give slides proper width (they do not have this on their own)
       $('.slide-item').each(function() {
-        var ratio = $(this).data('width-height-ratio');
+        var ratio = $(this).attr('data-width-height-ratio');
         var h = $(this).height();
         var w = h*ratio;
         $(this).css('width',w+'px');
@@ -351,7 +337,7 @@ var FBSage = (function($) {
       //re-goto the slide we are on already (this will recenter the track)
       if($('.slider.slick-slider').length){
         var currentSlide = $('.slider.slick-slider').slick('slickCurrentSlide');
-        console.log(currentSlide);
+        // console.log(currentSlide);
         $('.slider.slick-slider').slick('slickGoTo',currentSlide);
       }
 
@@ -359,24 +345,20 @@ var FBSage = (function($) {
   }
 
   function _sliderArrowKeys() {
-
-   $(document).keyup(function(e) {
-      if (e.keyCode === 37) { //left arrow
+    $(document).keyup(function(e) {
+      if (e.keyCode === 37) { // Left arrow
         // $('.slide-item.slick-center').removeClass('slick-center');
         $('.slider').slick('slickPrev');
 
       }
-      if (e.keyCode === 39) { //right arrow
+      if (e.keyCode === 39) { // Right arrow
         // $('.slide-item.slick-center').removeClass('slick-center');
         $('.slider').slick('slickNext');
       }
     });
-
   }
 
-
   function _initSliders(){
-
     $('.slide-item').addClass('site-just-loaded');
       $('.slider').slick({
         slide: '.slide-item',
@@ -391,15 +373,14 @@ var FBSage = (function($) {
         // draggable: false,
         // touchMove: false,
         prevArrow: '<div class="slider-nav-left"><svg class="icon-caret-left" role="img"><use xlink:href="#icon-caret-left"></use></svg></div>',
-        nextArrow: '<div class="slider-nav-right"><svg class="icon-caret-right" role="img"><use xlink:href="#icon-caret-right"></use></svg></div>',   
+        nextArrow: '<div class="slider-nav-right"><svg class="icon-caret-right" role="img"><use xlink:href="#icon-caret-right"></use></svg></div>',
       }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
           $(window).scroll();
       });
       _resizeSliders();
 
     $(window).load(function() {
-
-      //move slider-nav-left to after the track, so it can appear
+      // Move slider-nav-left to after the track, so it can appear
       $('.slider-nav-left').each(function() {
           $mySlider = $(this).closest('.slider');
           $(this).detach().appendTo($mySlider);
@@ -411,13 +392,11 @@ var FBSage = (function($) {
         $('.site-just-loaded').removeClass('site-just-loaded');
       },0);
       _sliderArrowKeys();
-    }); 
-
-
+    });
   }
 
   function _injectSvgSprite() {
-    boomsvgloader.load('/app/themes/typeforce/assets/svgs/build/svgs-defs.svg'); 
+    boomsvgloader.load('/app/themes/typeforce/assets/svgs/build/svgs-defs.svg');
   }
 
   function _exhibitListingMouseOver() {
@@ -458,16 +437,11 @@ var FBSage = (function($) {
     breakpoint_medium = (screenWidth >= breakpoint_array[1]);
     breakpoint_large = (screenWidth >= breakpoint_array[2]);
 
-    _resizeSliders(); 
+    _resizeSliders();
     _resizeNav();
     _initImages();
 
   }
-
-  // Called on scroll
-  // function _scroll(dir) {
-  //   var wintop = $(window).scrollTop();
-  // }
 
   // Public functions
   return {
