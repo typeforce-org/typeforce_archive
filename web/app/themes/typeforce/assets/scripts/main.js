@@ -295,28 +295,6 @@ var FBSage = (function($) {
   }
 
   function _resizeSliders() {
-    // if($('.home').length) {
-
-    //   //get height of headlines
-    //   var headlineHeight = $('.headline').outerHeight(true);
-
-    //   //Find the tallest slide content
-    //   var maxSlideContentHeight = 0;
-    //   $slideContent = $('.slide-item .content, .slide-item .update').each(function() {
-    //     myHeight = $(this).outerHeight(true);
-    //     maxSlideContentHeight = Math.max(maxSlideContentHeight,myHeight);
-    //   });
-
-    //   //the total hieght we need to be safe
-    //   var totalHeight = headlineHeight + maxSlideContentHeight; 
-
-    //   //assign
-    //   $('.intro-slider .slide-item').css('min-height',totalHeight);
-    //   $('.intro-content').css('min-height',totalHeight);
-
-    // }
-    // if($('.single-exhibit').length) {
-
       //find the widest width to height ratio for the images from data attr
       var widestRatio = 1;
       $('.slide-item').each(function() {
@@ -331,7 +309,7 @@ var FBSage = (function($) {
       var maxHeight = Math.max(maxHeightFromScreen,maxHeightFromRatio);
 
       //apply
-      $('.slide-item').css('max-height',maxHeight+'px');
+      $('.slide-item, .intro-content').css('max-height',maxHeight+'px');
       $('.slide-item').css('max-width',maxWidth+'px');
       
       //give slides proper width (they do not have this on their own)
@@ -345,11 +323,8 @@ var FBSage = (function($) {
       //re-goto the slide we are on already (this will recenter the track)
       if($('.slider.slick-slider').length){
         var currentSlide = $('.slider.slick-slider').slick('slickCurrentSlide');
-        console.log(currentSlide);
         $('.slider.slick-slider').slick('slickGoTo',currentSlide);
       }
-
-    // }
   }
 
   function _sliderArrowKeys() {
