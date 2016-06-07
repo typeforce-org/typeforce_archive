@@ -26,7 +26,6 @@ function get_post_thumbnail($post_id, $size='medium') {
   return $return;
 }
 
-
 /**
  * Get the file path (not URL) to a thumbnail of a particular size.  
  * (get_attached_file() only returns paths to full-sized thumbnails.)  
@@ -54,8 +53,6 @@ function get_thumbnail_size_path($thumb_id,$size) {
   return $new_path;
 }
 
-
-
 /**
  * Get url for duo image, make duo image if non-existent
  * @param  int|object   $post_or_id (WP post object or image attachment id)
@@ -69,7 +66,6 @@ function get_duo_url($post_or_id, $options=[]) {
   $color1 = $options['color1'];
   $color2 = $options['color2'];
   $size = $options['size'];
-
 
   // If WP post object, get the featured image
   if (is_object($post_or_id)) {
@@ -124,7 +120,6 @@ function get_duo_url($post_or_id, $options=[]) {
   return $duo_url;
 }
 
-
 /**
  * Output duo and color thumbnails with all the lazy load, multiple size schmigamaroo
  */
@@ -157,5 +152,4 @@ HTML;
 HTML;
   }
   return $output;
-
 }

@@ -125,7 +125,6 @@ function register_exhibit_metaboxes() {
   //   update_post_meta($an_exhibit->ID, '_cmb2_type', 'exhibit');
   // }
 
-
   $cmb = new_cmb2_box( array(
     'id'            => 'exhibit_metabox',
     'title'         => __( 'More Information', 'cmb2' ),
@@ -235,7 +234,6 @@ add_action( 'cmb2_admin_init', __NAMESPACE__ . '\register_exhibit_metaboxes' );
 //   return $output;
 // }
 
-
 function get_exhibits($args, $loadmore = true, $li_only=false) {
 
   $output ='';
@@ -269,7 +267,6 @@ function get_exhibits($args, $loadmore = true, $li_only=false) {
 
   return $output;
 }
-
 
 function get_exhibit_titles() {
   global $post;

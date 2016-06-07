@@ -20,7 +20,6 @@ function setup() {
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\setup');
 
-
 /**
  * Add link to Site Settings in main admin dropdown
  */
@@ -94,6 +93,3 @@ function simplify_tinymce($settings) {
   return $settings;
 }
 add_filter('tiny_mce_before_init', __NAMESPACE__ . '\simplify_tinymce');
-
-
-

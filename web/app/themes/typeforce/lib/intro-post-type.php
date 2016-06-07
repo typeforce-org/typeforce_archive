@@ -5,7 +5,6 @@
 
 namespace Firebelly\PostTypes\Intro;
 
-
 // Register Custom Post Type
 function post_type() {
 
@@ -148,7 +147,6 @@ function metaboxes( array $meta_boxes ) {
 }
 add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
 
-
 function cmb2_get_post_options( $query_args ) {
 
     $args = wp_parse_args( $query_args, array(
@@ -168,7 +166,6 @@ function cmb2_get_post_options( $query_args ) {
 
     return $post_options;
 }
-
 
 function cmb2_get_term_options( $taxonomy = 'category', $args = array() ) {
 
@@ -190,7 +187,6 @@ function cmb2_get_term_options( $taxonomy = 'category', $args = array() ) {
 
     return $term_options;
 }
-
 
 function get_intro_slider() {
 
@@ -215,23 +211,3 @@ function get_intro_slider() {
  
   return $output;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

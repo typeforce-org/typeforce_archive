@@ -139,7 +139,6 @@
     top: 25px;
   }
 
-
   .search, .title, .menu-toggle-open {
     transition: transform 0.5s, opacity 0.5s, fill $hover-trans-time, font-size $hover-trans-time , line-height $hover-trans-time;
   }
@@ -188,7 +187,6 @@
  
 }
 
-
 .search-title {
   margin-top: 50px;
   padding-left: $site-pad-hor;
@@ -197,7 +195,4 @@
     padding-left: $site-pad-hor-md;
     padding-right: $site-pad-hor-md;
   }
-}
-
-
-   
+}  
