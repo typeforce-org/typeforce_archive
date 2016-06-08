@@ -27,6 +27,12 @@ div.duo, div.color {
   background-size: cover;
 }
 
+.fake-duo {
+  color-interpolation-filters: linearRGB;
+  filter:  grayscale(100%) url(#duotone);
+}
+
+
 img.duo, img.color {
   height: 100%;
   width: auto;
@@ -35,4 +41,8 @@ img.duo, img.color {
 img.duo {
   position: absolute;
   top: 0;
+}
+
+.filter-defs {
+  display: none;
 }

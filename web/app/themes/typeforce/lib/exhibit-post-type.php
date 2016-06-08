@@ -206,33 +206,6 @@ function register_exhibit_metaboxes() {
 }
 add_action( 'cmb2_admin_init', __NAMESPACE__ . '\register_exhibit_metaboxes' );
 
-// function get_intro_slider() {
-
-//   $args = array(
-//     'numberposts' => 5,
-//     'post_type'   => 'exhibit',
-//     'orderby'     => 'rand',
-//     );
-
-//   $exhibit_posts = get_posts($args);
-//   if (!$exhibit_posts) return false;
-
-//   $output = '<div class="slider intro-slider">';
-
-//   foreach ($exhibit_posts as $exhibit_post):
-//     $output .= '<div class="slide-item">';
-//     ob_start();
-//     $thumb_size = 'slide';
-//     include(locate_template('templates/exhibit-listing.php'));
-//     $output .= ob_get_clean();
-//     $output .=  '</div>';
-//   endforeach;
-
-//   $output .=  '</div>';
- 
-//   return $output;
-// }
-
 function get_exhibits($args, $loadmore = true, $li_only=false) {
 
   $output ='';

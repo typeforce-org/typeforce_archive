@@ -12,6 +12,9 @@ add_image_size( 'slide', 1800, 0, true );
 add_image_size( 'listing', 768, 0, true );
 add_image_size( 'fb-share', 600, 0, true );
 
+
+add_filter( 'jpeg_quality', create_function( '', 'return 90;' ) );
+
 /**
  * Get thumbnail image for post
  * @param  integer $post_id
@@ -123,7 +126,7 @@ function get_duo_url($post_or_id, $options=[]) {
 /**
  * Output duo and color thumbnails with all the lazy load, multiple size schmigamaroo
  */
-function get_color_and_duo_thumbs($thumb_id,$size,$div=true){
+function get_color_and_duo_thumbs($thumb_id,$size,$fake_duo=false,$div=true){
 
   $dummy = \Roots\Sage\Assets\asset_path('images/gray.gif');
 
@@ -140,16 +143,15 @@ function get_color_and_duo_thumbs($thumb_id,$size,$div=true){
   $duo_url_tiny = \Firebelly\Media\get_duo_url($thumb_id, ['size' => $tiny_size] );  
 
   if($div) { //output as divs with backgrounds that cover
-    $output = <<< HTML
-    <div class="color lazy" style="background-image: url('{$dummy}');" data-original="{$thumb_url_tiny}" data-big-img-url="{$thumb_url}" data-current-img-size="tiny"></div>
-    <div class="duo lazy" style="background-image: url('{$dummy}');" data-original="{$duo_url_tiny}" data-big-img-url="{$duo_url}" data-current-img-size="tiny"></div>
-HTML;
+    $output = '<div class="color lazy" style="background-image: url('.$dummy.');" data-original="'.$thumb_url_tiny.'" data-big-img-url="'.$thumb_url.'" data-current-img-size="tiny"></div>';
+    $output .= $fake_duo ? 
+      '<div class="duo fake-duo lazy" style="background-image: url('.$dummy.');" data-original="'.$thumb_url_tiny.'" data-big-img-url="'.$thumb_url.'" data-current-img-size="tiny"></div>' : '<div class="duo lazy" style="background-image: url('.$dummy.');" data-original="'.$duo_url_tiny.'" data-big-img-url="'.$duo_url.'" data-current-img-size="tiny"></div>';
   } 
   else { //output as images 
     $output = <<< HTML
     <img  src="{$dummy}" class="color lazy" data-original="{$thumb_url_tiny}" data-big-img-url="{$thumb_url}" data-current-img-size="tiny">
-    <img  src="{$dummy}" class="duo lazy" data-original="{$duo_url_tiny}" data-big-img-url="{$duo_url}" data-current-img-size="tiny">
 HTML;
+//<img  src="{$dummy}" class="duo lazy" data-original="{$duo_url_tiny}" data-big-img-url="{$duo_url}" data-current-img-size="tiny">
   }
   return $output;
 }
