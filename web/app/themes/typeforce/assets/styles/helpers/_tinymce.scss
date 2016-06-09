@@ -12,7 +12,10 @@ body#tinymce {
     @include gray-text; 
   }
   &.post-type-page.slug-home {
-  width: 250px;
+    width: 250px;
+    @include media-md {
+      width: 550px;
+    }
   }
   &.post-type-page.slug-footer {
     width: 290px;
