@@ -29,7 +29,7 @@
         background: rgba($gray-dark,0.2);
         background: linear-gradient( rgba($gray-dark,0.5) , rgba($gray-dark,0) );
         .entry-exhibition {
-          @extend %small-caps;
+          @includesmall-caps;
           display: none;
         }
         .entry-artist {
@@ -68,7 +68,7 @@
           max-width: 50%;
         }
         .exhibit-titles {
-          @extend %delistify;
+          @includedelistify;
           .exhibit-title {
             display: inline;
             &:after{
@@ -92,8 +92,8 @@
           // margin-top: 30px;
           word-wrap: break-word;
           width: 100%;
-          @extend %gray-text;
-          @extend %small-caps; 
+          @includegray-text;
+          @includesmall-caps; 
         }
       }
 
@@ -138,8 +138,8 @@
         width: 100%;
         float: right;
         min-height: 1px; //forces div to take up space even if empty;
-        @extend %small-title;
-        @extend %delinkify;
+        @includesmall-title;
+        @includedelinkify;
         @include min-screen(1100px) {
           margin: 0;
           width: 50%;

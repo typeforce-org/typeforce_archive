@@ -6,7 +6,7 @@
     }
     .info{
       position: absolute;
-      @extend %small-caps;
+      @includesmall-caps;
       color: $gray;
       bottom: 0;
       left: 0;
@@ -26,7 +26,7 @@
 }
 
 .exhibit-list{
-  @extend %delistify;
+  @includedelistify;
   @extend .container;
   // background-color: $gray;
   .exhibit{
@@ -56,7 +56,7 @@
         }
       }
       .info-link{
-        @extend %fill;
+        @includefill;
         .info{
           //max-width: 80%;
         }
@@ -71,8 +71,8 @@
   text-align: center;
   color: $gray;
   max-height: 200px;
-  @extend %small-caps;
-  @extend %delinkify;
+  @includesmall-caps;
+  @includedelinkify;
   .icon-load-more {
     display: block;
     margin: 0 auto 10px auto;

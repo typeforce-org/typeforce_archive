@@ -22,7 +22,7 @@
   }
 }
 div.duo, div.color {
-  @extend %fill;
+  @includefill;
   background-position: center center;
   background-size: cover;
 }

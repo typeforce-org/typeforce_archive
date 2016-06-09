@@ -15,13 +15,13 @@
 $font-display: "StanleyPoster", serif;
 $font-body: "Karla", Helvetica, Arial, sans-serif;
 
-%small-caps {
+@mixin small-caps {
   letter-spacing: .25em;
   text-transform: uppercase;
   font: 12px/20px $font-body;
 }
 
-%big-title {
+@mixin big-title {
   letter-spacing: 0;
   text-transform: none;
   font: 24px/30px $font-display; 
@@ -30,14 +30,14 @@ $font-body: "Karla", Helvetica, Arial, sans-serif;
   }
 }
 
-%small-title {
+@mixin small-title {
   position: relative;
   letter-spacing: 0em;
   text-transform: none;
   font: 24px/30px $font-display; 
 }
 
-%trailing-dash {
+@mixin trailing-dash {
   margin: 0;
   padding-bottom: 22px;
   &:after{
@@ -51,20 +51,20 @@ $font-body: "Karla", Helvetica, Arial, sans-serif;
   }
 }
 
-%gray-text {
+@mixin gray-text {
   color: $gray;
   h1,h2,h3,h4,h5,h6,a:hover {
     color: $white;
   }
 }
 
-%body-text {
+@mixin body-text {
   letter-spacing: .05em;
   text-transform: none;
   font: 16px/20px $font-body;
 }
 
-%smooth {
+@mixin smooth {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

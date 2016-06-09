@@ -75,7 +75,7 @@
     @include media-md {
       width: 10vw;
     }
-    @extend %clickable;
+    @includeclickable;
 
     .icon-caret-right,.icon-caret-left {
       position: absolute;
@@ -116,7 +116,7 @@
     z-index: $content-z;
     .intro-link, .caption {
       color: $gray;
-      @extend %small-caps;
+      @includesmall-caps;
       position: relative;
       max-width: 60%;
       vertical-align: bottom;
@@ -137,7 +137,7 @@
       }
     }
     .update {
-      @extend %small-caps;
+      @includesmall-caps;
       position: relative;
       max-width: 150px;
       margin: 0 0 25px $site-pad-hor;      

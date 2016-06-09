@@ -3,7 +3,7 @@
 .home {
   .site-header {
     .title, .search-field {
-      @extend %big-title;
+      @includebig-title;
     }
   }
   @include media-md {
@@ -39,7 +39,7 @@
   height: $main-slider-slide-height;
   width: 100%;
   .headline {
-    @extend %small-caps;
+    @includesmall-caps;
     position: absolute;
     top: 0;
     left: 0;
@@ -64,7 +64,7 @@
     }
     h1 {
       margin:0;
-      @extend %big-title;
+      @includebig-title;
     }
     transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
     &.disappeared {
