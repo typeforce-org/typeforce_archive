@@ -35,7 +35,7 @@
     .duo, .color {
         transition: transform 1s;
         transform: scale(1);
-          transition: transform 5s ease-out, opacity $hover-trans-time;
+          transition: transform 5s linear, opacity $hover-trans-time;
     }
     .intro-link, .caption, .update {
         opacity: 0;
@@ -54,7 +54,7 @@
       }
       .duo:not(.fake-duo), .color { //ken burns effect
           transform: scale(1.07);
-          transition: transform 15s ease-out, opacity $hover-trans-time;
+          transition: transform 15s linear, opacity $hover-trans-time;
       }
        .duo {
           opacity: 0;

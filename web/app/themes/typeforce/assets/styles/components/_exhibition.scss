@@ -31,10 +31,10 @@ $exhibition-break: 1000px;
         padding-right: 75px; 
       }
       .duo {
-        animation: fade-out-ken-burns 5s ease-in 1s forwards;
+        animation: fade-out-ken-burns linear 5s 1s forwards;
       }
       .color {
-        animation: ken-burns 5s ease-in 1s forwards;
+        animation: ken-burns linear 5s 1s forwards;
       }
     }
 

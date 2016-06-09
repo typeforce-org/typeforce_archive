@@ -2,7 +2,7 @@
 
 // Colors
 
-// $black: #202020;
+$black: #202020;
 // $black-lite: #444648;
 $white: #fff;
 // $gray-lite: #DCDCDC;
@@ -37,6 +37,7 @@ $site-pad-bottom: 25px;
 $hover-trans-time: 0.2s;
 
 //Z Index
-$header-z: 100;
-$content-z: 50;
+$nav-z: 110;
+$header-z: 80;
 $slider-nav-z: 60;
+$content-z: 50;

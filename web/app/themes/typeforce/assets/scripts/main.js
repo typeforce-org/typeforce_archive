@@ -93,9 +93,11 @@ var FBSage = (function($) {
   function _openSearch() {
     $('.site-header').addClass('search-active');
     $('.search-field:first').focus();
+    $('.search-mask').addClass('search-active');
   }
   function _closeSearch() {
     $('.site-header').removeClass('search-active');
+    $('.search-mask').removeClass('search-active');
   }
 
  function _initSearch() {
@@ -109,41 +111,52 @@ var FBSage = (function($) {
       _openSearch();
     }
   });
-  // $('.search-form:not(.mobile-search) .search-submit').on('click', function (e) {
-  //   if ($('.search-form').hasClass('active')) {
-
-  //   } else {
-  //     e.preventDefault();
-  //     $('.search').addClass('active');
-  //     $('.search-field:first').focus();
-  //   }
-  // });
-  // $('.search-form .close-button').on('click', function() {
-  //   _hideSearch();
-  //   _hideMobileNav();
-  // });
+  $('.site-header').before('<div class="search-mask"></div>');
+  $('.search-mask').click(function() {
+    if($(this).hasClass('search-active')) {
+      _closeSearch();
+    }
+  });
  }
 
+  // Unfortunately the transition to hamburger nav cannot be made smoothely with breakpoints because of the variable number of menu items.
+  // We'll use this function instead to check if the menu can fit in this screen size.
   function _resizeNav() {
-    var $navWidth = 100 + (breakpoint_medium ? 75 : 25); //50 is a buffer, 75/25 is site padding;
+
+    //If it's open, close it.
+    _hideNav();
+
+    //How wide am I?
+    var $navWidth = 100 + (breakpoint_medium ? 75 : 25); //Start with 100 as a buffer + 75/25 site padding;
     $('.site-header .site-nav .menu-item a').each(function() {
-      $navWidth += $(this).outerWidth()*2;
+      $navWidth += $(this).outerWidth()*2;  //Add approximate width of each nav element
     });
-    var $titleWidth = $('.site-header .title').outerWidth();
+
+    //Compare sum of that and title's width to determine hamburger or no
+    var $titleWidth = $('.site-header .title').outerWidth(); 
     var $windowWidth = $( window ).width();
-    //console.log('nav '+$navWidth+' title '+$titleWidth+' window '+$windowWidth);
     if (($navWidth+$titleWidth)<$windowWidth){
       $('.site-nav, .menu-toggle, .search-toggle').addClass('full-nav');
-      //console.log('open');
     } else {
       $('.site-nav, .menu-toggle, .search-toggle').removeClass('full-nav');
-      //console.log('close');
     }
+  }
+
+  function _showNav() {
+    $('.menu-toggle').addClass('nav-active');
+    $('.site-nav').addClass('nav-active');
+    $('.nav-mask').addClass('nav-active');
+  }
+
+  function _hideNav() {
+    $('.menu-toggle').removeClass('nav-active');
+    $('.site-nav').removeClass('nav-active');
+    $('.nav-mask').removeClass('nav-active');
   }
 
   // Handles main nav
   function _initNav() {
-    //SEO-useless nav togglers
+    // SEO-useless nav togglers
     $('<svg class="menu-toggle menu-toggle-close icon-x" role="img"><use xlink:href="#icon-x"></use></svg>')
       .prependTo('.site-nav')
       .on('click', function(e) {
@@ -155,18 +168,16 @@ var FBSage = (function($) {
         _showNav();
       });
     _resizeNav();
+      $('.site-nav').before('<div class="nav-mask"></div>');
+      $('.nav-mask').click(function() {
+        if($(this).hasClass('nav-active')) {
+          _hideNav();
+        }
+      });
   }
 
-  function _showNav() {
-    $('.menu-toggle').addClass('menu-active');
-    $('.site-nav').addClass('menu-active');
-  }
-
-  function _hideNav() {
-    $('.menu-toggle').removeClass('menu-active');
-    $('.site-nav').removeClass('menu-active');
-  }
-
+  
+  // Create good experience for people with no mouse's to hover by triggering a faux 'hover' class as an exhibit in the grid passes to screen center
   function _touchOnly() {
     if(Modernizr.touchevents) {
       var $exhibits = $('.exhibit-list .exhibit .exhibit-listing-info');
@@ -340,12 +351,10 @@ var FBSage = (function($) {
       centerPadding: '0',
       slidesToShow: 1,
       accessibility: true,
-      //autoplay: true,
+      autoplay: true,
       autoplaySpeed: 5000,
       speed: 500,
       variableWidth: true,
-      // draggable: false,
-      // touchMove: false,
       prevArrow: '<div class="slider-nav-left"><svg class="icon-caret-left" role="img"><use xlink:href="#icon-caret-left"></use></svg></div>',
       nextArrow: '<div class="slider-nav-right"><svg class="icon-caret-right" role="img"><use xlink:href="#icon-caret-right"></use></svg></div>',
     }).on('beforeChange', function(event, slick, currentSlide, nextSlide){

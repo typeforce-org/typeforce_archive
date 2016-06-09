@@ -13,7 +13,7 @@
       .wrapper {
         height: 75px;
       }
-      .site-nav, .search-toggle, .menu-toggle-open {
+      .site-nav.full-nav, .search-toggle.full-nav, .menu-toggle-open.full-nav {
         margin-top: 10px;
       }
       &.scrolled {
