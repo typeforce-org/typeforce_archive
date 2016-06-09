@@ -7,13 +7,19 @@ $sponsors = apply_filters('the_content', get_post_meta($footer->ID , '_cmb2_spon
 
 ?>
 <footer class="site-footer" role="contentinfo">
-  <div class="description user-content">
-    <?= $description ?>
+  <div class="description">
+    <div class="wrap user-content">
+      <?= $description ?>
+    </div>
   </div>  
-  <div class="links user-content">
-    <?= $links ?>
+  <div class="links">
+    <div class="wrap user-content">
+      <?= $links ?>
+    </div>
   </div>
-  <div class="sponsors user-content">
-    <?= $sponsors ?>
+  <div class="sponsors">
+    <div class="wrap user-content">
+      <?= $sponsors ?>
+    </div>
   </div>
 </footer>

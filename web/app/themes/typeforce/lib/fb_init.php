@@ -93,3 +93,17 @@ function simplify_tinymce($settings) {
   return $settings;
 }
 add_filter('tiny_mce_before_init', __NAMESPACE__ . '\simplify_tinymce');
+
+// Add slug to tiny_mce body class.  Dawn wants style congruency between page and editor --need different styles for different pages.
+// from http://wordpress.stackexchange.com/questions/128380/add-unique-class-or-id-information-to-tinymce
+function tinymce_body_class( $mce ) {
+
+    if ( $post = get_post() ) {
+        $mce['body_class'] .= ' slug-' . sanitize_html_class( $post->post_name );
+    }
+
+    $mce['body_class'] .= ' custom-class another-custom-class etc';
+
+    return $mce;
+}
+add_filter( 'tiny_mce_before_init', __NAMESPACE__ . '\\tinymce_body_class' );

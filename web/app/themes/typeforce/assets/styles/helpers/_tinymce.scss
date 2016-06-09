@@ -1,3 +1,28 @@
 body#tinymce {
   margin: 12px !important;
+
+  &._cmb2_links, &._cmb2_sponsors, 
+  &.post-type-page.slug-footer, 
+  &.post-type-page.slug-home,
+  &.post-type-intro,
+  &._cmb2_social,
+  &._cmb2_catalogue,
+  &._cmb2_sponsors {
+    @include small-caps;
+    @include gray-text; 
+  }
+  &.post-type-page.slug-home {
+  width: 250px;
+  }
+  &.post-type-page.slug-footer {
+    width: 290px;
+  }
+  &._cmb2_links, &._cmb2_sponsors {
+    width: 250px;
+  }
+  &.post-type-intro {
+    width: 150px;
+    color: $white;
+  }
 }
+

@@ -18,6 +18,9 @@ $footer-lg: 1400px;
   .description {
     width: 100%;
     @include min-screen($footer-md) {width: 50%;}
+    .wrap {   
+      max-width: 290px;
+    }
     
   }
   .links, .sponsors {
@@ -25,6 +28,9 @@ $footer-lg: 1400px;
     margin-top: 30px;
     @include min-screen($footer-md) {width: 50%; margin-top: 0;}
     @include min-screen($footer-lg) {width: 25%; margin-top: 0;}
+    .wrap {   
+      max-width: 250px;
+    }
   }
   .sponsors {
     float: right;
