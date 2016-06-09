@@ -199,7 +199,7 @@ var FBSage = (function($) {
       });
     }
     $('.lazy').lazyload({
-      threshold: 800,
+      threshold: 200,
       failure_limit : 10,
       load : function() {
         $(this).addClass('loaded');
