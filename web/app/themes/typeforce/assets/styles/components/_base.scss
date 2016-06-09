@@ -91,7 +91,7 @@ img, p, ul, h2, h3, h4, h5, h6 {
   @include clearfix();
 }
 
-%fill {
+@mixin fill {
   position: absolute;
   top: 0;
   left: 0;
@@ -99,20 +99,20 @@ img, p, ul, h2, h3, h4, h5, h6 {
   height: 100%;
 }
 
-%clickable {
+@mixin clickable {
   &:hover{
     cursor: pointer;
   }
 }
 
 //put on ul to kill list styling
-%delistify {
+@mixin delistify {
   list-style: none;
   padding-left: 0;
 }
 
 //remove link underlines of any children
-%delinkify {
+@mixin delinkify {
   a {
     text-decoration: none;
   }

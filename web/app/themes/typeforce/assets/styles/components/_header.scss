@@ -5,7 +5,6 @@
 
 // Header
 .site-header {
-  @extend .container;
   position: fixed;
   top: 0;
   left: 0;
@@ -37,6 +36,7 @@
   }
 
   .title, .search {
+    display: inline-block;
     @include small-title;
     margin:  0 $site-pad-hor;
     @include media-md {
@@ -44,7 +44,6 @@
     }
   }
   .title {
-    left: 0;
     @include delinkify;
   }
 
@@ -192,8 +191,6 @@
   }
 }  
 
-
-
 .search-mask, .nav-mask {
   position: fixed;
   top: 0;
@@ -214,6 +211,6 @@
 .search-mask {
   z-index: $header-z - 10; 
 }
-.search-mask {
+.nav-mask {
   z-index: $nav-z - 10; 
 }

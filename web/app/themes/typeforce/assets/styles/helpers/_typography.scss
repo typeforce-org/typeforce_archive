@@ -31,13 +31,13 @@ $font-body: "Karla", Helvetica, Arial, sans-serif;
 }
 
 @mixin small-title {
-  position: relative;
-  letter-spacing: 0em;
+  letter-spacing: 0;
   text-transform: none;
   font: 24px/30px $font-display; 
 }
 
 @mixin trailing-dash {
+  position: relative;
   margin: 0;
   padding-bottom: 22px;
   &:after{
