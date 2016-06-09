@@ -40,15 +40,15 @@ $exhibition-break: 1000px;
 
   }
   .additional {
-    @includesmall-caps;
-    @includegray-text; 
+    @include small-caps;
+    @include gray-text; 
     margin-bottom: 70px;
     // @include media-md{
     //   margin-top: -53px;
     // }
     .exhibited, .window-and-opening {
       .exhibit-link-list, {
-        @includedelistify;
+        @include delistify;
         .exhibit{
           display: block;
         }

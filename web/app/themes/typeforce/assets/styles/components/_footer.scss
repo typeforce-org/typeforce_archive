@@ -6,8 +6,8 @@ $footer-lg: 1400px;
   @extend .container;
   padding: 100px $site-pad-hor $site-pad-bottom $site-pad-hor;
   @include media-md { padding: 100px $site-pad-hor-md $site-pad-bottom-md $site-pad-hor-md; }
-  @includesmall-caps;
-  @includegray-text; 
+  @include small-caps;
+  @include gray-text; 
 
   .description, .links, .sponsors {
     float: left;

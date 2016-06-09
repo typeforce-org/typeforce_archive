@@ -11,25 +11,25 @@ body {
   color: $white;
   overflow-x: hidden;
   background: $gray-dark;  
-  @includebody-text;
-  @includesmooth;
+  @include body-text;
+  @include smooth;
 }
 
 h1 {
-  @includebig-title;
+  @include big-title;
   margin-top: 40px;
   margin-bottom: 20px;
 }
 h2 {
   margin-top: 40px;
-  @includesmall-title;
-  @includetrailing-dash;
+  @include small-title;
+  @include trailing-dash;
 }
 
 h3 {
   margin-top: 20px;
-  @includesmall-caps;
-  @includegray-text;
+  @include small-caps;
+  @include gray-text;
   margin-bottom: 0;
 }
 
@@ -66,7 +66,7 @@ img, p, ul, h2, h3, h4, h5, h6 {
     padding-left: $site-pad-hor-md;
     padding-right: $site-pad-hor-md;
   }
-  @includesmall-title;
+  @include small-title;
 }
 
 // Disable scrolling when modals are active

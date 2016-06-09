@@ -37,7 +37,7 @@
   }
 
   .title, .search {
-    @includesmall-title;
+    @include small-title;
     margin:  0 $site-pad-hor;
     @include media-md {
       margin: 0  $site-pad-hor-md;
@@ -45,7 +45,7 @@
   }
   .title {
     left: 0;
-    @includedelinkify;
+    @include delinkify;
   }
 
   .site-nav {
@@ -61,13 +61,13 @@
     z-index: $nav-z;
     .nav {
       margin: 0;
-      @includedelistify;
+      @include delistify;
       white-space: nowrap;
       .menu-item {
         margin: 0; padding: 0;
         color: $gray;
-        @includedelinkify;
-        @includesmall-title;
+        @include delinkify;
+        @include small-title;
         margin-top: 1em;
         a:hover, &.current-menu-item a { 
           color: $gray-dark;
@@ -105,7 +105,7 @@
       right: 0;
     }
     .search-form{
-      @includesmall-title;
+      @include small-title;
       .search-field {
         width: 100%;
         border: none;
@@ -125,7 +125,7 @@
     background: transparent;
   }
   .menu-toggle {
-    @includeclickable;
+    @include clickable;
     &.full-nav{
       display: none;
     }
@@ -208,7 +208,7 @@
     transition: opacity 0.2s, visibility 0s;
     visibility: visible;
     opacity: 0.6;
-    @includeclickable;
+    @include clickable;
   }
 }
 .search-mask {
