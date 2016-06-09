@@ -127,10 +127,7 @@ var FBSage = (function($) {
     _hideNav();
 
     //How wide am I?
-    var $navWidth = 100 + (breakpoint_medium ? 75 : 25); //Start with 100 as a buffer + 75/25 site padding;
-    $('.site-header .site-nav .menu-item a').each(function() {
-      $navWidth += $(this).outerWidth()*2;  //Add approximate width of each nav element
-    });
+    var $navWidth = 100 + $('.site-header .site-nav .menu-item').length*75 + (breakpoint_medium ? 75 : 25); // Num menu-items * 75px + 75/25 site padding
 
     //Compare sum of that and title's width to determine hamburger or no
     var $titleWidth = $('.site-header .title').outerWidth(); 

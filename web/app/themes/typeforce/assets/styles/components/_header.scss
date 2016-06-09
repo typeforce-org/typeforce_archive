@@ -51,9 +51,9 @@
     position: fixed;
     right: 0;
     background: $white;
-    width: 300px;
+    width: 200px;
     height: 100vh;
-    padding: 50px;
+    padding: 17px 25px;
     transform: translateX(100%);
     transition: transform 0.2s, opacity 0.5s;
     text-align: left;
@@ -63,11 +63,12 @@
       @include delistify;
       white-space: nowrap;
       .menu-item {
-        margin: 0; padding: 0;
+        margin: 0; 
+        padding: 6px 0;
         color: $gray;
         @include delinkify;
         @include small-title;
-        margin-top: 1em;
+        // margin-top: 1em;
         a:hover, &.current-menu-item a { 
           color: $gray-dark;
         }
@@ -87,6 +88,8 @@
           display: inline-block;
           margin-left: 2em;
           margin-top: 0;
+          padding: 0;
+          @include small-caps;
         a:hover, &.current-menu-item a { 
             color: $white;
         }
@@ -137,7 +140,7 @@
   }
   .menu-toggle-close {
     right: 25px;
-    top: 25px;
+    top: 29px;
   }
 
   .search, .title, .menu-toggle-open {
