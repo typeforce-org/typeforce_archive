@@ -358,20 +358,33 @@ var FBSage = (function($) {
         $(window).scroll();
     });
     _resizeSliders();
+        
+    // Move slider-nav-left to after the track, so it can appear
+    $('.slider-nav-left').each(function() {
+        $mySlider = $(this).closest('.slider');
+        $(this).detach().appendTo($mySlider);
+      }
+    );
+
+    // Tie sliders to arrow keys
+    _sliderArrowKeys();
+
+    // Pause on click or touch 
+    $('.slide-item').on('mousedown touchstart', function() {
+      $(this).closest('.slider').slick('slickPause');
+    });
+    $('.slide-item').on('mouseup touchend', function() {
+      $(this).closest('.slider').slick('slickPlay');
+    });
 
     $(window).load(function() {
-      // Move slider-nav-left to after the track, so it can appear
-      $('.slider-nav-left').each(function() {
-          $mySlider = $(this).closest('.slider');
-          $(this).detach().appendTo($mySlider);
-        }
-      );
 
       _resizeSliders();
+
       window.setTimeout(function() {
-        $('.site-just-loaded').removeClass('site-just-loaded');
+        $('.site-just-loaded').removeClass('site-just-loaded'); // Removing this to trigger a css transition
       },0);
-      _sliderArrowKeys();
+
     });
   }
 
