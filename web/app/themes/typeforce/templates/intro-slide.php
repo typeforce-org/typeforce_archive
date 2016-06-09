@@ -2,7 +2,7 @@
 # Get absolute path of thumbnail for duo processing
 $thumb_size = 'slide';
 $thumb_id = get_post_thumbnail_id($intro_post->ID);
-$thumbs = \Firebelly\Media\get_color_and_duo_thumbs($thumb_id, $thumb_size ); // Final true makes the duos from css filters instead of loading duo-tone image
+$thumbs = \Firebelly\Media\get_color_and_duo_thumbs($thumb_id, $thumb_size); 
 $thumb_src = wp_get_attachment_image_src($thumb_id, 'slide' );
 $thumb_w = $thumb_src[1];
 $thumb_h = $thumb_src[2];
