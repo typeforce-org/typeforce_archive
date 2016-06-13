@@ -304,10 +304,12 @@ var FBSage = (function($) {
       //calculate maximum height and width
       var maxWidth = $(window).width()*0.9;
       var maxHeightFromRatio = maxWidth * (1/widestRatio);
-      var minHeightFromScreen = $(window).height()*0.6;
+      var minHeightFromScreen = $(window).height()*0.5;
+      var maxHeightFromScreen = $(window).height()*0.75;
 
       //finally, decide slider height
       var height = Math.max(minHeightFromScreen,maxHeightFromRatio);
+      height = Math.min(maxHeightFromScreen, height);
 
       //our intro slider has content, we can't have the slider be too small for content.
       if($('.intro-slider').length) {
