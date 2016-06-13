@@ -230,7 +230,6 @@ function get_exhibits($args, $loadmore = true, $li_only=false) {
     wp_reset_postdata();
 
     if($loadmore) {
-
       $output .= \Firebelly\Ajax\load_more_button($exhibit_posts);
      }
 
@@ -319,3 +318,39 @@ function order_by_field($orderby, \WP_Query $q) {
   return $orderby;
 }
 add_filter('posts_orderby', __NAMESPACE__ . '\order_by_field', 10, 2);
+
+
+
+function prev_next_links($args, $current_id) {
+  // Get array of all IDs from query with $args (in order).  (WP_Query is necessary here given our construction of meta__in)
+  $ids = array();
+  $exhibit_posts = new \WP_Query( $args );
+  if ( $exhibit_posts->have_posts() ) {
+    while ( $exhibit_posts->have_posts() ) {
+      $exhibit_posts->the_post();
+      global $post;
+      $ids[] = $post->ID;
+      $titles[] = $post->post_title;
+    }
+    wp_reset_postdata();
+  }
+
+  // Where in the array is our current post?
+  $current = array_search($current_id,$ids);
+
+  // Get permalinks for IDs in array before and after.
+  $output = '<nav class="exhibit-nav">';
+  if($current+1 < count($ids)) {
+    $output.= '<div class="next"><a href="'.get_permalink($ids[$current+1]).'" rel="next"><div class="anim-wrap">'.__('Next','sage').' <svg class="icon-arrow-right" role="img"><use xlink:href="#icon-arrow-right"></use></svg></div></a></div>';
+  } else { 
+    $output .='<div class="next"> </div>'; // Need an empty one for placement of "Previous" link 
+  }
+  if($current-1 >= 0) {
+    $output .= '<div class="prev"><a href="'.get_permalink($ids[$current-1]).'" rel="prev"><div class="anim-wrap"><svg class="icon-arrow-left" role="img"><use xlink:href="#icon-arrow-left"></use></svg> '.__('Previous','sage').'</div></a></div>';
+  }
+  $output .= '</nav>';
+  return $output;
+}
+
+
+

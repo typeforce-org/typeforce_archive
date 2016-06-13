@@ -26,7 +26,6 @@ $thumbs = Firebelly\PostTypes\Exhibit\get_exhibit_thumbnails();
 $args = array(
   'post_type'      => 'exhibit',
   'numberposts'    => -1,
-  'post__not_in'   => [ $post->ID ],
   'meta_query'     => array(
     '_cmb2_type'   => array(
       'key'        => '_cmb2_type',
@@ -42,6 +41,9 @@ $args = array(
       )
   ),
 );
+$prev_next_links = Firebelly\PostTypes\Exhibit\prev_next_links($args,$post->ID);
+
+$args['post__not_in'] = [ $post->ID ];
 $more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args,false);
 
 ?>
@@ -104,15 +106,7 @@ $more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args,false);
       </div>
     </div>
     <footer class="footer-wrap">
-      <nav class="exhibit-nav">
-        <div class="next">
-          <?php next_post_link('%link','<div class="anim-wrap">'.__('Next','sage').' <svg class="icon-arrow-right" role="img"><use xlink:href="#icon-arrow-right"></use></svg></div>', TRUE, ' ', 'exhibition' ); ?>
-        </div>
-        <div class="prev">
-
-          <?php previous_post_link('%link','<div class="anim-wrap"><svg class="icon-arrow-left" role="img"><use xlink:href="#icon-arrow-left"></use></svg> '.__('Previous').'</div>', TRUE, ' ', 'exhibition' ); ?>
-        </div>
-      </nav>
+      <?= $prev_next_links ?>
     </footer>
   </article>
   <?= $more_exhibits ?>
