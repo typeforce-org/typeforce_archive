@@ -302,13 +302,34 @@ var FBSage = (function($) {
       });
 
       //calculate maximum height and width
-      var maxWidth = $(window).width()*0.8;
+      var maxWidth = $(window).width()*0.9;
       var maxHeightFromRatio = maxWidth * (1/widestRatio);
-      var maxHeightFromScreen = $(window).height()*0.5;
-      var maxHeight = Math.max(maxHeightFromScreen,maxHeightFromRatio);
+      var minHeightFromScreen = $(window).height()*0.6;
+
+      //finally, decide slider height
+      var height = Math.max(minHeightFromScreen,maxHeightFromRatio);
+
+      //our intro slider has content, we can't have the slider be too small for content.
+      if($('.intro-slider').length) {
+        biggestContentHeight = 0;
+        $('.slide-item .content').each(function() {
+          biggestContentHeight = Math.max($(this).outerHeight(),biggestContentHeight);
+          console.log(biggestContentHeight);
+        });
+        headlineHeight = $('.intro-content .headline').outerHeight();
+        console.log('headline: '+headlineHeight);
+        minHeightFromContent = headlineHeight + biggestContentHeight;
+        console.log('new min '+minHeightFromContent);
+        //If so, override.
+        height = Math.max(minHeightFromContent,height);
+        console.log('final '+height);
+
+      }
+
+
 
       //apply
-      $('.slide-item, .intro-content').css('max-height',maxHeight+'px');
+      $('.slide-item, .intro-content').css('height',height+'px');
       $('.slide-item').css('max-width',maxWidth+'px');
 
       //give slides proper width (they do not have this on their own)

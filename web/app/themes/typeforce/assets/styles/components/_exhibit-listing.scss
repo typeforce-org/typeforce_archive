@@ -13,6 +13,9 @@
       text-decoration: underline;
       margin: 0 0 15px 25px;
       transition: color $hover-trans-time;
+      @include media-md {
+        max-width: 70%;
+      }
       .highlight{
         background-color: $gray-dark;
         padding: 0.3em;

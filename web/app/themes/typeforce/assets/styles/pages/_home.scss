@@ -17,10 +17,10 @@
         margin-top: 10px;
       }
       &.scrolled {
+        height: 45px;
         .title, .search-field {
           font: 24px/30px $font-display;
         }
-        height: 45px;
         .wrapper {
           height: 45px;
         }
@@ -30,6 +30,14 @@
       }
     }
   }
+
+  .intro-slider .slide-item .content {
+    background: rgba($gray-dark,0.2);
+    background: linear-gradient( rgba($gray-dark,0), rgba($gray-dark,.3) 20%, rgba($gray-dark,.7) );
+  }
+
+
+
 }
 
 .intro-content {
@@ -48,8 +56,8 @@
     padding-left: $site-pad-hor;
     background: $gray-dark;
     background: rgba($gray-dark,0.2);
-    background: linear-gradient( rgba($gray-dark,1) , rgba($gray-dark,0) );
-    padding-bottom: 100px;
+    background: linear-gradient( rgba($gray-dark,.7) ,rgba($gray-dark,.3) 80%, rgba($gray-dark,0) );
+    padding-bottom: 25px;
     @include media-md {
       padding-top: 43px;
       padding-left: $site-pad-hor-md;
