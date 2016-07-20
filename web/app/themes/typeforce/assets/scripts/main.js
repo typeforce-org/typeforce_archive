@@ -316,15 +316,11 @@ var FBSage = (function($) {
         biggestContentHeight = 0;
         $('.slide-item .content').each(function() {
           biggestContentHeight = Math.max($(this).outerHeight(),biggestContentHeight);
-          console.log(biggestContentHeight);
         });
         headlineHeight = $('.intro-content .headline').outerHeight();
-        console.log('headline: '+headlineHeight);
         minHeightFromContent = headlineHeight + biggestContentHeight;
-        console.log('new min '+minHeightFromContent);
         //If so, override.
         height = Math.max(minHeightFromContent,height);
-        console.log('final '+height);
 
       }
 
