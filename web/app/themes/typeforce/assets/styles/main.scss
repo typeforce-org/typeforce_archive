@@ -2,7 +2,7 @@
 
 // Automatically injected Bower dependencies via wiredep (never manually edit this block)
 // bower:scss
-@import "../../bower_components/slick-carousel/slick/slick.scss";
+@import '../../bower_components/slick-carousel/slick/slick.scss';
 // endbower
 
 // Reset
@@ -42,3 +42,7 @@
 @import 'helpers/wp-classes';
 @import 'helpers/touch';
 @import 'helpers/tinymce';
+
+// Overrides
+// only used in temporary occasions for announcements etc
+@import 'components/overrides.scss';

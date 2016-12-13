@@ -1,0 +1,15 @@
+// Manual overrides
+
+// Usually to override the homepage slider styles for upcoming shows
+.home {
+  .intro-content .headline {
+    background: none;
+    color: $gray-dark;
+  }
+  .slick-slider {
+    background: #ECF0F6;
+  }
+  .intro-slider .slide-item .content {
+    background: none;
+  }
+}
