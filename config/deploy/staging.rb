@@ -1,5 +1,6 @@
 set :stage, :staging
-set :login, 'firebelly'
+set :domain, 'typeforce.firebelly.co'
+set :application, 'typeforce_archive_staging'
 
 # Simple Role Syntax
 # ==================

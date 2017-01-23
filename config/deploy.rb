@@ -1,5 +1,3 @@
-set :application, 'typeforce_archive'
-set :domain, 'typeforce.firebelly.co'
 set :theme, 'typeforce'
 set :login, 'firebelly'
 set :repo_url, 'git@github.com:firebelly/typeforce_archive.git'

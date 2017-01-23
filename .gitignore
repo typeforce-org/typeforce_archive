@@ -34,3 +34,9 @@ bin
 
 # Fonts
 web/app/themes/typeforce/assets/fonts/*
+
+# log
+log/
+
+# MAC OS
+.DS_Store
