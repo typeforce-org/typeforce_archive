@@ -11,6 +11,7 @@ $args = array(
     ),
   ),
   'numberposts'    => -1,
+  'posts_per_page' => -1,
   'meta_query'     => array(
     '_cmb2_type'   => array(
       'key'        => '_cmb2_type',
