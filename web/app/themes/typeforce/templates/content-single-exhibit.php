@@ -22,10 +22,12 @@ $social = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_social', 
 $stats = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_stats', true));
 $photographer = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_photographer', true));
 $thumbs = Firebelly\PostTypes\Exhibit\get_exhibit_thumbnails();
+$is_exhibit = get_post_meta($post->ID, '_cmb2_type', true) === 'exhibit';
 
 $args = array(
   'post_type'      => 'exhibit',
   'numberposts'    => -1,
+  'posts_per_page' => -1,
   'meta_query'     => array(
     '_cmb2_type'   => array(
       'key'        => '_cmb2_type',
@@ -59,7 +61,7 @@ $more_exhibits = Firebelly\PostTypes\Exhibit\get_exhibits($args,false);
     </div>
     <div class="content-wrap">
       <div class="entry-main">
-        <?php if($titles) : ?>
+        <?php if($titles && $is_exhibit) : ?>
           <div class="entry-title user-content">
             <h2><?= $title_header ?></h2>
             <?= $titles ?>
