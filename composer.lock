@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2138137554ecc7af5364ffd9953eb4e7",
-    "content-hash": "b43b0de50887de1735519d608de50e96",
+    "hash": "fd76f24339adc3cb8dbffff05ff4db43",
+    "content-hash": "8d89e4c78e66fc776185f4b0ae8e07d8",
     "packages": [
         {
             "name": "composer/installers",
@@ -109,20 +109,58 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "4.7.3",
+            "version": "4.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "eef7c0520b1e7187cd2cd7540dc997c4c3b0340a"
+                "reference": "373c6caed518228364a8bc004ae05e877d74364a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/eef7c0520b1e7187cd2cd7540dc997c4c3b0340a",
-                "reference": "eef7c0520b1e7187cd2cd7540dc997c4c3b0340a",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/373c6caed518228364a8bc004ae05e877d74364a",
+                "reference": "373c6caed518228364a8bc004ae05e877d74364a",
                 "shasum": ""
             },
             "require": {
+                "johnpbloch/wordpress-core": "4.7.4",
                 "johnpbloch/wordpress-core-installer": "~0.2",
+                "php": ">=5.3.2"
+            },
+            "type": "package",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "WordPress Community",
+                    "homepage": "http://wordpress.org/about/"
+                }
+            ],
+            "description": "WordPress is web software you can use to create a beautiful website or blog.",
+            "homepage": "http://wordpress.org/",
+            "keywords": [
+                "blog",
+                "cms",
+                "wordpress"
+            ],
+            "time": "2017-04-20 20:49:27"
+        },
+        {
+            "name": "johnpbloch/wordpress-core",
+            "version": "4.7.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnpbloch/wordpress-core.git",
+                "reference": "46c55710c3f7aa99c6377151e626c98d7fb4b959"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/46c55710c3f7aa99c6377151e626c98d7fb4b959",
+                "reference": "46c55710c3f7aa99c6377151e626c98d7fb4b959",
+                "shasum": ""
+            },
+            "require": {
                 "php": ">=5.3.2"
             },
             "type": "wordpress-core",
@@ -140,9 +178,10 @@
             "homepage": "http://wordpress.org/",
             "keywords": [
                 "blog",
-                "cms"
+                "cms",
+                "wordpress"
             ],
-            "time": "2017-03-06 16:01:58"
+            "time": "2017-04-20 19:59:59"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -403,15 +442,15 @@
         },
         {
             "name": "wpackagist-plugin/intuitive-custom-post-order",
-            "version": "3.0.7",
+            "version": "3.0.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/intuitive-custom-post-order/",
-                "reference": "tags/3.0.7"
+                "reference": "tags/3.0.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/intuitive-custom-post-order.3.0.7.zip",
+                "url": "https://downloads.wordpress.org/plugin/intuitive-custom-post-order.3.0.8.zip",
                 "reference": null,
                 "shasum": null
             },
