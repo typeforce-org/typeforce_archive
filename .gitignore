@@ -40,4 +40,5 @@ log/
 .DS_Store
 
 # Fonts
-web/app/themes/typeforce/assets/fonts
+web/app/themes/typeforce/assets/fonts/*
+!web/app/themes/typeforce/assets/fonts/karmilla*

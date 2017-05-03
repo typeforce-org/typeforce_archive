@@ -1,7 +1,16 @@
 // Typography
 
+@font-face { // The Karla Font does not contain characters necessary for the name Blažo Čalovíć.  Karmilla is an open-source extension of Karla with special characters.  We used font squirrel to grab only those missing characters to create the "KarmillaRegularSpecialCharsOnly" font--queried before Karla below.
+    font-family: "KarmillaRegularSpecialCharsOnly";
+    src: url('../fonts/karmilla-regular-special-chars-only.woff2') format('woff2'),
+         url('../fonts/karmilla-regular-special-chars-only.woff') format('woff'),
+         url('../fonts/karmilla-regular-special-chars-only.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$font-body: "KarmillaRegularSpecialCharsOnly", "Karla", Helvetica, Arial, sans-serif;
 $font-display: "StanleyPoster", serif;
-$font-body: "Karla", Helvetica, Arial, sans-serif;
 
 @mixin small-caps {
   letter-spacing: .25em;
