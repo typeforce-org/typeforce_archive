@@ -30,10 +30,14 @@ node_modules
 bin
 .vagrant
 
+# Gems
 .gems
 
-# log
+# Log
 log/
 
 # MAC OS
 .DS_Store
+
+# Fonts
+web/app/themes/typeforce/assets/fonts

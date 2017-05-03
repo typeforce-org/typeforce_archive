@@ -8,6 +8,9 @@
 // Reset
 @import "helpers/normalize";
 
+// Protected Fonts (Base 64 Woff Data URI's)  -- These files (along with all other protected font files) will not be included in the public repo and must be added manually.
+@import "../fonts/stanley-poster-regular"; // You can find Firebelly's custom build copy of the font files for Stanley Poster here: <Dropbox:Fonts/Stanley Poster/Typeforce.com Special Build/>
+
 // Helpers and Variables
 @import "helpers/variables";
 @import "helpers/mixins";
