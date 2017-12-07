@@ -48,11 +48,12 @@ $exhibition-break: 1000px;
     // }
     .exhibited, .window-and-opening {
       .exhibit-link-list, {
+        max-width: 300px;
         @include delistify;
-        .exhibit{
-          display: block;
-        }
       }
+    }
+    .exhibited .exhibit-link-list {
+      list-style-type: disc;
     }
   }
   .description, .featured-image, 
