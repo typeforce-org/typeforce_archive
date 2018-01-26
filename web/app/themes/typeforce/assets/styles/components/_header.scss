@@ -217,3 +217,17 @@
 .nav-mask {
   z-index: $nav-z - 10; 
 }
+
+
+
+.admin-bar {
+  #wpadminbar {
+    position: fixed !important;
+  }
+  .site-header {
+    top: $wp-admin-bar-height-fat;
+    @include min-screen($breakpoint-wp-admin-bar-skinny) {
+      top: $wp-admin-bar-height-skinny;
+    }
+  }
+}
