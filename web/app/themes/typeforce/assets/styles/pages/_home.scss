@@ -36,8 +36,6 @@
     background: linear-gradient( rgba($gray-dark,0), rgba($gray-dark,.3) 20%, rgba($gray-dark,.7) );
   }
 
-
-
 }
 
 .intro-content {
@@ -45,7 +43,7 @@
   left: 0;
   width: 100%;
   position: relative;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   height: $main-slider-slide-height;
   background-position: center center;
