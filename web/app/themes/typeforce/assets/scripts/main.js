@@ -311,23 +311,23 @@ var FBSage = (function($) {
       var height = Math.max(minHeightFromScreen,maxHeightFromRatio);
       height = Math.min(maxHeightFromScreen, height);
 
-      //our intro slider has content, we can't have the slider be too small for content.
-      if($('.intro-slider').length) {
-        biggestContentHeight = 0;
-        $('.slide-item .content').each(function() {
-          biggestContentHeight = Math.max($(this).outerHeight(),biggestContentHeight);
-        });
-        headlineHeight = $('.intro-content .headline').outerHeight();
-        minHeightFromContent = headlineHeight + biggestContentHeight;
-        //If so, override.
-        height = Math.max(minHeightFromContent,height);
+      // //our intro slider has content, we can't have the slider be too small for content.
+      // if($('.intro-slider').length) {
+      //   biggestContentHeight = 0;
+      //   $('.slide-item .content').each(function() {
+      //     biggestContentHeight = Math.max($(this).outerHeight(),biggestContentHeight);
+      //   });
+      //   headlineHeight = $('.intro-content .headline').outerHeight();
+      //   minHeightFromContent = headlineHeight + biggestContentHeight;
+      //   //If so, override.
+      //   height = Math.max(minHeightFromContent,height);
 
-      }
+      // }
 
 
 
       //apply
-      $('.slide-item, .intro-content').css('height',height+'px');
+      $('.slide-item').css('height',height+'px');
       $('.slide-item').css('max-width',maxWidth+'px');
 
       //give slides proper width (they do not have this on their own)
