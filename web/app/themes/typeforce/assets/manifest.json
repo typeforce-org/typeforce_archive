@@ -43,6 +43,6 @@
     }
   },
   "config": {
-    "devUrl": "http://typeforce.dev"
+    "devUrl": "http://typeforce.localhost"
   }
 }
