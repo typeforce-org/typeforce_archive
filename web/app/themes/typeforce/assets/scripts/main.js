@@ -61,6 +61,22 @@ var FBSage = (function($) {
       }
     });
 
+    // Bigclicky™
+    $(document).on('click', '.bigclicky', function(e) {
+      if (!$(e.target).is('a')) {
+        e.preventDefault();
+        var link = $(this).find('a:first');
+        var href = link.attr('href');
+        if (href) {
+          if (e.metaKey || link.attr('target')) {
+            window.open(href);
+          } else {
+            location.href = href;
+          }
+        }
+      }
+    });
+
     // Smoothscroll links
     $('a.smoothscroll').click(function(e) {
       e.preventDefault();

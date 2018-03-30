@@ -13,14 +13,13 @@ $thumb_id = get_post_thumbnail_id($post->ID);
 $thumb_url = wp_get_attachment_image_src($thumb_id, 'slide' )[0];
 ?>
 
-<a href="https://www.tdc.org/event/type-design-for-non-type-designers-2/" target="_blank">
-  <div class="intro-content" style="background-image: url('<?= $thumb_url ?>')">
+
+  <div class="intro-content bigclicky" style="background-image: url('<?= $thumb_url ?>')">
     <div class="headline">
       <div class="wrap">
         <?= $headline ?>
       </div>
     </div>
   </div>
-</a>
 
 <?= $exhibits ?>
