@@ -41,40 +41,48 @@
 }
 
 .intro-content {
-  position: relative;
   top: 0;
   left: 0;
-  height: $main-slider-slide-height;
   width: 100%;
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  height: $main-slider-slide-height;
+
   .headline {
     @include small-caps;
-    position: absolute;
     top: 0;
     left: 0;
-    padding-top: 22px;
     width: 100vw;
-    padding-left: $site-pad-hor;
-    background: $gray-dark;
-    background: rgba($gray-dark,0.2);
-    background: linear-gradient( rgba($gray-dark,.7) ,rgba($gray-dark,.3) 80%, rgba($gray-dark,0) );
+    padding-top: 22px;
+    position: absolute;
     padding-bottom: 25px;
+    background: $gray-dark;
+    padding-left: $site-pad-hor;
+    background: rgba($gray-dark,0.2);
+    transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
+    background: linear-gradient( rgba($gray-dark,.7) ,rgba($gray-dark,.3) 80%, rgba($gray-dark,0) );
+
     @include media-md {
       padding-top: 43px;
       padding-left: $site-pad-hor-md;
     }
+
     .wrap {
       max-width: 250px;
       width: calc( 95vw - 50px);
+
       @include media-md {
         max-width: 550px;
         width: calc( 87.5vw - 150px);
       }
     }
+
     h1 {
       margin:0;
       @include big-title;
     }
-    transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
+
     &.disappeared {
       transform: translateY(-100%);
     }
