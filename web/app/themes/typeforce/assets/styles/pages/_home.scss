@@ -45,9 +45,10 @@
   left: 0;
   width: 100%;
   position: relative;
-  background-size: cover;
-  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
   height: $main-slider-slide-height;
+  background-position: center center;
 
   .headline {
     @include small-caps;
