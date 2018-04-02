@@ -35,19 +35,24 @@
     background: rgba($gray-dark,0.2);
     background: linear-gradient( rgba($gray-dark,0), rgba($gray-dark,.3) 20%, rgba($gray-dark,.7) );
   }
-
 }
 
 .intro-content {
   top: 0;
   left: 0;
+  height: 0;
   width: 100%;
   position: relative;
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 0;
   padding-bottom: 66.67%;
-  background-position: center center;
+  background-color: black;
+  background-size: contain;
+  background-repeat: repeat-x;
+  background-position: left;
+
+  @media (min-aspect-ratio: 85/70) {
+    padding-bottom: 0;
+    height: 80vh;
+  }
 
   .headline {
     @include small-caps;
@@ -90,5 +95,5 @@
 }
 
 .exhibit-list {
-  margin-top: 50px;
+  margin-top: 0; //50px;
 }
