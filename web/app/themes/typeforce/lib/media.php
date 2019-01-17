@@ -10,7 +10,6 @@ add_image_size( 'tiny-slide', 1000, 0, true );
 add_image_size( 'tiny-listing', 600, 0, true );
 add_image_size( 'slide', 1800, 0, true );
 add_image_size( 'listing', 768, 0, true );
-add_image_size( 'fb-share', 600, 0, true );
 
 // Compress jpegs
 add_filter( 'jpeg_quality', create_function( '', 'return 90;' ) );
@@ -30,8 +29,8 @@ function get_post_thumbnail($post_id, $size='medium') {
 }
 
 /**
- * Get the file path (not URL) to a thumbnail of a particular size.  
- * (get_attached_file() only returns paths to full-sized thumbnails.)  
+ * Get the file path (not URL) to a thumbnail of a particular size.
+ * (get_attached_file() only returns paths to full-sized thumbnails.)
  * @param  int            $thumb_id - attachment id of thumbnail
  * @param  string|array   $size - thumbnail size string (e.g. 'full') or array [w,h]
  * @return path           file path to properly sized thumbnail
@@ -50,7 +49,7 @@ function get_thumbnail_size_path($thumb_id,$size) {
 
   // Replace the filename in our path with the filename of the properly sized image
   $exploded_path = explode ( '/' , $old_path );
-  $exploded_path[count($exploded_path)-1] = $filename; 
+  $exploded_path[count($exploded_path)-1] = $filename;
   $new_path = implode ( '/' , $exploded_path );
 
   return $new_path;
@@ -74,7 +73,7 @@ function get_duo_url($post_or_id, $options=[]) {
   if (is_object($post_or_id)) {
     if (has_post_thumbnail($post_or_id->ID)) {
       $thumb_id = get_post_thumbnail_id($post_or_id->ID);
-    } else { 
+    } else {
       return false;  //thumbnail not found
     }
   } else {
@@ -84,16 +83,16 @@ function get_duo_url($post_or_id, $options=[]) {
   $full_image = get_attached_file($thumb_id, true); //this only returns images of size 'full'
 
   // Do not proceed if full image not found
-  if (!file_exists($full_image)) { 
-    return false; 
-  } 
+  if (!file_exists($full_image)) {
+    return false;
+  }
 
   // Get the image of proper size
   $image_to_convert = get_thumbnail_size_path($thumb_id,$size);
 
   // Do not proceed if sized image not found
-  if (!file_exists($image_to_convert)) { 
-    return false; 
+  if (!file_exists($image_to_convert)) {
+    return false;
   }
 
   $upload_dir = wp_upload_dir();
@@ -140,7 +139,7 @@ function get_color_and_duo_thumbs($thumb_id,$size){
   $tiny_size = $size==='slide' ? 'tiny-slide' : 'tiny-listing';
 
   $thumb_url_tiny = wp_get_attachment_image_src( $thumb_id, $tiny_size )[0];
-  $duo_url_tiny = \Firebelly\Media\get_duo_url($thumb_id, ['size' => $tiny_size] );  
+  $duo_url_tiny = \Firebelly\Media\get_duo_url($thumb_id, ['size' => $tiny_size] );
 
   $output = '<div class="color lazy" style="background-image: url('.$dummy.');" data-original="'.$thumb_url_tiny.'" data-big-img-url="'.$thumb_url.'" data-current-img-size="tiny"></div>';
   $output .= '<div class="duo lazy" style="background-image: url('.$dummy.');" data-original="'.$duo_url_tiny.'" data-big-img-url="'.$duo_url.'" data-current-img-size="tiny"></div>';
