@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "0d0fd520429b40fe80231f4478e5212c",
-    "content-hash": "ed06ed505334614e46fa1b24d0e4963a",
+    "content-hash": "2638176aa269560129210031f0162229",
     "packages": [
         {
             "name": "composer/installers",
@@ -105,26 +104,26 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2016-04-13 19:46:30"
+            "time": "2016-04-13T19:46:30+00:00"
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "4.9.2",
+            "version": "5.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "34627d0b992bbe9ed909c73b27307297fb21f2a4"
+                "reference": "32750c64c9d1878a7c958094554644de63030323"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/34627d0b992bbe9ed909c73b27307297fb21f2a4",
-                "reference": "34627d0b992bbe9ed909c73b27307297fb21f2a4",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/32750c64c9d1878a7c958094554644de63030323",
+                "reference": "32750c64c9d1878a7c958094554644de63030323",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "4.9.2",
+                "johnpbloch/wordpress-core": "5.2.1",
                 "johnpbloch/wordpress-core-installer": "^1.0",
-                "php": ">=5.3.2"
+                "php": ">=5.6.20"
             },
             "type": "package",
             "notification-url": "https://packagist.org/downloads/",
@@ -144,32 +143,32 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2018-01-16 23:12:18"
+            "time": "2019-05-22T17:56:53+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "4.9.2",
+            "version": "5.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "59292fac30315323ce99e1a1d362015581e5d8e6"
+                "reference": "7555561027211f295e1d6a77d06ab47f605608cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/59292fac30315323ce99e1a1d362015581e5d8e6",
-                "reference": "59292fac30315323ce99e1a1d362015581e5d8e6",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/7555561027211f295e1d6a77d06ab47f605608cd",
+                "reference": "7555561027211f295e1d6a77d06ab47f605608cd",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
             "provide": {
-                "wordpress/core-implementation": "4.9.2"
+                "wordpress/core-implementation": "5.2.1"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -177,27 +176,27 @@
                     "homepage": "http://wordpress.org/about/"
                 }
             ],
-            "description": "WordPress is web software you can use to create a beautiful website or blog.",
+            "description": "WordPress is open source software you can use to create a beautiful website, blog, or app.",
             "homepage": "http://wordpress.org/",
             "keywords": [
                 "blog",
                 "cms",
                 "wordpress"
             ],
-            "time": "2018-01-16 23:12:12"
+            "time": "2019-05-21T18:27:33+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core-installer.git",
-                "reference": "e9e767f2d9f994f358c34b41def2c410ad8717f2"
+                "reference": "fd12f5cfe27223b92b0f4bbc097059eb23cc56c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core-installer/zipball/e9e767f2d9f994f358c34b41def2c410ad8717f2",
-                "reference": "e9e767f2d9f994f358c34b41def2c410ad8717f2",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core-installer/zipball/fd12f5cfe27223b92b0f4bbc097059eb23cc56c4",
+                "reference": "fd12f5cfe27223b92b0f4bbc097059eb23cc56c4",
                 "shasum": ""
             },
             "require": {
@@ -221,7 +220,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -233,23 +232,24 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2017-05-31 18:42:33"
+            "time": "2018-11-09T20:10:38+00:00"
         },
         {
             "name": "oscarotero/env",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oscarotero/env.git",
-                "reference": "0f676e41d758fa984806c32e27f0cf7afa63d8db"
+                "reference": "4ab45ce5c1f2c62549208426bfa20a3d5fa008c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oscarotero/env/zipball/0f676e41d758fa984806c32e27f0cf7afa63d8db",
-                "reference": "0f676e41d758fa984806c32e27f0cf7afa63d8db",
+                "url": "https://api.github.com/repos/oscarotero/env/zipball/4ab45ce5c1f2c62549208426bfa20a3d5fa008c6",
+                "reference": "4ab45ce5c1f2c62549208426bfa20a3d5fa008c6",
                 "shasum": ""
             },
             "require": {
+                "ext-ctype": "*",
                 "php": ">=5.2"
             },
             "type": "library",
@@ -275,7 +275,7 @@
             "keywords": [
                 "env"
             ],
-            "time": "2017-07-17 20:41:59"
+            "time": "2019-04-03T18:28:43+00:00"
         },
         {
             "name": "roots/wp-password-bcrypt",
@@ -332,32 +332,91 @@
             "keywords": [
                 "wordpress wp bcrypt password"
             ],
-            "time": "2016-03-01 16:27:06"
+            "time": "2016-03-01T16:27:06+00:00"
         },
         {
-            "name": "vlucas/phpdotenv",
-            "version": "v2.4.0",
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.11.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c"
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "82ebae02209c21113908c229e9883c419720738a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c",
-                "reference": "3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/82ebae02209c21113908c229e9883c419720738a",
+                "reference": "82ebae02209c21113908c229e9883c419720738a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.3.3"
             },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8 || ^5.0"
+            "suggest": {
+                "ext-ctype": "For best performance"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "1.11-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                },
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "time": "2019-02-06T07:57:58+00:00"
+        },
+        {
+            "name": "vlucas/phpdotenv",
+            "version": "v2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vlucas/phpdotenv.git",
+                "reference": "2a7dcf7e3e02dc5e701004e51a6f304b713107d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/2a7dcf7e3e02dc5e701004e51a6f304b713107d5",
+                "reference": "2a7dcf7e3e02dc5e701004e51a6f304b713107d5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9",
+                "symfony/polyfill-ctype": "^1.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -367,7 +426,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3-Clause-Attribution"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -382,7 +441,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2016-09-01 10:05:43"
+            "time": "2019-01-29T11:11:52+00:00"
         },
         {
             "name": "wpackagist-plugin/akismet",
@@ -394,9 +453,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/akismet.3.2.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/akismet.3.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -406,7 +463,7 @@
         },
         {
             "name": "wpackagist-plugin/cmb2",
-            "version": "2.3.0",
+            "version": "2.6.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/cmb2/",
@@ -414,15 +471,31 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/cmb2.zip?timestamp=1513780345",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/cmb2.zip?timestamp=1548045394"
             },
             "require": {
                 "composer/installers": "~1.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/cmb2/"
+        },
+        {
+            "name": "wpackagist-plugin/disable-gutenberg",
+            "version": "1.8.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/disable-gutenberg/",
+                "reference": "tags/1.8.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/disable-gutenberg.1.8.1.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/disable-gutenberg/"
         },
         {
             "name": "wpackagist-plugin/duplicate-post",
@@ -434,9 +507,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duplicate-post.3.1.2.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/duplicate-post.3.1.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -446,17 +517,15 @@
         },
         {
             "name": "wpackagist-plugin/intuitive-custom-post-order",
-            "version": "3.1.0",
+            "version": "3.1.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/intuitive-custom-post-order/",
-                "reference": "tags/3.1.0"
+                "reference": "tags/3.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/intuitive-custom-post-order.3.1.0.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/intuitive-custom-post-order.3.1.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -474,9 +543,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/limit-login-attempts.1.7.1.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/limit-login-attempts.1.7.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -494,9 +561,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/regenerate-thumbnails.2.2.6.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/regenerate-thumbnails.2.2.6.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -506,17 +571,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-importer",
-            "version": "0.6.3",
+            "version": "0.6.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-importer/",
-                "reference": "tags/0.6.3"
+                "reference": "tags/0.6.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-importer.0.6.3.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/wordpress-importer.0.6.4.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
