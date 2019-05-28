@@ -1,7 +1,13 @@
+set :application, 'typeforce_archive'
+set :domain, 'typeforce.firebelly.co'
 set :theme, 'typeforce'
 set :login, 'firebelly'
 set :repo_url, 'git@github.com:firebelly/typeforce_archive.git'
-set :php, 'php70'
+set :php, 'php72'
+
+# For wpcli db command search-replace
+set :wpcli_remote_url, "http://#{fetch(:domain)}"
+set :wpcli_local_url, "http://#{fetch(:theme)}.localhost"
 
 # Hardcodes branch to always be master
 # This could be overridden in a stage config file

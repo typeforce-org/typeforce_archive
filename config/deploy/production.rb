@@ -1,6 +1,7 @@
 set :stage, :production
 set :domain, 'typeforce.com'
 set :application, 'typeforce_archive'
+set :wpcli_remote_url, "https://#{fetch(:domain)}"
 
 # Simple Role Syntax
 # ==================
