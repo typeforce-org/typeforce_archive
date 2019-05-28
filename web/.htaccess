@@ -2,7 +2,20 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
-# any app-specific rewrites can go here
+
+# Force single domain
+RewriteEngine on
+RewriteCond %{HTTP_HOST} !^typeforce\.com$ [NC]
+RewriteCond %{HTTP_HOST} !^typeforce\.firebelly\.co [NC]
+RewriteCond %{HTTP_HOST} !^typeforce\.localhost$ [NC]
+RewriteRule ^(.*)$ https://typeforce.com/$1 [R=301,L]
+
+# Force HTTPS
+RewriteCond %{REQUEST_URI} !\.well-known
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} !^typeforce\.firebelly\.co [NC]
+RewriteCond %{HTTP_HOST} !^typeforce\.localhost [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 </IfModule>
 # END Firebelly
 
@@ -33,10 +46,3 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
 # END WordPress
-
-
-# BEGIN redirect to base domain
-RewriteEngine on
-RewriteCond %{HTTP_HOST} !^typeforce.com$ [NC]
-RewriteRule ^(.*)$ http://typeforce.com/$1 [R=301,L]
-# END redirect to base domain
