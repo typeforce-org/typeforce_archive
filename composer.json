@@ -39,13 +39,13 @@
     "johnpbloch/wordpress": "^5.0.0",
     "oscarotero/env": "^1.0",
     "roots/wp-password-bcrypt": "1.0.0",
-    "wpackagist-plugin/duplicate-post": "3.1.2",
+    "wpackagist-plugin/duplicate-post": "^3.1.2",
     "wpackagist-plugin/limit-login-attempts" : "*",
     "wpackagist-plugin/wordpress-importer" : "*",
     "wpackagist-plugin/intuitive-custom-post-order": "*",
     "wpackagist-plugin/cmb2": "^2.2.3.1",
-    "wpackagist-plugin/akismet": "3.2",
-    "wpackagist-plugin/regenerate-thumbnails": "2.2.6",
+    "wpackagist-plugin/akismet": "^4.0",
+    "wpackagist-plugin/regenerate-thumbnails": "^3.0",
     "wpackagist-plugin/disable-gutenberg": "^1.5"
   },
   "extra": {
