@@ -160,6 +160,9 @@ function register_exhibit_metaboxes() {
         'desc'  => '(optional)',
         'id'    => $prefix . 'materials',
         'type'  => 'wysiwyg',
+        'options' => [
+          'textarea_rows' => 6,
+        ],
       )
   );
   $cmb->add_field(
@@ -168,6 +171,9 @@ function register_exhibit_metaboxes() {
         'desc'  => 'Artist\'s Biography (optional)',
         'id'    => $prefix . 'bio',
         'type'  => 'wysiwyg',
+        'options' => [
+          'textarea_rows' => 6,
+        ],
       )
   );
   $cmb->add_field(
@@ -176,6 +182,9 @@ function register_exhibit_metaboxes() {
         'desc'  => 'Website, Social Media, etc. (optional)',
         'id'    => $prefix . 'social',
         'type'  => 'wysiwyg',
+        'options' => [
+          'textarea_rows' => 6,
+        ],
       )
   );
   $cmb->add_field(
@@ -184,6 +193,9 @@ function register_exhibit_metaboxes() {
         'desc'  => 'Event information',
         'id'    => $prefix . 'stats',
         'type'  => 'wysiwyg',
+        'options' => [
+          'textarea_rows' => 6,
+        ],
       )
   );
   $cmb->add_field(
@@ -192,6 +204,9 @@ function register_exhibit_metaboxes() {
         'desc'  => 'Links for who photographed the event',
         'id'    => $prefix . 'photographer',
         'type'  => 'wysiwyg',
+        'options' => [
+          'textarea_rows' => 6,
+        ],
       )
   );
   $cmb->add_field(
@@ -342,8 +357,8 @@ function prev_next_links($args, $current_id) {
   $output = '<nav class="exhibit-nav">';
   if($current+1 < count($ids)) {
     $output.= '<div class="next"><a href="'.get_permalink($ids[$current+1]).'" rel="next"><div class="anim-wrap">'.__('Next','sage').' <svg class="icon-arrow-right" role="img"><use xlink:href="#icon-arrow-right"></use></svg></div></a></div>';
-  } else { 
-    $output .='<div class="next"> </div>'; // Need an empty one for placement of "Previous" link 
+  } else {
+    $output .='<div class="next"> </div>'; // Need an empty one for placement of "Previous" link
   }
   if($current-1 >= 0) {
     $output .= '<div class="prev"><a href="'.get_permalink($ids[$current-1]).'" rel="prev"><div class="anim-wrap"><svg class="icon-arrow-left" role="img"><use xlink:href="#icon-arrow-left"></use></svg> '.__('Previous','sage').'</div></a></div>';
