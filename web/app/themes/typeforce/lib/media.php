@@ -12,7 +12,7 @@ add_image_size( 'slide', 1800, 0, true );
 add_image_size( 'listing', 768, 0, true );
 
 // Compress jpegs
-add_filter( 'jpeg_quality', create_function( '', 'return 90;' ) );
+add_filter('jpeg_quality', function(){ return 90; });
 
 /**
  * Get thumbnail image for post
