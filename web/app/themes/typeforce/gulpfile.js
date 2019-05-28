@@ -10,7 +10,6 @@ var gulpif       = require('gulp-if');
 var imagemin     = require('gulp-imagemin');
 var jshint       = require('gulp-jshint');
 var lazypipe     = require('lazypipe');
-var less         = require('gulp-less');
 var merge        = require('merge-stream');
 var cssNano      = require('gulp-cssnano');
 var plumber      = require('gulp-plumber');
@@ -22,7 +21,6 @@ var uglify       = require('gulp-uglify');
 var rename       = require('gulp-rename');
 var svgstore     = require('gulp-svgstore');
 var svgmin       = require('gulp-svgmin');
-var svg2png      = require('gulp-svg2png');
 
 // See https://github.com/austinpray/asset-builder
 var manifest = require('asset-builder')('./assets/manifest.json');
@@ -71,6 +69,12 @@ var enabled = {
 // Path to the compiled assets manifest in the dist directory
 var revManifest = path.dist + 'assets.json';
 
+// Error checking; produce an error rather than crashing.
+var onError = function(err) {
+  console.log(err.toString());
+  this.emit('end');
+};
+
 // ## Reusable Pipelines
 // See https://github.com/OverZealous/lazypipe
 
@@ -101,16 +105,12 @@ var cssTasks = function(filename) {
     .pipe(autoprefixer, {
       browsers: [
         'last 2 versions',
-        'ie 8',
-        'ie 9',
-        'android 2.3',
         'android 4',
         'opera 12'
       ]
     })
     .pipe(cssNano, {
-      safe: true,
-      autoprefixer: false
+      safe: true
     })
     .pipe(function() {
       return gulpif(enabled.rev, rev());
@@ -182,6 +182,7 @@ gulp.task('styles', ['wiredep'], function() {
       });
     }
     merged.add(gulp.src(dep.globs, {base: 'styles'})
+      .pipe(plumber({errorHandler: onError}))
       .pipe(cssTasksInstance));
   });
   return merged
@@ -196,6 +197,7 @@ gulp.task('scripts', ['jshint'], function() {
   manifest.forEachDependency('js', function(dep) {
     merged.add(
       gulp.src(dep.globs, {base: 'scripts'})
+        .pipe(plumber({errorHandler: onError}))
         .pipe(jsTasks(dep.name))
     );
   });
@@ -217,14 +219,30 @@ gulp.task('fonts', function() {
 // `gulp images` - Run lossless compression on all the images.
 gulp.task('images', function() {
   return gulp.src(globs.images)
-    .pipe(imagemin({
-      progressive: true,
-      interlaced: true,
-      svgoPlugins: [{removeUnknownsAndDefaults: false}, {cleanupIDs: false}]
-    }))
+    .pipe(imagemin([
+      imagemin.svgo({plugins: [
+        {removeUnknownsAndDefaults: false},
+        {cleanupIDs: false}
+      ]})
+    ]))
     .pipe(gulp.dest(path.dist + 'images'))
     .pipe(browserSync.stream());
 });
+
+// ### JSHint
+// `gulp jshint` - Lints configuration JSON and project JS.
+gulp.task('jshint', function() {
+  return gulp.src([
+    'bower.json', 'gulpfile.js'
+  ].concat(project.js))
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(gulpif(enabled.failJSHint, jshint.reporter('fail')));
+});
+
+// ### Clean
+// `gulp clean` - Deletes the build folder entirely.
+gulp.task('clean', require('del').bind(null, [path.dist]));
 
 // ### SVG time!
 gulp.task('svgs', function() {
@@ -243,29 +261,8 @@ gulp.task('svgs', function() {
     .pipe(gulp.dest(path.source + 'svgs'))
     .pipe(svgstore({ inlineSvg: true }))
     .pipe(rename({suffix: '-defs'}))
-    .pipe(gulp.dest(path.source + 'svgs/build'));
+    .pipe(gulp.dest(path.dist + 'svgs/build'));
 });
-// convert to png for fallback
-gulp.task('svgfallback', function() {
-  return gulp.src(path.source + 'svgs/*.svg')
-    .pipe(svg2png())
-    .pipe(gulp.dest('assets/images'));
-});
-
-// ### JSHint
-// `gulp jshint` - Lints configuration JSON and project JS.
-gulp.task('jshint', function() {
-  return gulp.src([
-    'bower.json', 'gulpfile.js'
-  ].concat(project.js))
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(gulpif(enabled.failJSHint, jshint.reporter('fail')));
-});
-
-// ### Clean
-// `gulp clean` - Deletes the build folder entirely.
-gulp.task('clean', require('del').bind(null, [path.dist]));
 
 // ### Watch
 // `gulp watch` - Use BrowserSync to proxy your dev server and synchronize code
@@ -273,11 +270,12 @@ gulp.task('clean', require('del').bind(null, [path.dist]));
 // `manifest.config.devUrl`. When a modification is made to an asset, run the
 // build step for that asset and inject the changes into the page.
 // See: http://www.browsersync.io
-gulp.task('watch', ['styles', 'scripts'], function() {
+gulp.task('watch', ['build'], function() {
   browserSync.init({
     files: ['{lib,templates}/**/*.php', '*.php'],
     proxy: config.devUrl,
     notify: false,
+    open: false,
     snippetOptions: {
       whitelist: ['/wp-admin/admin-ajax.php'],
       blacklist: ['/wp-admin/**']
@@ -287,18 +285,20 @@ gulp.task('watch', ['styles', 'scripts'], function() {
   gulp.watch([path.source + 'scripts/**/*'], ['jshint', 'scripts']);
   gulp.watch([path.source + 'fonts/**/*'], ['fonts']);
   gulp.watch([path.source + 'images/**/*'], ['images']);
-  gulp.watch([path.source + 'svgs/*.svg'], ['svgs', 'svgfallback']);
   gulp.watch(['bower.json', 'assets/manifest.json'], ['build']);
 });
 
 // ### Build
-// `gulp build` - Run all the build tasks but don't clean up beforehand.
+// `gulp build` - Run all the build tasks
 // Generally you should be running `gulp` instead of `gulp build`.
 gulp.task('build', function(callback) {
-  runSequence('styles',
-              'scripts',
-              ['fonts', 'images'],
-              callback);
+  runSequence(
+    'clean',
+    'styles',
+    'scripts',
+    ['fonts', 'images', 'svgs'],
+    callback
+  );
 });
 
 // ### Wiredep
@@ -316,6 +316,6 @@ gulp.task('wiredep', function() {
 
 // ### Gulp
 // `gulp` - Run a complete build. To compile for production run `gulp --production`.
-gulp.task('default', ['clean'], function() {
+gulp.task('default', function() {
   gulp.start('build');
 });
