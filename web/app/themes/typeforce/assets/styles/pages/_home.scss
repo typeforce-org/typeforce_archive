@@ -68,6 +68,11 @@
     transition: opacity $hover-trans-time*2, transform $hover-trans-time*2;
     background: linear-gradient( rgba($gray-dark,.7) ,rgba($gray-dark,.3) 80%, rgba($gray-dark,0) );
 
+    .highlight {
+      background-color: $gray-dark;
+      padding: 0.3em;
+    }
+
     @include media-md {
       padding-top: 43px;
       padding-left: $site-pad-hor-md;
