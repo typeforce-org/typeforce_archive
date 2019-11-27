@@ -16,7 +16,7 @@ $thumb_url = wp_get_attachment_image_src($thumb_id, 'slide' )[0];
 <!-- cowboy wildstyle -->
 <div class="intro-content" style="height:auto;padding:0">
   <div class="video">
-    <iframe src="https://player.vimeo.com/video/311559805?background=1;autoplay=1&autopause=0&loop=1&title=0&byline=0&portrait=0" width="960" height="540" frameborder="0"></iframe>
+    <iframe src="https://player.vimeo.com/video/375947890?background=1;autoplay=1&autopause=0&loop=1&title=0&byline=0&portrait=0" width="960" height="540" frameborder="0"></iframe>
   </div>
   <div class="headline" style="top:auto;bottom:15px;text-align:right;padding:0;">
     <div class="wrap" style="max-width:none;width:calc(100vw - 25px);">
